@@ -8,13 +8,13 @@ ini_set('display_errors', '1');
 /**
  * Change to your own baseroot/basepath.
  */
-define('BASE_PATH', '/oop/mvc/randomProject5/server/');
+define('BASE_PATH', '/forum_project/server/');
 
 /**
  * Define your database information so the system can work
  */
-define('DB_HOST','localhost');
-define('DB_DB','randomProjects');
+define('DB_HOST','127.0.0.1');
+define('DB_DB','forum_project');
 define('DB_USER','root');
 define('DB_PASS','');
 
