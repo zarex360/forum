@@ -23,9 +23,9 @@ angular.module('myApp.services', [])
         });       
       },
       //Login function
-      login: function(userInput){
+      login: function(loginInput){
         //Do a http request to the server and send in userInput to server
-        $http.post('../server/auth/login', userInput).success(function(data){
+        $http.post('../server/auth/login', loginInput).success(function(data){
           console.log(data);
         });
       },

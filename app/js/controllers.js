@@ -13,6 +13,7 @@ angular.module('myApp.controllers', [])
   .controller('UserCtrl', ['UserService', '$scope', function(UserService, $scope){
 
     $scope.user = {};
+    $scope.loginInput = {};
     $scope.msg = null;
     //register function
     $scope.register = function(){
@@ -26,7 +27,8 @@ angular.module('myApp.controllers', [])
     //Login function
     $scope.login = function(){
       //Start login service
-      UserService.login($scope.user);
+      console.log()
+      UserService.login($scope.loginInput);
     }
 
   }]);
