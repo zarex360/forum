@@ -17,20 +17,14 @@ angular.module('myApp', [
 .config(['$routeProvider', function($routeProvider) {
 
   $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
+  $routeProvider.when('/login', {templateUrl: 'partials/login-register.html', controller: 'HomeCtrl'});
 
   $routeProvider.otherwise({redirectTo: '/home'});
 
 }]);
 
 
-// on angular startup:
 
-angular.module('myApp').run(['$http', 'UserDataService', '$rootScope' , function($http, UserDataService, $rootScope){
-
-    console.log('... Hello hello, I am starting... Look at me run!');
-   
-
-}]);
 
 
 
