@@ -26,7 +26,7 @@ angular.module('myApp.services', [])
       login: function(loginInput){
         //Do a http request to the server and send in userInput to server
         $http.post('../server/auth/login', loginInput).success(function(data){
-          console.log(data);
+          console.log(data['loginResponse']);
         });
       },
 
