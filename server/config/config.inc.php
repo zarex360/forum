@@ -8,7 +8,7 @@ ini_set('display_errors', '1');
 /**
  * Change to your own baseroot/basepath.
  */
-define('BASE_PATH', '/oop/mvc/randomProject5/server/');
+define('BASE_PATH', '/forum_project/server/');
 
 /**
  * Define your database information so the system can work

@@ -2,25 +2,11 @@
 <html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
-  <title>Angular- och MCV-uppgift</title>
+  <title>Our Forum</title>
   <link rel="stylesheet" href="css/app.css"/>
   <base href="/forum_project/app/">
 </head>
 <body>
-
-  <ul class="menu" ng-controller="MenuCtrl">
-    <li ng-repeat="item in menu"><a href="{{item.href}}">{{item.text}}</a></li>
-  </ul>
-
-  <div ng-controller="BasketCtrl">
-    <h4>{{title}}</h4>
-    <ul>
-      <li ng-repeat="item in items">
-        {{item.qty}} - {{item.name}} ({{item.brand}}) - {{item.price}}kr <button ng-click="removeItem(item)">Ta bort</button>
-      </li>
-    </ul>
-    <p>Total: {{calcTotal()}}kr</p>
-  </div>
 
   <div ng-view></div>
 
