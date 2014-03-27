@@ -1,4 +1,0 @@
-forum
-=====
-
-Our project (forum)
