@@ -1,0 +1,26 @@
+<h1>Produkter{{brand?' ifrån ' + brand:'';}}</h1>
+
+<!--<ul>
+  <li><a href="products/Digidesign">Digidesign</a></li>
+  <li><a href="products/M-audio">M-audio</a></li>
+</ul>-->
+
+<ul>
+  <li ng-repeat="brand in brands"><a href="products/{{brand.brand}}">{{brand.brand}}</a></li>
+</ul>
+
+Sök: <input type="text" ng-model="query"/> 
+Ordna: <select ng-model="order">
+        <option value="name">Namn</option>
+        <option value="-name">Namn (omvänd ordning)</option>
+        <option value="brand">Tillverkare</option>
+        <option value="-price">Pris (lägst-högst)</option>
+        <option value="price">Pris (högst-lägst)</option>
+      </select>
+
+<ul>
+  <li ng-repeat="product in products | filter: query | filter: brand | orderBy: order" style="border-bottom: 1px dotted #000; width: 500px">
+    {{product.name}} <b>av tillverkaren</b> {{product.brand}} <br> <b>kostar</b>  {{product.price}}kr <b>artikel nr </b> {{product.artnr}} <br> <b>Lades till</B> {{product.timestamp}} <br> <b>Beskrvning: </b> <br>{{product.description}} <br>
+    <button ng-click="addItem(product)">Lägg i varukorgen</button>
+  </li>
+</ul>

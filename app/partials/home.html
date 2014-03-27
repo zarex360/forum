@@ -1,0 +1,9 @@
+<h1>Välkommen {{name}}!</h1>
+
+<h2>Dom senaste produkterna</h2>
+<ul>
+	<li ng-repeat="product in LatestPro">{{product.name}} <b>av tillverkaren</b> {{product.brand}} <br> <b>kostar</b>  {{product.price}}kr <b>artikel nr </b> {{product.artnr}} <br> <b>Lades till</B> {{product.timestamp}} <br> <b>Beskrvning: </b> <br>{{product.description}} <br><br>
+	</li>
+
+</ul>
+<p>Klockan är nu {{time}}.</p>
