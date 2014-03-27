@@ -29,3 +29,12 @@
   content: "";
   padding: 0;
 }
+.login{
+  width: 400px;
+  float: left;
+}
+.register{
+  width: 400px;
+  float: left;
+}
+

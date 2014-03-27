@@ -17,7 +17,7 @@ angular.module('myApp', [
 .config(['$routeProvider', function($routeProvider) {
 
   $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
-  $routeProvider.when('/login', {templateUrl: 'partials/login-register.html', controller: 'HomeCtrl'});
+  $routeProvider.when('/login', {templateUrl: 'partials/login-register.html', controller: 'UserCtrl'});
 
   $routeProvider.otherwise({redirectTo: '/home'});
 
