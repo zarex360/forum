@@ -20,14 +20,6 @@ class baseCtrl
 	 */
 	protected $session;
 
-
-	/**
-	 * Handling the rending for templates
-	 * @var Object View
-	 */
-	protected $view;
-
-
 	/**
 	 * Initalize the obejcts i need to make the system work
 	 * It also initalize the right method in the subcontroller
@@ -35,7 +27,6 @@ class baseCtrl
 	 */
 	function __construct(Router $router)
 	{
-		$this->view = new View;
 		$this->response = new Response;
 		$this->session = new SessionHandler;
 		$this->router = $router;

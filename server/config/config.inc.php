@@ -13,8 +13,8 @@ define('BASE_PATH', '/oop/mvc/randomProject5/server/');
 /**
  * Define your database information so the system can work
  */
-define('DB_HOST','localhost');
-define('DB_DB','randomProjects');
+define('DB_HOST','127.0.0.1');
+define('DB_DB','forum_project');
 define('DB_USER','root');
 define('DB_PASS','');
 
