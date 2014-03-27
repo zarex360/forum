@@ -2,8 +2,8 @@
 
 class Auth
 {
-	public function loginUser()
+	public function checkRegisterData($data)
 	{
-		print('loginUser function');
+		print('asd');
 	}
 }
