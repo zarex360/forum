@@ -35,4 +35,18 @@ class Auth extends BaseModel
 			'password' => $data['password']
 		));
 	}
+
+	public function loginUser($data)
+	{
+		$statement = $this->db->prepare("SELECT * FROM user WHERE username = :username AND password = :password");
+		$statement->execute(array('username' => $data['username'], 'password' => $data['password']));
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		var_dump($result);
+		exit();
+		if(count($result) > 1)
+		{
+			//$this->session->set('user', $result);
+			return $result['username'];
+		}
+	}
 }

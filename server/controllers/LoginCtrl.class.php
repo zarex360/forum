@@ -4,6 +4,10 @@ class LoginCtrl extends BaseCtrl
 {
 	protected function login()
 	{
-		print('login function');
+		$model = new Auth();
+
+		//$data = $this->getJsonInput();
+		$data = array('username' => 'johan', 'password' => 'asdasd');
+		$result = $model->loginUser($data);
 	}
 }
