@@ -2,6 +2,9 @@
 
 class baseCtrl
 {
+	/**
+	 * @var Object Response
+	 */
 	protected $response;
 
 
@@ -18,7 +21,7 @@ class baseCtrl
 	 * It contains methods for the system to handle sessions
 	 * @var Object Session
 	 */
-	protected $session;
+	public $session;
 
 	/**
 	 * Initalize the obejcts i need to make the system work
@@ -47,5 +50,12 @@ class baseCtrl
 	public function render()
 	{
 		return $this->response->getResponse();
+	}
+
+	protected function getJsonInput()
+	{
+		$json = file_get_contents('php://input');
+    	$data = json_decode($json, true);
+    	return $data;
 	}
 }
