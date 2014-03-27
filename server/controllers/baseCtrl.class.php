@@ -18,12 +18,6 @@ class baseCtrl
 
 
 	/**
-	 * It contains methods for the system to handle sessions
-	 * @var Object Session
-	 */
-	public $session;
-
-	/**
 	 * Initalize the obejcts i need to make the system work
 	 * It also initalize the right method in the subcontroller
 	 * @param Object Router
@@ -31,7 +25,6 @@ class baseCtrl
 	function __construct(Router $router)
 	{
 		$this->response = new Response;
-		$this->session = new SessionHandler;
 		$this->router = $router;
 		$this->initMethod(
 			$this->router->get('method'),

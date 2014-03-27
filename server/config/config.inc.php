@@ -32,8 +32,6 @@ define('CLASS_DIRS','
 	controllers,
 	models,
 	config,
-	view,
-	view/templates,
 	tools,
 	http
 ');

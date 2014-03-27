@@ -13,7 +13,7 @@ class Auth extends BaseModel
 		));
 		$result = $statement->fetch(PDO::FETCH_ASSOC);
 
-		if(count($result) > 0 and $result !== false)
+		if(isset($result['username']))
 		{
 			return false;
 		}
@@ -40,13 +40,12 @@ class Auth extends BaseModel
 	{
 		$statement = $this->db->prepare("SELECT * FROM user WHERE username = :username AND password = :password");
 		$statement->execute(array('username' => $data['username'], 'password' => $data['password']));
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($result);
-		exit();
-		if(count($result) > 1)
+		$result = $statement->fetch(PDO::FETCH_ASSOC);
+		if(isset($result['username']) && isset($result['password']))
 		{
-			//$this->session->set('user', $result);
+			$_SESSION['user'] = $result;
 			return $result['username'];
 		}
+		return false;
 	}
 }
