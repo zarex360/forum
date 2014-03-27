@@ -11,9 +11,9 @@ class RegisterCtrl extends BaseCtrl
 		if($model->checkRegisterData($data))
 		{
 			$model->registerUser($data);
-			$this->resonse->add('registerResponse', true);
+			$this->response->add('registerResponse', true);
 			return;
 		}
-		$this->resonse->add('registerResponse', false);
+		$this->response->add('registerResponse', false);
 	}
 }
