@@ -1,15 +1,19 @@
 <!-- Login form -->
 <div class="login">
 	<h1>Login</h1>
-	<form name="login" novalidate>
+	<form name="loginForm" novalidate>
 		<label for>Username</label>
-		<input type="text" name="username" placeholder="UserName" requried>
-		<span ng-show="regForm.username.$dirty && regForm.username.$error.required">Obligatoriskt: Ange ditt användarnamn</span> <br>
+		<input type="text" name="username" placeholder="UserName" ng-model="loginInput.username" requried>
+		<span ng-show="loginForm.username.$dirty && regForm.username.$error.required">You need to fill in a username</span>
+		<br>
 
 		<label for>Password</label>
-		<input type="password" name="password" placeholder="Password" requried><br>
+		<input type="password" name="password" placeholder="Password" ng-model="loginInput.password" requried>
+		<span ng-show="loginForm.password.$dirty && regForm.password.$error.required">You need to fill in a password</span>
+		<br>
 
-		<button>Login</button> 	
+		<button ng-click="loginForm.$valid && login()">Register</button>
+    	<span ng-show="submitted && loginForm.$dirty && loginForm.$invalid">Please edit the wrongs</span>
 	</form>
 </div>
 
@@ -34,6 +38,5 @@
 		<br>
 		<button ng-click="regForm.$valid && register()">Register</button>
     	<span ng-show="submitted && regForm.$dirty && regForm.$invalid">Please edit the wrongs</span>
-    	<span ng-show="saveerror">There has been an error with your registration</span> 
 	</form>
 </div>
