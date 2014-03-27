@@ -13,13 +13,22 @@ angular.module('myApp.controllers', [])
   .controller('UserCtrl', ['UserService', '$scope', function(UserService, $scope){
 
     $scope.user = {};
-
+    $scope.msg = null;
     //register function
     $scope.register = function(){
-      console.log($scope.user);
-      
+      //start register service
       UserService.register($scope.user);
+      $scope.msg = UserService.getMsg();
+      console.log($scope.msg);
+
     }
+
+    //Login function
+    $scope.login = function(){
+      //Start login service
+      UserService.login($scope.user);
+    }
+
   }]);
 
 
