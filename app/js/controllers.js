@@ -91,9 +91,9 @@ angular.module('myApp.controllers', [])
   .controller('TopicCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     //Check if a category is set
     if($routeParams['topic']){
-
+      var topic = {'topic': $routeParams['topic']};
       //If it is set then do a server request to get all the topics that belongs to that category
-      $http.post('../server/topic/getList', $routeParams['topic']).success(function(data){
+      $http.post('../server/topic/getList', topic).success(function(data){
         console.log(data);
        // $scope.topics = data['?']
       })
