@@ -4,6 +4,7 @@ class TopicModel extends BaseModel
 {
 	public function getTopicsXCategory($href)
 	{
+		$href = array_shift($href);
 		if($id = $this->getCategoryId($href))
 		{
 			$statement = $this->db->prepare(
