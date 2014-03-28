@@ -14,7 +14,7 @@ class Request
 
 	private function setTokens()
 	{
-		$url = strtolower(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']));
+		$url = str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']);
 		if($url !== '')
 		{
 			$this->tokens = explode('/', rtrim($url, '/'));

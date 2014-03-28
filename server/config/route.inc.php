@@ -4,6 +4,7 @@
 return array(
 	'auth/login' => 'LoginCtrl@login',
 	'auth/register' => 'RegisterCtrl@register',
+	'auth/checkUser' => 'LoginCtrl@checkUser',
 	'menu/get' => 'MenuCtrl@getMenu',
 	
 	// A default route is always nice! if something goes wrong

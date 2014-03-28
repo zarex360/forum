@@ -16,9 +16,12 @@ class Session
 
 	public function destroy()
 	{
-		$_SESSION = array();
-		unset($_SESSION);
-		session_destroy();
+		if(isset($_SESSION))
+		{
+			$_SESSION = array();
+			unset($_SESSION);
+			session_destroy();
+		}
 	}
 
 	public function undo($key)
@@ -30,9 +33,13 @@ class Session
 	}
 
 	public function get($key ='') {
-		if(array_key_exists($key, $_SESSION)) {
-		  return $_SESSION[$key];
+		if(isset($_SESSION))
+		{
+			if(array_key_exists($key, $_SESSION)) 
+			{
+			  return $_SESSION[$key];
+			}
+			return $_SESSION;
 		}
-		return $_SESSION;
 	}
 }

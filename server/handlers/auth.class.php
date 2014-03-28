@@ -43,17 +43,32 @@ class Auth extends BaseModel
 		$result = $statement->fetch(PDO::FETCH_ASSOC);
 		if(isset($result['username']) && isset($result['password']))
 		{
-			$_SESSION['user'] = $result;
+			$this->session->set('user', $result);
 			return $result['username'];
 		}
-		$sessionDestroy();
+		$this->session->destroy();
 		return false;
 	}
 
-	private function sessionDestroy()
+	public function checkUser()
 	{
-		$_SESSION = array();
-		unset($_SESSION);
-		session_destroy();
+		if($user = $this->session->get('user'))
+		{
+			$statement = $this->db->prepare("SELECT * FROM user WHERE username = :username AND password = :password");
+			$statement->execute(array('username' => $user['username'], 'password' => $user['password']));
+			$result = $statement->fetch(PDO::FETCH_ASSOC);
+			if(isset($result['username']))
+			{
+				return true;
+			}
+		}
+		$this->session->destroy();
+		return false;
 	}
 }
+
+/*
+$_SESSION['user']['username'] = 'test';
+$_SESSION['user']['password'] = 'test';
+$this->session->destroy();
+*/

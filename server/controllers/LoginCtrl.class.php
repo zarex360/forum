@@ -12,4 +12,13 @@ class LoginCtrl extends BaseCtrl
 
 		$this->response->add('loginResponse', $result);
 	}
+
+	protected function checkUser()
+	{
+		$model = new Auth();
+
+		$result = $model->checkUser();
+
+		$this->response->add('authUserResponse', $result);
+	}
 }
