@@ -6,7 +6,10 @@ return array(
 	'auth/checkUser' => 'LoginCtrl@checkUser',
 	'auth/register' => 'RegisterCtrl@register',
 	'auth/logout' => 'LogoutCtrl@logout',
-	'menu/get' => 'MenuCtrl@getMenu',
+	
+	'menu/getMain' => 'MenuCtrl@getMainMenu',
+	'menu/getCategories' => 'MenuCtrl@getCatergoryMenu',
+	
 	'profile/edit' => 'ProfileCtrl@editProfile',
 	
 	// A default route is always nice! if something goes wrong

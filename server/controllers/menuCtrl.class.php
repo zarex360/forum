@@ -3,12 +3,12 @@
 
 class MenuCtrl extends BaseCtrl
 {
-	protected function getMenu()
+	protected function getMainMenu()
 	{
 		$model = new MenuModel();
 
 		$result = $model->getMenu();
 
-		$this->response->add('menuResponse', $result);
+		$this->response->add('mainMenuResponse', $result);
 	}
 }
