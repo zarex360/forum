@@ -7,8 +7,17 @@ class MenuCtrl extends BaseCtrl
 	{
 		$model = new MenuModel();
 
-		$result = $model->getMenu();
+		$result = $model->getMainMenu();
 
 		$this->response->add('mainMenuResponse', $result);
+	}
+
+	protected function getCatergoryMenu()
+	{
+		$model = new MenuModel();
+
+		$result = $model->getCatergoryMenu();
+
+		$this->response->add('categoryMenuResponse', $result);
 	}
 }

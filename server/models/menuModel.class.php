@@ -2,7 +2,7 @@
 
 class MenuModel extends BaseModel
 {
-	public function getMenu()
+	public function getMainMenu()
 	{
 		$role = $this->checkUserRole();
 		return $this->getMenuFromDb($role);
@@ -20,7 +20,7 @@ class MenuModel extends BaseModel
 		}
 
 		$statement = $this->db->prepare(
-			"SELECT * FROM menu WHERE " . $str  
+			"SELECT * FROM menu_menu WHERE " . $str  
 		);
 
 		$statement->execute(array('role' => $role));
@@ -45,5 +45,13 @@ class MenuModel extends BaseModel
 			return $result['role'];
 		}
 		return 1;
+	}
+
+	public function getCatergoryMenu()
+	{
+		$statement = $this->db->prepare("SELECT * FROM category_menu");
+		$statement->execute();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		return $result;
 	}
 }
