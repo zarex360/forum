@@ -16,17 +16,17 @@ angular.module('myApp.controllers', [])
   .controller('MenuCtrl', ['$http', '$scope', function($http, $scope){
 
     // initial menu (logged in or not)
-    $http.get('../server/menu/get').success(function(data){
+    $http.get('../server/menu/getMain').success(function(data){
       //Set the menu data to scope menu, access the data with {{menu}} in index.html
-      $scope.menu = data['menuResponse'];
+      $scope.mainMenu = data['mainMenuResponse'];
     });
 
     // Look if the event is set, if it is. then load the new menu (it sets when you login)
     $scope.$on("menuGet",function() {
       //DO a server request to get the menu
-      $http.get('../server/menu/get').success(function(data){
+      $http.get('../server/menu/getMain').success(function(data){
         //Set the menu data to $scope.menu
-        $scope.menu = data['menuResponse'];
+        $scope.mainMenu = data['mainMenuResponse'];
       });
     });
     
@@ -77,7 +77,9 @@ angular.module('myApp.controllers', [])
 
   .controller('CategoryCtrl', ['$scope', function($scope){
     $scope.categorys = [{'href':'hejsan', 'name':'hej'}];
-  }]);
+  }])
+
+  .controller('PostCtrl', [])
 
 
  

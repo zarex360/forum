@@ -21,6 +21,8 @@ angular.module('myApp', [
   $routeProvider.when('/category', {templateUrl: 'partials/category.html', controller: 'CategoryCtrl'});
   $routeProvider.when('/logout', {templateUrl: 'partials/login-register.html', controller: 'LogoutCtrl'});
   $routeProvider.when('/profile', {templateUrl: 'partials/profile.html', controller: 'ProfileCtrl'});
+  $routeProvider.when('/category/:topic', {templateUrl: 'partials/category_post.html', controller: 'PostCtrl'});
+  $routeProvider.when('/category/:topic/:post', {templateUrl: 'partials/category_post.html', controller: 'AnsCtrl'});
 
   $routeProvider.otherwise({redirectTo: '/home'});
 
