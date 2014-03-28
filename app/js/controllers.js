@@ -83,6 +83,7 @@ angular.module('myApp.controllers', [])
     $http.get('../server/menu/getCategories').success(function(data){
       //Put all the categories in the variable categories
       $scope.categories = data['categoryMenuResponse'];
+      console.log(data['categoryMenuResponse']);
     });
 
   }])
@@ -94,8 +95,8 @@ angular.module('myApp.controllers', [])
       var topic = {'topic': $routeParams['topic']};
       //If it is set then do a server request to get all the topics that belongs to that category
       $http.post('../server/topic/getList', topic).success(function(data){
-        console.log(data);
-       // $scope.topics = data['?']
+        console.log(data['getTopicListResponse']);
+       $scope.topics = data['getTopicListResponse'];
       })
     }
   }])
