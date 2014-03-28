@@ -107,11 +107,13 @@ angular.module('myApp.controllers', [])
   .controller('PostCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     //Check if a topic is set
     if($routeParams['post']){
-      var parms = [{'topicName' : $routeParams['topic']}, {'postID' : $routeParams['post']}];
+      var parms = {};
+      parms.topicName = $routeParams['topic'];
+      parms.postID = $routeParams['post'];
       console.log(parms);
       //If it is set then do a server request to get all posts that belongs to that topic
       $http.post('../server/post/getAll', parms).success(function(data){
-        console.log(data);
+        //console.log(data);
         //$scope.posts = data['?']
 
       })
