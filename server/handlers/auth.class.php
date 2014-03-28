@@ -46,6 +46,14 @@ class Auth extends BaseModel
 			$_SESSION['user'] = $result;
 			return $result['username'];
 		}
+		$sessionDestroy();
 		return false;
+	}
+
+	private function sessionDestroy()
+	{
+		$_SESSION = array();
+		unset($_SESSION);
+		session_destroy();
 	}
 }
