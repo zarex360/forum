@@ -30,24 +30,28 @@ CREATE TABLE IF NOT EXISTS `answer` (
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 
 
--- Dumping structure for table forum_project.categorys
-DROP TABLE IF EXISTS `categorys`;
-CREATE TABLE IF NOT EXISTS `categorys` (
+-- Dumping structure for table forum_project.category_menu
+DROP TABLE IF EXISTS `category_menu`;
+CREATE TABLE IF NOT EXISTS `category_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
   `description` text COLLATE utf8_bin NOT NULL,
   `href` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.categorys: ~0 rows (approximately)
-/*!40000 ALTER TABLE `categorys` DISABLE KEYS */;
-/*!40000 ALTER TABLE `categorys` ENABLE KEYS */;
+-- Dumping data for table forum_project.category_menu: ~3 rows (approximately)
+/*!40000 ALTER TABLE `category_menu` DISABLE KEYS */;
+INSERT INTO `category_menu` (`id`, `name`, `description`, `href`) VALUES
+	(1, 'Javascript', 'If you like javascript and want to help or get help please tune in', 'javascript'),
+	(2, 'Php', 'Its a language for web applications ', 'php'),
+	(3, 'ASP', 'Don\'t go there', 'asp');
+/*!40000 ALTER TABLE `category_menu` ENABLE KEYS */;
 
 
--- Dumping structure for table forum_project.menu
-DROP TABLE IF EXISTS `menu`;
-CREATE TABLE IF NOT EXISTS `menu` (
+-- Dumping structure for table forum_project.main_menu
+DROP TABLE IF EXISTS `main_menu`;
+CREATE TABLE IF NOT EXISTS `main_menu` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `text` varchar(50) COLLATE utf8_bin NOT NULL,
   `href` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -55,9 +59,9 @@ CREATE TABLE IF NOT EXISTS `menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.menu: ~0 rows (approximately)
-/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` (`id`, `text`, `href`, `role`) VALUES
+-- Dumping data for table forum_project.main_menu: ~7 rows (approximately)
+/*!40000 ALTER TABLE `main_menu` DISABLE KEYS */;
+INSERT INTO `main_menu` (`id`, `text`, `href`, `role`) VALUES
 	(1, 'Home', 'home', 1),
 	(2, 'Category', 'category', 1),
 	(4, 'Login', 'login', 0),
@@ -65,7 +69,7 @@ INSERT INTO `menu` (`id`, `text`, `href`, `role`) VALUES
 	(6, 'Create Post', 'create_post', 2),
 	(7, 'Config/Admin', 'config_admin', 9),
 	(8, 'Profile', 'profile', 2);
-/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
+/*!40000 ALTER TABLE `main_menu` ENABLE KEYS */;
 
 
 -- Dumping structure for table forum_project.posts
@@ -96,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.user: ~2 rows (approximately)
+-- Dumping data for table forum_project.user: ~3 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `email`, `role`, `joined`, `password`) VALUES
 	(2, 'test', 'test@test.com', 2, '2014-03-27 20:40:17', 'test'),
