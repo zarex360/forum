@@ -8,6 +8,8 @@ class TopicCtrl extends BaseCtrl
 
 		$data = $this->getJsonInput();
 
-		$model->getTopicsXCategory($data);
+		$result = $model->getTopicsXCategory($data);
+
+		$this->response->add('getTopicListResponse', $result);
 	} 
 }
