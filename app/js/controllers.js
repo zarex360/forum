@@ -75,24 +75,42 @@ angular.module('myApp.controllers', [])
     }
   }])
 
+  //The controller that gets all the categories
   .controller('CategoryCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     $scope.categories = {};
     $scope.topic = {};
+    //The server request
     $http.get('../server/menu/getCategories').success(function(data){
-      //console.log(data);
+      //Put all the categories in the variable categories
       $scope.categories = data['categoryMenuResponse'];
-      console.log($scope.categories);
     });
-    if($routeParams['topic']){
-      $http.get('../server/', $routeParams['topic']).success(function(data){
-        $scope.topic = data['?']
-      })
-    }
 
   }])
 
-  .controller('PostCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+  //The controller that gets all the topics in a category
+  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+    //Check if a category is set
+    if($routeParams['topic']){
 
+      //If it is set then do a server request to get all the topics that belongs to that category
+      $http.post('../server/topic/getList', $routeParams['topic']).success(function(data){
+        console.log(data);
+       // $scope.topics = data['?']
+      })
+    }
+  }])
+
+  //The controlelr that gets all the post that belongs to a topic
+  .controller('PostCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+    //Check if a topic is set
+    if($routeParams['post']){
+      //If it is set then do a server request to get all posts that belongs to that topic
+      $http.post('../server/?/?', $routeParams['post']).success(function(data){
+        console.log(data);
+        //$scope.posts = data['?']
+
+      })
+    }
   }])
 
 
