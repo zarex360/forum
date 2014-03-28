@@ -83,7 +83,6 @@ angular.module('myApp.controllers', [])
     $http.get('../server/menu/getCategories').success(function(data){
       //Put all the categories in the variable categories
       $scope.categories = data['categoryMenuResponse'];
-      console.log(data['categoryMenuResponse']);
     });
 
   }])
@@ -91,14 +90,12 @@ angular.module('myApp.controllers', [])
   //The controller that gets all the topics in a category
   .controller('TopicCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     //Check if a category is set
-    if($routeParams['topic']){
-      var topic = {'topic': $routeParams['topic']};
+    if($routeParams['category']){
+      var category = {'topic': $routeParams['category']};
       //If it is set then do a server request to get all the topics that belongs to that category
-      $http.post('../server/topic/getList', topic).success(function(data){
-        console.log(data['getTopicListResponse']);
+      $http.post('../server/topic/getList', category).success(function(data){
        $scope.topics = data['getTopicListResponse'];
-       $scope.topicHref = $routeParams['topic'];
-       console.log($scope.topicHref)
+       $scope.topicHref = $routeParams['category'];
       })
     }
   }])
@@ -106,14 +103,16 @@ angular.module('myApp.controllers', [])
   //The controlelr that gets all the post that belongs to a topic
   .controller('PostCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     //Check if a topic is set
-    if($routeParams['post']){
-      var parms = {};
-      parms.topicName = $routeParams['topic'];
-      parms.postID = $routeParams['post'];
-      console.log(parms);
+    if($routeParams['topic']){
+      //Prepare a variable for the server request
+      var params = {};
+      //Put in topic name params
+      params.categoryId = $routeParams['category'];
+      //Put in post id to params
+      params.topicId = $routeParams['topic'];
       //If it is set then do a server request to get all posts that belongs to that topic
-      $http.post('../server/post/getAll', parms).success(function(data){
-        //console.log(data);
+      $http.post('../server/post/getAll', params).success(function(data){
+        console.log(data);
         //$scope.posts = data['?']
 
       })
