@@ -1,0 +1,17 @@
+<h1>Edit your profile</h1>
+	<form name="profileForm" novalidate>
+		<label for>Email</label>
+		<input type="text" name="email" placeholder="email" ng-model="profile.email">
+		<br
+
+		<label for>New Password</label>
+		<input type="password" name="password" placeholder="NEw password" ng-model="profile.password">
+		<br>
+
+		<label for>Old Password</label>
+		<input type="password" name="oldPassword" placeholder="Password" ng-model="profile.oldPassword" requried>
+		<span ng-show="profileForm.oldPassword.$dirty && profileForm.oldPassword.$error.required">You need to fill in a password</span>
+		<br>
+		<button ng-click="profileForm.$valid && editProfile()">Update</button>
+    	<span ng-show="submitted && profileForm.$dirty && profileForm.$invalid">Please edit the wrongs</span>
+  	</form>

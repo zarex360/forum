@@ -20,6 +20,7 @@ angular.module('myApp', [
   $routeProvider.when('/login', {templateUrl: 'partials/login-register.html', controller: 'UserCtrl'});
   $routeProvider.when('/category', {templateUrl: 'partials/category.html', controller: 'CategoryCtrl'});
   $routeProvider.when('/logout', {templateUrl: 'partials/login-register.html', controller: 'LogoutCtrl'});
+  $routeProvider.when('/profile', {templateUrl: 'partials/profile.html', controller: 'ProfileCtrl'});
 
   $routeProvider.otherwise({redirectTo: '/home'});
 

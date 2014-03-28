@@ -68,6 +68,13 @@ angular.module('myApp.controllers', [])
     
   }])
 
+  .controller('ProfileCtrl', ['$scope', 'ProfileService', function($scope, ProfileService){
+    $scope.profile = null;
+    $scope.editProfile = function(){
+      ProfileService.edit($scope.profile);
+    }
+  }])
+
   .controller('CategoryCtrl', ['$scope', function($scope){
     $scope.categorys = [{'href':'hejsan', 'name':'hej'}];
   }]);
