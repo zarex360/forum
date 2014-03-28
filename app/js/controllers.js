@@ -107,7 +107,7 @@ angular.module('myApp.controllers', [])
       //Prepare a variable for the server request
       var params = {};
       //Put in topic name params
-      params.categoryId = $routeParams['category'];
+      params.categoryName = $routeParams['category'];
       //Put in post id to params
       params.topicId = $routeParams['topic'];
       //If it is set then do a server request to get all posts that belongs to that topic
