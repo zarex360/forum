@@ -4,6 +4,7 @@ class PostModel extends BaseModel
 {
 	public function getAllPosts($data)
 	{
+		$response = array();
 		if($categoryId = $this->getCategoryId($data['categoryName']))
 		{
 			if($topic = $this->getTopic($categoryId, $data['topicId']))
@@ -11,6 +12,7 @@ class PostModel extends BaseModel
 				return $topic;
 			}
 		}
+		return false;
 	}
 
 	private function getTopic($cid, $tid)
