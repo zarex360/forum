@@ -13,12 +13,12 @@ Change this to get everything to work
 =====================================
 
 -server/config.inc.php-
-'''php
+```php
 define('BASE_PATH', 'path to server');
 
 define('DB_HOST','Your Host');
 define('DB_DB','db name');
 define('DB_USER','db user');
 define('DB_PASS','db password');
-'''
+```
 
