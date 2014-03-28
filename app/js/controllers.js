@@ -5,8 +5,16 @@
 angular.module('myApp.controllers', [])
 
 
-  .controller('HomeCtrl', [function() {
+  .controller('HomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
+    $scope.userName = UserService.getUser;
 
+  }])
+
+  //The menu Controller
+  .controller('MenuCtrl', ['$scope', 'MenuService', function($scope, MenuService){
+    //Create a empty array with the name menu
+    $scope.menu = {};
+    $scope.menu = MenuService.getMenu;
   }])
 
   //User controller
@@ -14,23 +22,26 @@ angular.module('myApp.controllers', [])
 
     $scope.user = {};
     $scope.loginInput = {};
-    $scope.msg = null;
+    $scope.msg = UserService.getMsg;
+    //$scope.userName = UserService.getUser;
     //register function
     $scope.register = function(){
       //start register service
       UserService.register($scope.user);
-      $scope.msg = UserService.getMsg();
-      console.log($scope.msg);
+
 
     }
 
     //Login function
     $scope.login = function(){
       //Start login service
-      console.log()
       UserService.login($scope.loginInput);
     }
 
+  }])
+
+  .controller('CategoryCtrl', ['$scope', function($scope){
+    $scope.categorys = [{'href':'hejsan', 'name':'hej'}];
   }]);
 
 

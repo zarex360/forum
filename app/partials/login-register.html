@@ -1,6 +1,8 @@
 <!-- Login form -->
 <div class="login">
 	<h1>Login</h1>
+	{{msg()}}
+	
 	<form name="loginForm" novalidate>
 		<label for>Username</label>
 		<input type="text" name="username" placeholder="UserName" ng-model="loginInput.username" requried>

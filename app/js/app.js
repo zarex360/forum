@@ -18,6 +18,7 @@ angular.module('myApp', [
 
   $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
   $routeProvider.when('/login', {templateUrl: 'partials/login-register.html', controller: 'UserCtrl'});
+  $routeProvider.when('/category', {templateUrl: 'partials/category.html', controller: 'CategoryCtrl'});
 
   $routeProvider.otherwise({redirectTo: '/home'});
 
