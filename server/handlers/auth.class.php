@@ -59,11 +59,17 @@ class Auth extends BaseModel
 			$result = $statement->fetch(PDO::FETCH_ASSOC);
 			if(isset($result['username']))
 			{
-				return true;
+				return $user['username'];
 			}
 		}
 		$this->session->destroy();
 		return false;
+	}
+
+	public function logout()
+	{
+		$this->session->destroy();
+		return true;
 	}
 }
 
