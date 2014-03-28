@@ -48,13 +48,13 @@ CREATE TABLE IF NOT EXISTS `main_menu` (
 -- Dumping data for table forum_project.main_menu: ~7 rows (approximately)
 /*!40000 ALTER TABLE `main_menu` DISABLE KEYS */;
 INSERT INTO `main_menu` (`id`, `text`, `href`, `role`) VALUES
-	(1, 'Home', 'home', 1),
-	(2, 'Category', 'category', 1),
-	(4, 'Login', 'login', 0),
-	(5, 'Logout', 'logout', 2),
-	(6, 'Create Post', 'create_post', 2),
-	(7, 'Config/Admin', 'config_admin', 9),
-	(8, 'Profile', 'profile', 2);
+	(9, 'Home', 'home', 1),
+	(10, 'Categories', 'categories', 1),
+	(11, 'Create Post', 'create_post', 1),
+	(12, 'Profile', 'profile', 2),
+	(13, 'Admin/config', 'admin_config', 9),
+	(14, 'Logout', 'logout', 2),
+	(15, 'Login', 'login', 0);
 /*!40000 ALTER TABLE `main_menu` ENABLE KEYS */;
 
 
