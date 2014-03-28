@@ -116,8 +116,8 @@ angular.module('myApp.controllers', [])
       params.topicId = $routeParams['topic'];
       //If it is set then do a server request to get all posts that belongs to that topic
       $http.post('../server/post/getAll', params).success(function(data){
-        console.log(data);
-        //$scope.posts = data['?']
+        console.log(data['getAllPostsResponse']);
+        $scope.posts = data['getAllPostsResponse']
 
       })
     }
