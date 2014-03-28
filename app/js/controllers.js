@@ -10,7 +10,9 @@ angular.module('myApp.controllers', [])
 
   }])
 
+  //The menu Controller
   .controller('MenuCtrl', ['$scope', 'MenuService', function($scope, MenuService){
+    //Create a empty array with the name menu
     $scope.menu = {};
     $scope.menu = MenuService.getMenu;
   }])

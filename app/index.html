@@ -9,7 +9,7 @@
 <body>
   <div class="menu">
   <ul ng-controller="MenuCtrl">
-    <li ng-repeat="item in menu"></li>
+    <li ng-repeat="item in menu"><a href="{{item.href}}">{{item.text}}</a></li>
   </ul>
   </div>
   <div ng-view></div>
