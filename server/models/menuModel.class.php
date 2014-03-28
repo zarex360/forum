@@ -20,7 +20,7 @@ class MenuModel extends BaseModel
 		}
 
 		$statement = $this->db->prepare(
-			"SELECT * FROM menu_menu WHERE " . $str  
+			"SELECT * FROM main_menu WHERE " . $str  
 		);
 
 		$statement->execute(array('role' => $role));
