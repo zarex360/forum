@@ -6,7 +6,11 @@ angular.module('myApp.controllers', [])
 
   //The home controller
   .controller('HomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
-
+    UserService.checkUser();
+    $scope.$on("menuGet",function() {
+      $scope.userName = UserService.getUser();
+    })
+    $scope.userName = UserService.getUser();
 
   }])
 

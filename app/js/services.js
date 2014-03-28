@@ -45,6 +45,14 @@ angular.module('myApp.services', [])
         });
       },
 
+      checkUser: function(){
+        $http.get('../server/auth/checkUser').success(function(data){
+          if(data['authUserResponse'] == false){
+
+          }
+        })
+      },
+
       //a function that returns the message that are set before
       getMsg: function(){
         return msg;

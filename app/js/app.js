@@ -29,7 +29,8 @@ angular.module('myApp', [
 }]);
 
 
-angular.module('myApp').run(['$http', '$rootScope', function($http, $rootScope){
+angular.module('myApp').run(['$http', '$rootScope', 'UserService',  function($http, $rootScope, UserService){
+
 
     
     

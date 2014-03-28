@@ -1,5 +1,8 @@
 /* app css stylesheet */
-
+p{
+  padding: 0;
+  margin: 0;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -37,4 +40,38 @@
   width: 400px;
   float: left;
 }
+p.link{
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+p.desc{
+  display: inline;
+  margin-left: 
+}
+ul.category{
+
+}
+ul.category > li{
+  list-style: none;
+  height: auto;
+  width: 70%;
+  line-height: 50px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+ul.topicList > li{
+  list-style: none;
+  height: auto;
+  width: 70%;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+
 
