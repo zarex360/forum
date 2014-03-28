@@ -13,6 +13,8 @@ return array(
 	'profile/edit' => 'ProfileCtrl@editProfile',
 
 	'topic/getList' => 'TopicCtrl@getTopicsXCategory',
+
+	'post/getAll' => 'PostCtrl@getAllPosts',
 	
 	// A default route is always nice! if something goes wrong
 	// example defaultRoute => ErrorCtrl@invalidRequest
