@@ -97,6 +97,8 @@ angular.module('myApp.controllers', [])
       $http.post('../server/topic/getList', topic).success(function(data){
         console.log(data['getTopicListResponse']);
        $scope.topics = data['getTopicListResponse'];
+       $scope.topicHref = $routeParams['topic'];
+       console.log($scope.topicHref)
       })
     }
   }])
