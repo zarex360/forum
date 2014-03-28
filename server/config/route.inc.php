@@ -7,6 +7,7 @@ return array(
 	'auth/register' => 'RegisterCtrl@register',
 	'auth/logout' => 'LogoutCtrl@logout',
 	'menu/get' => 'MenuCtrl@getMenu',
+	'profile/edit' => 'ProfileCtrl@editProfile',
 	
 	// A default route is always nice! if something goes wrong
 	// example defaultRoute => ErrorCtrl@invalidRequest
