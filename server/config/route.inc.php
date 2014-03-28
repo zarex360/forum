@@ -11,6 +11,8 @@ return array(
 	'menu/getCategories' => 'MenuCtrl@getCatergoryMenu',
 	
 	'profile/edit' => 'ProfileCtrl@editProfile',
+
+	'topic/getList' => 'TopicCtrl@getTopicsXCategory',
 	
 	// A default route is always nice! if something goes wrong
 	// example defaultRoute => ErrorCtrl@invalidRequest
