@@ -75,11 +75,25 @@ angular.module('myApp.controllers', [])
     }
   }])
 
-  .controller('CategoryCtrl', ['$scope', function($scope){
-    $scope.categorys = [{'href':'hejsan', 'name':'hej'}];
+  .controller('CategoryCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+    $scope.categories = {};
+    $scope.topic = {};
+    $http.get('../server/menu/getCategories').success(function(data){
+      //console.log(data);
+      $scope.categories = data['categoryMenuResponse'];
+      console.log($scope.categories);
+    });
+    if($routeParams['topic']){
+      $http.get('../server/', $routeParams['topic']).success(function(data){
+        $scope.topic = data['?']
+      })
+    }
+
   }])
 
-  .controller('PostCtrl', [])
+  .controller('PostCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+
+  }])
 
 
  
