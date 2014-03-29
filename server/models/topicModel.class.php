@@ -8,9 +8,11 @@ class TopicModel extends BaseModel
 		if($id = $this->getCategoryId($href))
 		{
 			$statement = $this->db->prepare(
-				"SELECT topics.* FROM topics
-				INNER JOIN topics_x_category ON topics.id = topics_x_category.tid
-				WHERE topics_x_category.cid = :cid"
+				"SELECT topics.* FROM topics 
+				INNER JOIN topics_x_category 
+				ON topics.id = topics_x_category.tid
+				WHERE topics_x_category.cid = :cid
+				ORDER BY topics.created DESC"
 			);
 			$statement->execute(array('cid' => $id));
 			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
