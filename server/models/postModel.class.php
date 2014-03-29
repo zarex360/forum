@@ -21,7 +21,7 @@ class PostModel extends BaseModel
 	private function getPostsXtopic($tid)
 	{
 		$statement = $this->db->prepare(
-				"SELECT * FROM posts 
+				"SELECT posts.* FROM posts 
 				INNER JOIN posts_x_topic 
 				ON posts.id = posts_x_topic.pid
 				WHERE posts_x_topic.tid = :tid"
