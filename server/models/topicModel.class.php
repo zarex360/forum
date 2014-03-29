@@ -5,7 +5,7 @@ class TopicModel extends BaseModel
 	public function getTopicsXCategory($href)
 	{
 		$href = array_shift($href);
-		if($id = $this->getCategoryId($href))
+		if($cid = $this->getCategoryId($href))
 		{
 			$statement = $this->db->prepare(
 				"SELECT topics.* FROM topics 
@@ -14,7 +14,7 @@ class TopicModel extends BaseModel
 				WHERE topics_x_category.cid = :cid
 				ORDER BY topics.created DESC"
 			);
-			$statement->execute(array('cid' => $id));
+			$statement->execute(array('cid' => $cid));
 			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 			return $result;
 		}
