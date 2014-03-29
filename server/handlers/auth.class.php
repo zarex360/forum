@@ -72,9 +72,3 @@ class Auth extends BaseModel
 		return true;
 	}
 }
-
-/*
-$_SESSION['user']['username'] = 'test';
-$_SESSION['user']['password'] = 'test';
-$this->session->destroy();
-*/
