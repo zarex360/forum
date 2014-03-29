@@ -66,13 +66,16 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `auther` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Ghost',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.posts: ~2 rows (approximately)
+-- Dumping data for table forum_project.posts: ~5 rows (approximately)
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 INSERT INTO `posts` (`id`, `text`, `auther`, `date`) VALUES
 	(1, 'if ( your mom >= boat  ) return boat; ', 'johan', '2014-03-28 21:34:23'),
-	(2, 'THANK YOU', 'Ghost', '2014-03-28 21:36:07');
+	(2, 'THANK YOU', 'Ghost', '2014-03-28 21:36:07'),
+	(3, 'You need to make love, You need to feel the script ', 'johan', '2014-03-29 11:25:59'),
+	(4, 'I can feel it!', 'Ghost', '2014-03-29 11:29:31'),
+	(5, 'Kidding..', 'johan', '2014-03-29 11:29:39');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 
 
@@ -80,14 +83,18 @@ INSERT INTO `posts` (`id`, `text`, `auther`, `date`) VALUES
 DROP TABLE IF EXISTS `posts_x_topic`;
 CREATE TABLE IF NOT EXISTS `posts_x_topic` (
   `pid` int(10) unsigned NOT NULL,
-  `tid` int(10) unsigned NOT NULL
+  `tid` int(10) unsigned NOT NULL,
+  UNIQUE KEY `pid` (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.posts_x_topic: ~2 rows (approximately)
+-- Dumping data for table forum_project.posts_x_topic: ~5 rows (approximately)
 /*!40000 ALTER TABLE `posts_x_topic` DISABLE KEYS */;
 INSERT INTO `posts_x_topic` (`pid`, `tid`) VALUES
 	(1, 1),
-	(2, 1);
+	(2, 1),
+	(3, 4),
+	(4, 4),
+	(5, 4);
 /*!40000 ALTER TABLE `posts_x_topic` ENABLE KEYS */;
 
 
@@ -100,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `auther` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'Ghost',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table forum_project.topics: ~5 rows (approximately)
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
@@ -109,7 +116,8 @@ INSERT INTO `topics` (`id`, `title`, `text`, `created`, `auther`) VALUES
 	(2, 'I can make boat', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nunc quam, tempus ut diam laoreet, euismod eleifend quam. Fusce vitae varius diam. Duis enim orci, sodales id mattis ac, aliquet in risus. In elementum odio nibh, vel ullamcorper tellus interdum sit amet. Maecenas a viverra purus, at luctus arcu. Proin a rhoncus ligula. Sed bibendum euismod ante gravida eleifend. Donec scelerisque lectus eu lectus gravida, non rhoncus massa congue.', '2014-03-28 18:14:16', 'Ghost'),
 	(3, 'Boat is good for you', 'Pellentesque lacinia venenatis mauris, nec ultrices justo consectetur et. Curabitur nec odio ut arcu iaculis fermentum ac sed leo. Mauris quis egestas lorem. Quisque fermentum tristique eros, vel interdum sapien consequat sit amet. Vestibulum aliquet purus sed euismod consequat. Curabitur a faucibus tellus, viverra adipiscing erat. Integer laoreet vulputate purus.', '2014-03-28 18:14:40', 'Ghost'),
 	(4, 'How to cook dinner with javascript', '\r\nThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '2014-03-28 18:18:01', 'Ghost'),
-	(5, 'ASP', 'Run you fool', '2014-03-28 18:19:12', 'Ghost');
+	(5, 'ASP', 'Run you fool', '2014-03-28 18:19:12', 'Ghost'),
+	(6, 'MongoDB help!', 'I have no clue what im doing', '2014-03-29 11:33:18', 'Ghost');
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 
 
@@ -128,7 +136,8 @@ INSERT INTO `topics_x_category` (`cid`, `tid`) VALUES
 	(2, 2),
 	(2, 3),
 	(1, 4),
-	(3, 5);
+	(3, 5),
+	(1, 6);
 /*!40000 ALTER TABLE `topics_x_category` ENABLE KEYS */;
 
 
