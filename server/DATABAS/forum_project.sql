@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `main_menu` (
 INSERT INTO `main_menu` (`id`, `text`, `href`, `role`) VALUES
 	(9, 'Home', 'home', 1),
 	(10, 'Categories', 'categories', 1),
-	(11, 'Create Post', 'create_post', 1),
+	(11, 'Create Topic', 'create_topic', 1),
 	(12, 'Profile', 'profile', 2),
 	(13, 'Admin/config', 'admin_config', 9),
 	(14, 'Logout', 'logout', 2),
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table forum_project.user: ~4 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `email`, `role`, `joined`, `password`) VALUES
-	(2, 'test', 'test@test.com', 2, '2014-03-27 20:40:17', 'test'),
+	(2, 'test', 'test@test@test', 2, '2014-03-27 20:40:17', 'test'),
 	(3, 'johan', 'johanjobbfalk@hotmail.com', 9, '2014-03-27 21:00:30', 'falk'),
 	(4, 'asd', 'asd@asd.com', 2, '2014-03-28 12:07:29', 'asd'),
 	(5, 'Ghost', 'ghost.ghost.com', 2, '2014-03-28 21:37:34', 'ghost');
