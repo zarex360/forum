@@ -73,5 +73,24 @@ ul.topicList > li{
   padding-top: 10px;
 }
 
+.topic {
+  list-style: none;
+  height: auto;
+  max-width: 70%;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 0px 10px 0px 10px;
+  margin: 40px 40px 0px 40px;
+}
 
-
+.posts {
+  list-style: none;
+  height: auto;
+  max-width: 70%;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 0px 10px 0px 10px;
+  margin: 0px 40px 10px 40px;
+}

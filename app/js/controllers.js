@@ -117,8 +117,8 @@ angular.module('myApp.controllers', [])
       //If it is set then do a server request to get all posts that belongs to that topic
       $http.post('../server/post/getAll', params).success(function(data){
         console.log(data['getAllPostsResponse']);
-        $scope.posts = data['getAllPostsResponse']
-
+        $scope.posts = data['getAllPostsResponse']['posts'];
+        $scope.topic = data['getAllPostsResponse']['topic'];
       })
     }
   }])

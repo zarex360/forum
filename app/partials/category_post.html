@@ -1,6 +1,10 @@
-
-<div class="post" ng-repeat="post in posts">
-	<h3>{{post.title}}</h3>
+<div class="topic" ng-model="topic">
+	<h2>{{topic.title}}</h2>
+	<p>{{topic.text}}</p>
+	<h5>By: {{topic.auther}} [{{topic.created}}]</h5>
+</div>
+<br>
+<div class="posts" ng-repeat="post in posts">
 	<p>{{post.text}}<p>
-
+	<h5>By: {{post.auther}} [{{post.date}}]</h5>
 </div>
