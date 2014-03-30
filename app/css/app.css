@@ -1,4 +1,9 @@
 /* app css stylesheet */
+
+body {
+  background: pink;
+}
+
 p{
   padding: 0;
   margin: 0;
@@ -60,6 +65,7 @@ ul.category > li{
   border: 1px solid #999;
   border-radius: 10px;
   margin-bottom: 5px;
+  background: white;
 }
 
 ul.topicList > li{
@@ -71,6 +77,7 @@ ul.topicList > li{
   margin-bottom: 5px;
   padding-left: 10px;
   padding-top: 10px;
+  background: white;
 }
 
 .topic {
@@ -82,6 +89,7 @@ ul.topicList > li{
   margin-bottom: 5px;
   padding: 0px 10px 0px 10px;
   margin: 40px 40px 0px 40px;
+  background: white;
 }
 
 .posts {
@@ -92,5 +100,13 @@ ul.topicList > li{
   border-radius: 10px;
   margin-bottom: 5px;
   padding: 0px 10px 0px 10px;
-  margin: 0px 40px 10px 40px;
+  margin: 0px 40px 5px 40px;
+  background: white;
+}
+
+#topic-text-area {
+  width: 40%;
+  height: 150px;
+  margin: 4px 40px 0px 40px;
+  color: black;
 }
