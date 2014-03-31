@@ -23,11 +23,9 @@ class TopicModel extends BaseModel
 
 	private function getCategoryId($href)
 	{
-		$statement = $this->db->prepare(
-			"SELECT id FROM category_menu WHERE href = :href"
-		);
-		$statement->execute(array('href' => $href));
-		$result = $statement->fetch(PDO::FETCH_ASSOC);
+		$query = "SELECT id FROM category_menu WHERE href = :href";
+		$replacement = array('href' => $href);
+		$result = $this->dbQuery($query, $replacement, 'fetch');
 		return $result['id'];
 	}
 }

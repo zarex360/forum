@@ -1,3 +1,2 @@
-1. Create query sweeteners (db class).
-2. Submit posts to topics.
-3. Try to make so u can use direct call into function example::doStuff without getting minor errors
+1. Submit posts to topics.
+2. Try to make so u can use direct call into function example::doStuff without getting minor errors
