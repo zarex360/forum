@@ -37,7 +37,8 @@ class Session
 		}
 	}
 
-	public function get($key ='') {
+	public function get($key ='') 
+	{
 		if(isset($_SESSION))
 		{
 			if(array_key_exists($key, $_SESSION)) 
