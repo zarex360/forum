@@ -1,6 +1,5 @@
 <?php
 
-
 class MenuCtrl extends BaseCtrl
 {
 	protected function getMainMenu()

@@ -3,7 +3,7 @@
 class baseCtrl
 {
 	/**
-	 * @var Object Response
+	 * @var object Response
 	 */
 	protected $response;
 
@@ -12,15 +12,21 @@ class baseCtrl
 	 * It uses the request class to sort out the right route 
 	 * with the mapping so the system initalize the right 
 	 * controller and method with params
-	 * @var Object Router
+	 * @var object Router
 	 */
 	protected $router;
 
+	/**
+	 * Session handler
+	 * contains some sweetener functions for handling session
+	 * @var object
+	 */
+	protected $session;
 
 	/**
 	 * Initalize the obejcts i need to make the system work
 	 * It also initalize the right method in the subcontroller
-	 * @param Object Router
+	 * @param object Router
 	 */
 	function __construct(Router $router)
 	{

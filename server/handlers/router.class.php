@@ -36,7 +36,9 @@ class Router
 
 	/**
 	 * It compares the route to the map
-	 * @param String $route
+	 * and returns a string with ctrl and method
+	 * @param String
+	 * @return string
 	 */
 	private function compareRoute($route)
 	{
@@ -49,7 +51,7 @@ class Router
 
 	/**
 	 * $route = controller@method
-	 * @var string $route
+	 * @var string 
 	 */
 	private function setCtrlAndMethod($route)
 	{
@@ -61,7 +63,8 @@ class Router
 	/**
 	 * Its a get function that returns the requested item
 	 * example: $item = 'method', will return if set $this->method
-		 * @param string
+	 * @param string
+	 * @return variable
 	 */
 	public function get($item)
 	{

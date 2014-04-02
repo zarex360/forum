@@ -2,6 +2,11 @@
 
 class Session
 {
+	/**
+	 * Returns true if there is a session[$key]
+	 * @param string
+	 * @return boolean 
+	 */
 	public function has($key = '')
 	{
 		if(isset($_SESSION))
