@@ -20,7 +20,12 @@ class Session
 	 */
 	public function set($key, $value)
 	{
-		$_SESSION[$key] = $value;
+		if(isset($key) and isset($value))
+		{
+			$_SESSION[$key] = $value;
+			return true;
+		}
+		return false;
 	}
 
 	/**
