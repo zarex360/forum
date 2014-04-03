@@ -42,7 +42,7 @@ class Request
 
 	public function get($item)
 	{
-		if(isset($this->$item) && $this->$item !== '')
+		if(isset($this->$item))
 		{
 			return $this->$item;
 		}
