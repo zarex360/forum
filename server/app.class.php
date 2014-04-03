@@ -62,7 +62,7 @@ class App
 	/**
 	 * Its a get function that returns the requested item
 	 * example: $item = 'page', will return if set $this->page
-		 * @param string
+	 * @param string
 	 */
 	public function get($item)
 	{

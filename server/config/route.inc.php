@@ -20,6 +20,7 @@ return array(
 
 	// POST
 	'post/getAll' => 'PostCtrl@getAllPosts',
+	'post/getAll/test/test' => 'test@test',
 	
 	// Default Route if there was a problem with the other controllers
 	// example defaultRoute => ErrorCtrl@invalidRequest

@@ -20,6 +20,7 @@ class Router
 	 */
 	private $method;
 
+	private $params = array();
 
 	/**
 	 * Tt includes the map from the route file
@@ -30,23 +31,50 @@ class Router
 	function __construct(Request $request)
 	{
 		$this->map = include 'config/route.inc.php';
-		$this->setCtrlAndMethod($this->compareRoute($request->get('route')));
-		$this->params = $request->get('params');
+		$route = $this->getRoute($request->get('tokens'));
+		$this->setCtrlAndMethod($route);
 	}
 
-	/**
-	 * It compares the route to the map
-	 * and returns a string with ctrl and method
-	 * @param String
-	 * @return string
-	 */
-	private function compareRoute($route)
+	private function getRoute($tokens)
 	{
-		if(isset($this->map[$route]))
+		$route = 'defaultRoute';
+		$temporaryRoute = '';
+		foreach($tokens as $token)
 		{
-			return $this->map[$route];
+			$temporaryRoute .= $token . '/';
+			if($this->compareRouteToMap($temporaryRoute))
+			{
+				$route = $temporaryRoute;
+				$this->setParams(array());
+			}
+			else
+			{
+				$this->setParams($token);
+			}
 		}
-		return $this->map['defaultRoute'];
+		return $this->map[rtrim($route, '/')];
+	}
+
+	private function compareRouteToMap($temporaryRoute)
+	{
+		$temporaryRoute = rtrim($temporaryRoute, '/');
+		if(isset($this->map[$temporaryRoute]))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private function setParams($token = array())
+	{
+		if($token === array())
+		{
+			$this->params = array();
+		}
+		else
+		{
+			$this->params[] = $token;
+		}
 	}
 
 	/**
