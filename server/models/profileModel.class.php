@@ -10,6 +10,7 @@ class ProfileModel extends BaseModel
 			foreach($data as $key => $value)
 			{
 				$this->updateDb($key, $value, $userId);
+				$_SESSION['user'][$key] = $value;
 			}
 			return true;
 		}
@@ -18,27 +19,24 @@ class ProfileModel extends BaseModel
 
 	private function updateDb($key, $value, $userId)
 	{
-		$statement = $this->db->prepare(
-			"UPDATE user SET " . $key . " = :value WHERE id = :id"
-		);
-		$statement->execute(array(
+		$q = "UPDATE user SET " . $key . " = :value WHERE id = :id";
+		$r = array(
 			'value' => $value,
 			'id' => $userId
-		));
+		);
+		$this->dbQuery($q, $r);
 	}
 
 	private function getIdWithPassword($pw)
 	{
 		$user = $this->session->get('user');
 		$user['password'] = $pw;
-		$statement = $this->db->prepare(
-			"SELECT id FROM user WHERE username = :username AND password = :password"
-		);
-		$statement->execute(array(
+		$q = "SELECT id FROM user WHERE username = :username AND password = :password";
+		$r = array(
 			'username' => $user['username'],
 			'password' => $user['password']
-		));
-		$result = $statement->fetch(PDO::FETCH_ASSOC);
+		);
+		$result = $this->dbQuery($q, $r, 'fetch');
 		if(isset($result['id']))
 		{
 			return $result['id'];

@@ -13,8 +13,8 @@ class BaseModel
 		$this->db = $this->dbClass->getConnection();
 	}
 
-	protected function dbQuery()
+	protected function dbQuery($q, $r = array(), $f = 'fetchAll')
 	{
-		return $this->dbClass->dbQuery(func_get_args());
+		return $this->dbClass->dbQuery($q, $r, $f);
 	}
 }

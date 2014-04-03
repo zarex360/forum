@@ -7,25 +7,18 @@ class TopicModel extends BaseModel
 		$href = array_shift($href);
 		if($cid = $this->getCategoryId($href))
 		{
-			$statement = $this->db->prepare(
-				"SELECT topics.* FROM topics 
-				INNER JOIN topics_x_category 
-				ON topics.id = topics_x_category.tid
-				WHERE topics_x_category.cid = :cid
-				ORDER BY topics.created DESC"
-			);
-			$statement->execute(array('cid' => $cid));
-			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-			return $result;
+			$q = "SELECT topics.* FROM topics INNER JOIN topics_x_category ON topics.id = topics_x_category.tid WHERE topics_x_category.cid = :cid ORDER BY topics.created DESC";
+			$r = array('cid' => $cid);
+			return $this->dbQuery($q, $r);
 		}
 		return false;
 	}
 
 	private function getCategoryId($href)
 	{
-		$query = "SELECT id FROM category_menu WHERE href = :href";
-		$replacement = array('href' => $href);
-		$result = $this->dbQuery($query, $replacement, 'fetch');
+		$q = "SELECT id FROM category_menu WHERE href = :href";
+		$r = array('href' => $href);
+		$result = $this->dbQuery($q, $r, 'fetch');
 		return $result['id'];
 	}
 }

@@ -47,25 +47,31 @@ class Db{
     return $this->connection;
   }
 
-  public function dbQuery()
+  /**
+   * @param string $q
+   * @param array $r
+   * @param string $f
+   * @return array 
+   */
+  public function dbQuery($q, $r = array(), $f = 'fetchAll')
   {
-    $fetchOpt = 'fetchAll';
-    $args = func_get_args();
-
-    $statement = $this->connection->prepare($args[0][0]);
-    if(isset($args[0][1]))
+    $statement = $this->connection->prepare($q);
+    if(count($r) > 0)
     {
-      $statement->execute($args[0][1]);
+      $statement->execute($r);
     }
     else
     {
       $statement->execute();
     }
-
-    if(isset($args[0][2]))
+    if(is_numeric(strpos($q, 'UPDATE')))
     {
-      $fetchOpt = $args[0][2];
+      return;
     }
-    return $statement->$fetchOpt(PDO::FETCH_ASSOC);
+    else if(is_numeric(strpos($q, 'INSERT')))
+    {
+      return;
+    }
+    return $statement->$f(PDO::FETCH_ASSOC);
   }
 }

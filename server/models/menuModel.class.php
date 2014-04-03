@@ -19,29 +19,20 @@ class MenuModel extends BaseModel
 			$str = 'role <= 1';
 		}
 
-		$statement = $this->db->prepare(
-			"SELECT * FROM main_menu WHERE " . $str  
-		);
-
-		$statement->execute(array('role' => $role));
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-		return $result;
+		$q = "SELECT * FROM main_menu WHERE " . $str;
+		return $this->dbQuery($q);
 	}
 
 	private function checkUserRole()
 	{
-		if($this->session->has('user'))
+		if($user = $this->session->get('user'))
 		{
-			$user = $this->session->get('user');
-			$statement = $this->db->prepare(
-				"SELECT role FROM user WHERE username = :username and password = :password"
-			);
-			$statement->execute(array(
+			$q = "SELECT role FROM user WHERE username = :username and password = :password";
+			$r = array(
 				'username' => $user['username'],
 				'password' => $user['password']
-			));
-			$result = $statement->fetch(PDO::FETCH_ASSOC);
+			);
+			$result = $this->dbQuery($q, $r, 'fetch');
 			return $result['role'];
 		}
 		return 1;
@@ -49,9 +40,7 @@ class MenuModel extends BaseModel
 
 	public function getCatergoryMenu()
 	{
-		$statement = $this->db->prepare("SELECT * FROM category_menu");
-		$statement->execute();
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		return $result;
+		$q = "SELECT * FROM category_menu";
+		return $this->dbQuery($q); 
 	}
 }

@@ -14,11 +14,18 @@ class Session
 		return false;
 	}
 
+	/**
+	 * @param string $key
+	 * @param string $value
+	 */
 	public function set($key, $value)
 	{
 		$_SESSION[$key] = $value;
 	}
 
+	/**
+	 * Session destroy!
+	 */
 	public function destroy()
 	{
 		if(isset($_SESSION))
@@ -29,6 +36,10 @@ class Session
 		}
 	}
 
+	/**
+	 * Unset a session with $key
+	 * @param string
+	 */
 	public function undo($key)
 	{
 		if(isset($_SESSION[$key]))
@@ -37,6 +48,11 @@ class Session
 		}
 	}
 
+	/**
+	 * Trying to fins a session with $key and returns it if true 
+	 * @var string
+	 * @return array
+	 */
 	public function get($key ='') 
 	{
 		if(isset($_SESSION))
