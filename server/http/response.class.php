@@ -14,8 +14,7 @@ class Response
 	{
 		if(method_exists($this, $this->format) and !empty($this->content))
 		{
-			$response = call_user_func_array(array($this, $this->format), array());
-			return $response;
+			return call_user_func_array(array($this, $this->format), array());
 		}
 	}
 

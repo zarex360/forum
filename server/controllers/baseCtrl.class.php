@@ -28,10 +28,10 @@ class baseCtrl
 	 * It also initalize the right method in the subcontroller
 	 * @param object Router
 	 */
-	function __construct(Router $router)
+	function __construct(Router $router, Response $response)
 	{
-		$this->response = new Response;
 		$this->router = $router;
+		$this->response = $response;
 		$this->initMethod(
 			$this->router->get('method'),
 			$this->router->get('params')
@@ -44,11 +44,10 @@ class baseCtrl
 		{
 			call_user_func_array(array($this, $method), $params);
 		}
-	}
-
-	public function render()
-	{
-		return $this->response->getResponse();
+		else
+		{
+			$this->response->add('errorResponse', 'There is no method called ' . $method);
+		}
 	}
 
 	protected function getJsonInput()

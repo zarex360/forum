@@ -3,6 +3,11 @@
 class App
 {
 	/**
+	 * @var object Response
+	 */
+	protected $response;
+
+	/**
 	 * It deals with the mapping
 	 * so the system can initalize the right controller and method
 	 * @var Object Router
@@ -29,6 +34,7 @@ class App
 	function __construct()
 	{
 		$request = new Request;
+		$this->response = new Response;
 		$this->router = new Router($request);
 		$this->controller = $this->router->get('controller');
 	}
@@ -41,12 +47,11 @@ class App
 	{
 		if(class_exists($this->controller))
 		{
-			$this->page = new $this->controller($this->router);
+			$this->page = new $this->controller($this->router, $this->response);
 		}
 		else
 		{
-			$error = new error();
-			$error->throw('httpRequest');
+			$this->response->add('errorResponse', 'There is no controller called ' . $this->controller);
 		}
 	}
 
@@ -56,7 +61,7 @@ class App
 	 */
 	public function end()
 	{
-		print($this->page->render());
+		print($this->response->getResponse());
 	}
 
 	/**
