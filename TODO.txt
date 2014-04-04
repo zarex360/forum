@@ -1,2 +1,8 @@
-1. Submit posts to topics.
-2. Try to make so u can use direct call into function example::doStuff without getting minor errors
+1. Make so the post page can send data to server when submit.
+2. Add post data to database related to topic and user.
+
+3. Fix frontend so user can visit create topic and send data to server.
+4. Add topic data to database related to category and user.
+
+5. Mail project to thomas@nodebite.com
+6. Comment Stuff, because I'm bad at doing so...
