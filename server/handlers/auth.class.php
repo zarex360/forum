@@ -22,7 +22,7 @@ class Auth extends BaseModel
 	{
 		$q = "INSERT INTO user SET username = :username, email = :email, password = :password";
 		$r = array(
-			'username' => $data['username'],
+			'username' => strtolower($data['username']),
 			'email' => $data['email'],
 			'password' => $data['password']
 		);
@@ -33,7 +33,7 @@ class Auth extends BaseModel
 	{
 		$q = "SELECT * FROM user WHERE username = :username AND password = :password";
 		$r = array(
-			'username' => $data['username'],
+			'username' => strtolower($data['username']),
 			'password' => $data['password']
 		);
 		$result = $this->dbQuery($q, $r, 'fetch');
