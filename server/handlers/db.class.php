@@ -64,22 +64,9 @@ class Db{
     {
       $statement->execute();
     }
-    if($this->ifReturn($q))
+    if(is_numeric(strpos($q, 'SELECT')))
     {
       return $statement->$f(PDO::FETCH_ASSOC);
     }
-  }
-
-  private function ifReturn($q)
-  {
-    if(is_numeric(strpos($q, 'UPDATE')))
-    {
-      return false;
-    }
-    else if(is_numeric(strpos($q, 'INSERT')))
-    {
-      return false;
-    }   
-    return true;
   }
 }
