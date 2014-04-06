@@ -52,6 +52,7 @@ class Db{
    * @param array $r
    * @param string $f
    * @return array 
+   * If there is data from the database it will be returned
    */
   public function dbQuery($q, $r = array(), $f = 'fetchAll')
   {

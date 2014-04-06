@@ -16,6 +16,7 @@ class baseCtrl
 	 */
 	protected $router;
 
+
 	/**
 	 * Session handler
 	 * contains some sweetener functions for handling session
@@ -23,6 +24,7 @@ class baseCtrl
 	 */
 	protected $session;
 
+	
 	/**
 	 * Initalize the obejcts i need to make the system work
 	 * It also initalize the right method in the subcontroller
@@ -38,6 +40,12 @@ class baseCtrl
 		);
 	}
 
+
+	/**
+	 * @param string $method
+	 * @param array $params
+	 * It initalize the function that are set in the route request
+	 */
 	private function initMethod($method, $params = array())
 	{
 		if(method_exists($this, $method))
@@ -46,10 +54,15 @@ class baseCtrl
 		}
 		else
 		{
-			$this->response->add('errorResponse', 'There is no method called ' . $method);
+			$this->response->add('httpError', 'Invalid request');
 		}
 	}
 
+
+	/**
+	 * @return array
+	 * It gets the input data from the url request
+	 */
 	protected function getJsonInput()
 	{
 		$json = file_get_contents('php://input');

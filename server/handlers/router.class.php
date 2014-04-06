@@ -8,19 +8,25 @@ class Router
 	 */
 	private $map;
 
+
 	/**
 	 * I set the right controller so the app class can use it
 	 * @var String Controller
 	 */
 	private $controller;
 	
+
 	/**
 	 * So the controller can initalize the right method
 	 * @var String method
 	 */
 	private $method;
 
-	private $params = array();
+	/**
+	 * @var array
+	 */
+	private $params;
+
 
 	/**
 	 * Tt includes the map from the route file
@@ -31,10 +37,18 @@ class Router
 	function __construct(Request $request)
 	{
 		$this->map = include 'config/route.inc.php';
+		$this->params = array();
 		$route = $this->getRoute($request->get('tokens'));
 		$this->setCtrlAndMethod($route);
 	}
 
+
+	/**
+	 * @param array
+	 * @return string
+	 * Returns the right controller and method
+	 * Controller@Method
+	 */
 	private function getRoute($tokens)
 	{
 		$route = 'defaultRoute';
@@ -55,6 +69,11 @@ class Router
 		return $this->map[rtrim($route, '/')];
 	}
 
+	/**
+	 * It returns true if there is a route in the mapping
+	 * @param string
+	 * @return boolean
+	 */
 	private function compareRouteToMap($temporaryRoute)
 	{
 		$temporaryRoute = rtrim($temporaryRoute, '/');
@@ -65,6 +84,9 @@ class Router
 		return false;
 	}
 
+	/**
+	 * @param array
+	 */
 	private function setParams($token = array())
 	{
 		if($token === array())

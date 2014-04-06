@@ -7,6 +7,7 @@ class App
 	 */
 	protected $response;
 
+
 	/**
 	 * It deals with the mapping
 	 * so the system can initalize the right controller and method
@@ -14,17 +15,20 @@ class App
 	 */
 	private $router;
 
+
 	/**
 	 *	Its the name for the right controller so i can initalize it
 	 * @var String 
 	 */
 	private $controller;
 
+
 	/**
 	 * Its the object initalized with the $controller variable
 	 * @var Object Controller
 	 */
 	private $page;
+
 
 	/**
 	 * It initalize the handlers for HTTP requests
@@ -39,6 +43,7 @@ class App
 		$this->controller = $this->router->get('controller');
 	}
 
+
 	/**
 	 * It starts the application by initalizing the right controller 
 	 * If there is no controller to initalize, the system will throw and error 
@@ -51,9 +56,10 @@ class App
 		}
 		else
 		{
-			$this->response->add('errorResponse', 'There is no controller called ' . $this->controller);
+			$this->response->add('httpError', 'Invalid request');
 		}
 	}
+
 
 	/**
 	 * It ends the application by printing out the response in right format 
@@ -63,6 +69,7 @@ class App
 	{
 		print($this->response->getResponse());
 	}
+
 
 	/**
 	 * Its a get function that returns the requested item
