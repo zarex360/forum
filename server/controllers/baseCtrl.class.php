@@ -24,16 +24,25 @@ class baseCtrl
 	 */
 	protected $session;
 
+
+	/**
+	 * @var object
+	 * If you want your response to go through a template
+	 * so you can return html to the client
+	 */
+	private $view;
 	
+
 	/**
 	 * Initalize the obejcts i need to make the system work
 	 * It also initalize the right method in the subcontroller
 	 * @param object Router
 	 */
-	function __construct(Router $router, Response $response)
+	function __construct(Router $router, Response $response, View $view)
 	{
 		$this->router = $router;
 		$this->response = $response;
+		$this->view = $view;
 		$this->initMethod(
 			$this->router->get('method'),
 			$this->router->get('params')
