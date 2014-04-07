@@ -92,20 +92,20 @@ angular.module('myApp.controllers', [])
   }])
 
   //The controller that gets all the topics in a category
-  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', 'TopicService', function($scope, $http, $routeParams, TopicService){
     //Check if a category is set
     if($routeParams['category']){
       var category = {'category': $routeParams['category']};
-      //If it is set then do a server request to get all the topics that belongs to that category
-      $http.post('../server/topic/getList', category).success(function(data){
-       $scope.topics = data['getTopicListResponse'];
-       $scope.topicHref = $routeParams['category'];
-      })
-    }
+      //If it is set then start a service to get all topics
+      TopicService.getTopics(category).then(function(response){
+        $scope.topics = response['data']['getTopicListResponse'];
+        $scope.topicHref = $routeParams['category'];
+      });
+    };
   }])
 
   //The controlelr that gets all the post that belongs to a topic
-  .controller('PostCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+  .controller('PostCtrl', ['$scope', '$http', '$routeParams', 'TopicService', function($scope, $http, $routeParams, TopicService){
     //Check if a topic is set
     if($routeParams['topic']){
       //Prepare a variable for the server request
@@ -115,11 +115,16 @@ angular.module('myApp.controllers', [])
       //Put in post id to params
       params.topicId = $routeParams['topic'];
       //If it is set then do a server request to get all posts that belongs to that topic
-      $http.post('../server/post/getAll', params).success(function(data){
-        console.log(data['getAllPostsResponse']);
-        $scope.posts = data['getAllPostsResponse']['posts'];
-        $scope.topic = data['getAllPostsResponse']['topic'];
-      })
+
+      //Start the serveice function to get all post in a topic
+      TopicService.getAll(params).then(function(response){
+        $scope.topic = response['data']['getAllPostsResponse']['topic'];
+        $scope.posts = response['data']['getAllPostsResponse']['posts'];
+      });
+    }
+
+    $scope.comment = function(){
+      TopicService.comment($scope.post);
     }
   }])
 
