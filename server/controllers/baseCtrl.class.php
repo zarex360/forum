@@ -34,9 +34,10 @@ class baseCtrl
 	
 
 	/**
-	 * Initalize the obejcts i need to make the system work
-	 * It also initalize the right method in the subcontroller
 	 * @param object Router
+	 * @param object Response
+	 * @param object View
+	 * It starts the right method or return an error response
 	 */
 	function __construct(Router $router, Response $response, View $view)
 	{
@@ -63,7 +64,7 @@ class baseCtrl
 		}
 		else
 		{
-			$this->response->add('httpError', 'Invalid request');
+			$this->response->add('routeError', 'There is no method "'.$method.'".');
 		}
 	}
 
