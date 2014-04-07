@@ -9,8 +9,11 @@
 		<p>{{post.text}}<p>
 		<h5>By: {{post.auther}} [{{post.date}}]</h5>
 	</div>
-	<form>
-		<textarea id="topic-text-area">Comment here...</textarea>
-		<button>Send</button>
+	<form name="postForm" novalidate>
+		<textarea id="topic-text-area" ng-model="post.comment" name="post-text" placeholder="Comment here..." required></textarea>
+		<span ng-show="post.comment.$dirty && postForm.post-text.$error.required">You can't send a empty comment</span>
+		<br>
+		<button ng-click="postForm.$valid && comment()">Comment</button>
+    	<span ng-show="submitted && postForm.$dirty && postForm.$invalid">Please edit the wrongs</span>
 	</form>
 </div>

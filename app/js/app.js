@@ -43,6 +43,10 @@ angular.module('myApp', [
   .when('/categories/:category/:topic', {
     templateUrl: 'partials/category_post.html', 
     controller: 'PostCtrl'
+  })
+  .when('/create_topic', {
+    templateUrl: 'partials/create_topic.html',
+    controller: 'TopicCtrl'
   });
 
   $routeProvider.otherwise({redirectTo: '/home'});
