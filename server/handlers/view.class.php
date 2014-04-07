@@ -10,7 +10,7 @@ class View
 	 */
 	public function dressTemplate($tplName, array $data)
 	{
-		if($data !== array())
+		if($data !== array() || !is_string($tplName))
 		{
 			extract($data);
 			ob_start();
@@ -18,6 +18,6 @@ class View
 			$html = ob_get_clean();
 			return $html;	
 		}
-		return '<span>Wrong template or invalid data</span>';
+		return '<span>Invalid template name or empty data</span>';
 	}
 }
