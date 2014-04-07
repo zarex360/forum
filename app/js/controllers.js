@@ -72,11 +72,17 @@ angular.module('myApp.controllers', [])
     
   }])
 
-  .controller('ProfileCtrl', ['$scope', 'ProfileService', function($scope, ProfileService){
+  .controller('ProfileCtrl', ['$scope', 'ProfileService', '$http', '$location', function($scope, ProfileService, $http, $location){
     $scope.profile = null;
-    $scope.editProfile = function(){
+    $http.get('../server/auth/checkUser').success(function(data){
+      if(data['authUserResponse'] == false){
+        $location.path('/login');
+      }else{
+        $scope.editProfile = function(){
       ProfileService.edit($scope.profile);
     }
+      }
+    })
   }])
 
   //The controller that gets all the categories
