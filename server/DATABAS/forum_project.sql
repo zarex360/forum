@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `topics` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.topics: ~5 rows (approximately)
+-- Dumping data for table forum_project.topics: ~6 rows (approximately)
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
 INSERT INTO `topics` (`id`, `title`, `text`, `created`, `auther`) VALUES
 	(1, 'How to make a boat in php', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ornare pharetra commodo. Nam mi nunc, consectetur consequat turpis sit amet, tempor mattis ante. Aliquam eleifend dui et purus pulvinar condimentum. Etiam tempor lorem eu orci varius, ut gravida nunc consequat. Etiam molestie bibendum urna. Duis a suscipit tellus. Proin dapibus mauris nunc, nec commodo enim imperdiet a. Donec luctus urna lacinia faucibus tempor. Praesent bibendum vulputate tellus, non malesuada nunc vehicula vitae. Phasellus id blandit magna. Quisque tincidunt enim pretium, consectetur metus eu, faucibus tortor. Sed lectus metus, tristique pulvinar volutpat in, molestie in tortor.\r\n', '2014-03-28 18:13:16', 'Ghost'),
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `topics_x_category` (
   UNIQUE KEY `tid` (`tid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.topics_x_category: ~5 rows (approximately)
+-- Dumping data for table forum_project.topics_x_category: ~6 rows (approximately)
 /*!40000 ALTER TABLE `topics_x_category` DISABLE KEYS */;
 INSERT INTO `topics_x_category` (`cid`, `tid`) VALUES
 	(2, 1),
@@ -151,15 +151,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `joined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.user: ~4 rows (approximately)
+-- Dumping data for table forum_project.user: ~9 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `email`, `role`, `joined`, `password`) VALUES
 	(2, 'test', 'test@test@test', 2, '2014-03-27 20:40:17', 'test'),
 	(3, 'johan', 'johanjobbfalk@hotmail.com', 9, '2014-03-27 21:00:30', 'falk'),
 	(4, 'asd', 'asd@asd.com', 2, '2014-03-28 12:07:29', 'asd'),
-	(5, 'Ghost', 'ghost.ghost.com', 2, '2014-03-28 21:37:34', 'ghost');
+	(5, 'Ghost', 'ghost.ghost.com', 2, '2014-03-28 21:37:34', 'ghost'),
+	(6, 'nicole', 'asd@asd.asd', 2, '2014-03-30 22:28:04', 'asd'),
+	(7, 'asdasd', 'aaw@ad.coma', 2, '2014-04-03 08:17:03', 'awdawd'),
+	(8, 'asdasdaa', 'aaw@ad.comaaw', 2, '2014-04-03 08:21:00', 'awdawd'),
+	(9, 'qweasd', 'qweasd@qweasd.qweasd', 2, '2014-04-03 11:45:02', 'qweasd'),
+	(10, 'johansund', 'johansund@bmail.bom', 2, '2014-04-03 12:56:26', 'sund');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
