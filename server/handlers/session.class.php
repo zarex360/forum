@@ -23,9 +23,7 @@ class Session
 		if(isset($key) and isset($value))
 		{
 			$_SESSION[$key] = $value;
-			return true;
 		}
-		return false;
 	}
 
 	/**

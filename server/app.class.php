@@ -29,6 +29,14 @@ class App
 	 */
 	private $page;
 
+	
+	/**
+	 * @var object
+	 * If you want your response to go through a template
+	 * so you can return html to the client
+	 */
+	private $view;
+
 
 	/**
 	 * It initalize the handlers for HTTP requests
@@ -39,6 +47,7 @@ class App
 	{
 		$request = new Request;
 		$this->response = new Response;
+		$this->view = new View;
 		$this->router = new Router($request);
 		$this->controller = $this->router->get('controller');
 	}
@@ -52,7 +61,7 @@ class App
 	{
 		if(class_exists($this->controller))
 		{
-			$this->page = new $this->controller($this->router, $this->response);
+			$this->page = new $this->controller($this->router, $this->response, $this->view);
 		}
 		else
 		{
