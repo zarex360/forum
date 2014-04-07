@@ -15,6 +15,12 @@ class BaseModel
 
 	protected function dbQuery($q, $r = array(), $f = 'fetchAll')
 	{
+		$args = func_get_args();
+		if(end($args) !== array() and count($args) === 2)
+		{
+			$f = $r;
+			$r = array();
+		}
 		return $this->dbClass->dbQuery($q, $r, $f);
 	}
 }
