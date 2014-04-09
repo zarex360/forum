@@ -24,7 +24,14 @@ class Request
 	{
 		$json = file_get_contents('php://input');
     	$data = json_decode($json, true);
-    	$this->requestData = $data;
+    	if($data !== null)
+    	{
+    		$this->requestData = $data;
+    	}
+    	else
+    	{
+    		$this->requestData = false;
+    	}
 	}
 
 	public function get($item)
