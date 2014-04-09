@@ -3,10 +3,12 @@
 class Request
 {
 	private $tokens = array();
+	private $requestData;
 
 	function __construct()
 	{
 		$this->setTokens();
+		$this->setData();
 	}
 
 	private function setTokens()
@@ -16,6 +18,13 @@ class Request
 		{
 			$this->tokens = explode('/', rtrim($url, '/'));
 		}
+	}
+
+	private function setData()
+	{
+		$json = file_get_contents('php://input');
+    	$data = json_decode($json, true);
+    	$this->requestData = $data;
 	}
 
 	public function get($item)

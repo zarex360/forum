@@ -6,9 +6,7 @@ class LoginCtrl extends BaseCtrl
 	{
 		$model = new Auth();
 
-		$data = $this->getJsonInput();
-
-		$result = $model->loginUser($data);
+		$result = $model->loginUser($this->requestData);
 
 		$this->response->add('loginResponse', $result);
 	}

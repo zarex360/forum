@@ -6,9 +6,7 @@ class PostCtrl extends BaseCtrl
 	{
 		$model = new PostModel();
 
-		$data = $this->getJsonInput();
-
-		$result = $model->getAllPosts($data);
+		$result = $model->getAllPosts($this->requestData);
 
 		$this->response->add('getAllPostsResponse', $result);
 	}

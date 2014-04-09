@@ -3,6 +3,13 @@
 class baseCtrl
 {
 	/**
+	 * requestData contains data sent from client(front-end)
+	 * @var array 
+	 */
+	protected $requestData;
+
+
+	/**
 	 * @var object Response
 	 */
 	protected $response;
@@ -26,11 +33,11 @@ class baseCtrl
 
 
 	/**
-	 * @var object
 	 * If you want your response to go through a template
 	 * so you can return html to the client
+	 * @var object
 	 */
-	private $view;
+	protected $view;
 	
 
 	/**
@@ -39,11 +46,12 @@ class baseCtrl
 	 * @param object View
 	 * It starts the right method or return an error response
 	 */
-	function __construct(Router $router, Response $response, View $view)
+	function __construct(App $app)
 	{
-		$this->router = $router;
-		$this->response = $response;
-		$this->view = $view;
+		$this->requestData = $app->get('requestData');
+		$this->response = $app->get('response');
+		$this->view = $app->get('view');
+		$this->router = $app->get('router');
 		$this->initMethod(
 			$this->router->get('method'),
 			$this->router->get('params')
@@ -75,8 +83,6 @@ class baseCtrl
 	 */
 	protected function getJsonInput()
 	{
-		$json = file_get_contents('php://input');
-    	$data = json_decode($json, true);
-    	return $data;
+		return $this->requestData;
 	}
 }

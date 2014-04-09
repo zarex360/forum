@@ -6,11 +6,9 @@ class RegisterCtrl extends BaseCtrl
 	{
 		$model = new Auth();
 
-		$data = $this->getJsonInput();
-
-		if($model->checkRegisterData($data))
+		if($model->checkRegisterData($this->requestData))
 		{
-			$model->registerUser($data);
+			$model->registerUser($this->requestData);
 			$this->response->add('registerResponse', true);
 			return;
 		}

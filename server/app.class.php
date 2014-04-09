@@ -3,9 +3,16 @@
 class App
 {
 	/**
+	 * requestData contains data sent from client(front-end)
+	 * @var array 
+	 */
+	private $requestData;
+
+
+	/**
 	 * @var object Response
 	 */
-	protected $response;
+	private $response;
 
 
 	/**
@@ -14,6 +21,22 @@ class App
 	 * @var Object Router
 	 */
 	private $router;
+
+
+	/**
+	 * Session handler
+	 * contains some sweetener functions for handling session
+	 * @var object
+	 */
+	protected $session;
+
+
+	/**
+	 * If you want your response to go through a template
+	 * so you can return html to the client
+	 * @var object
+	 */
+	private $view;
 
 
 	/**
@@ -31,21 +54,12 @@ class App
 
 	
 	/**
-	 * @var object
-	 * If you want your response to go through a template
-	 * so you can return html to the client
-	 */
-	private $view;
-
-
-	/**
-	 * It initalize the handlers for HTTP requests
-	 * and then sets the right controller from the route class 
-	 * The request class will handle the url and pass it to router
+	 * It initalize all the classes i need for the application to run
 	 */
 	function __construct()
 	{
 		$request = new Request;
+		$this->requestData = $request->get('requestData');
 		$this->response = new Response;
 		$this->view = new View;
 		$this->router = new Router($request);
@@ -55,13 +69,13 @@ class App
 
 	/**
 	 * It starts the application by initalizing the right controller 
-	 * If there is no controller to initalize, the system will throw and error 
+	 * If there is no controller to initalize, the system will throw and error response
 	 */
 	public function start()
 	{
 		if(class_exists($this->controller))
 		{
-			$this->page = new $this->controller($this->router, $this->response, $this->view);
+			$this->page = new $this->controller($this);
 		}
 		else
 		{

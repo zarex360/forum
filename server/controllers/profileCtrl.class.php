@@ -8,11 +8,9 @@ class ProfileCtrl extends BaseCtrl
 		
 		$auth = new Auth();
 
-		$data = $this->getJsonInput();
-
 		if($auth->checkUser())
 		{
-			$result = $model->editProfile($data);
+			$result = $model->editProfile($this->requestData);
 		}
 		else
 		{
