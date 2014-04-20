@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Displays all errors and warnings
  */
