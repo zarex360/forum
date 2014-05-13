@@ -20,7 +20,7 @@ angular.module('myApp.controllers', [])
   .controller('MenuCtrl', ['$http', '$scope', function($http, $scope){
 
     // initial menu (logged in or not)
-    $http.get('../server/menu/getMain').success(function(data){
+    $http.get('server/menu/getMain').success(function(data){
       //Set the menu data to scope menu, access the data with {{menu}} in index.html
       $scope.mainMenu = data['mainMenuResponse'];
     });
@@ -28,7 +28,7 @@ angular.module('myApp.controllers', [])
     // Look if the event is set, if it is. then load the new menu (it sets when you login)
     $scope.$on("menuGet",function() {
       //DO a server request to get the menu
-      $http.get('../server/menu/getMain').success(function(data){
+      $http.get('server/menu/getMain').success(function(data){
         //Set the menu data to $scope.menu
         $scope.mainMenu = data['mainMenuResponse'];
       });
@@ -63,7 +63,7 @@ angular.module('myApp.controllers', [])
   //Logout controller
   .controller('LogoutCtrl', ['$scope', '$http', '$location', '$rootScope', function($scope, $http, $location, $rootScope){
       //Do a request to the server for clear the session
-      $http.get('../server/auth/logout').success(function(){
+      $http.get('server/auth/logout').success(function(){
         //Reset the event
         $rootScope.$broadcast('menuGet');
         //Send the user to the login/registartion page
@@ -74,7 +74,7 @@ angular.module('myApp.controllers', [])
 
   .controller('ProfileCtrl', ['$scope', 'ProfileService', '$http', '$location', function($scope, ProfileService, $http, $location){
     $scope.profile = null;
-    $http.get('../server/auth/checkUser').success(function(data){
+    $http.get('server/auth/checkUser').success(function(data){
       if(data['authUserResponse'] == false){
         $location.path('/login');
       }else{
@@ -90,7 +90,7 @@ angular.module('myApp.controllers', [])
     $scope.categories = {};
     $scope.topic = {};
     //The server request
-    $http.get('../server/menu/getCategories').success(function(data){
+    $http.get('server/menu/getCategories').success(function(data){
       //Put all the categories in the variable categories
       $scope.categories = data['categoryMenuResponse'];
     });
