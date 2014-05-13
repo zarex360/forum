@@ -9,8 +9,12 @@ RewriteRule . index.php [NC]
 
 # Adding Redirect so server can't be access from the browser
 # RedirectMatch 403 ^.*/controllers/.*$
-# RedirectMatch 403 ^.*/handlers/.*$
-# RedirectMatch 403 ^.*/http/.*$
 # RedirectMatch 403 ^.*/models/.*$
-# RedirectMatch 403 ^.*/tools/.*$
-# RedirectMatch 403 ^.*/config/config\.inc\.php$
+# RedirectMatch 403 ^.*/core/auth/.*$
+# RedirectMatch 403 ^.*/core/base/.*$
+# RedirectMatch 403 ^.*/core/database/.*$
+# RedirectMatch 403 ^.*/core/http/.*$
+# RedirectMatch 403 ^.*/core/sessions/.*$
+# RedirectMatch 403 ^.*/core/SQL/.*$
+# RedirectMatch 403 ^.*/core/view.*$
+# RedirectMatch 403 ^.*/core/app\.php$
