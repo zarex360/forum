@@ -5,3 +5,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php [NC]
 </IfModule>
+
+
+# Adding Redirect so server can't be access from the browser
+# RedirectMatch 403 ^.*/controllers/.*$
+# RedirectMatch 403 ^.*/handlers/.*$
+# RedirectMatch 403 ^.*/http/.*$
+# RedirectMatch 403 ^.*/models/.*$
+# RedirectMatch 403 ^.*/tools/.*$
+# RedirectMatch 403 ^.*/config/config\.inc\.php$
