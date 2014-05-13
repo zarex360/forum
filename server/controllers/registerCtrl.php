@@ -1,10 +1,10 @@
 <?php
 
-class RegisterCtrl extends BaseCtrl
+class RegisterCtrl extends core\base\BaseCtrl
 {
 	protected function register()
 	{
-		$model = new Auth();
+		$model = new core\auth\Auth();
 
 		if($model->checkRegisterData($this->requestData))
 		{

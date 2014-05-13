@@ -1,5 +1,7 @@
 <?php
 
+namespace core\http;
+
 class Request
 {
 	private $tokens = array();

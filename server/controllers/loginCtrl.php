@@ -1,10 +1,10 @@
 <?php
 
-class LoginCtrl extends BaseCtrl
+class LoginCtrl extends core\base\BaseCtrl
 {
 	protected function login()
 	{
-		$model = new Auth();
+		$model = new core\auth\Auth();
 
 		$result = $model->loginUser($this->requestData);
 
@@ -13,7 +13,7 @@ class LoginCtrl extends BaseCtrl
 
 	protected function checkUser()
 	{
-		$model = new Auth();
+		$model = new core\auth\Auth();
 
 		$result = $model->checkUser();
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace core\http;
+
 class Response
 {
 	private $content = array();

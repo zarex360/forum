@@ -1,6 +1,6 @@
 <?php
 
-class MenuModel extends BaseModel
+class MenuModel extends core\base\BaseModel
 {
 	public function getMainMenu()
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class PostModel extends BaseModel
+class PostModel extends core\base\BaseModel
 {
 	public function getAllPosts($data)
 	{

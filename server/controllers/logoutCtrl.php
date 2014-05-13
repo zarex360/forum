@@ -1,10 +1,10 @@
 <?php
 
-class LogoutCtrl extends BaseCtrl
+class LogoutCtrl extends core\base\BaseCtrl
 {
 	public function logout()
 	{
-		$model = new Auth();
+		$model = new core\auth\Auth();
 
 		$result = $model->logout();
 

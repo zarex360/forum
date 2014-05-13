@@ -1,5 +1,7 @@
 <?php
 
+namespace core;
+
 class App
 {
 	/**
@@ -26,7 +28,7 @@ class App
 	/**
 	 * Session handler
 	 * contains some sweetener functions for handling session
-	 * @var object
+	 * @var object Session
 	 */
 	protected $session;
 
@@ -34,7 +36,7 @@ class App
 	/**
 	 * If you want your response to go through a template
 	 * so you can return html to the client
-	 * @var object
+	 * @var object View
 	 */
 	private $view;
 
@@ -58,11 +60,16 @@ class App
 	 */
 	function __construct()
 	{
-		$request = new Request;
+		$request = new http\Request();
+
 		$this->requestData = $request->get('requestData');
-		$this->response = new Response;
-		$this->view = new View;
-		$this->router = new Router($request);
+		
+		$this->response = new http\Response();
+		
+		$this->view = new view\View();
+		
+		$this->router = new router\Router($request);
+		
 		$this->controller = $this->router->get('controller');
 	}
 
@@ -73,14 +80,7 @@ class App
 	 */
 	public function start()
 	{
-		if(class_exists($this->controller))
-		{
-			$this->page = new $this->controller($this);
-		}
-		else
-		{
-			$this->response->add('httpError', 'Invalid request');
-		}
+		$this->page = new $this->controller($this);
 	}
 
 

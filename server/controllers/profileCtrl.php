@@ -1,12 +1,12 @@
 <?php
 
-class ProfileCtrl extends BaseCtrl
+class ProfileCtrl extends core\base\BaseCtrl
 {
 	protected function editProfile()
 	{
 		$model = new ProfileModel();
 		
-		$auth = new Auth();
+		$auth = new core\auth\Auth();
 
 		if($auth->checkUser())
 		{

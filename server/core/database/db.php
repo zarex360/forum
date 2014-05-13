@@ -1,5 +1,9 @@
 <?php
 
+namespace core\database;
+
+use PDO as PDO;
+
 class Db{
 
   private $host;

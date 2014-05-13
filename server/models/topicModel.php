@@ -1,6 +1,6 @@
 <?php
 
-class TopicModel extends BaseModel
+class TopicModel extends core\base\BaseModel
 {
 	public function getTopicsXCategory($href)
 	{

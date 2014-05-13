@@ -1,5 +1,9 @@
 <?php
 
+namespace core\auth;
+
+use core\base\BaseModel as BaseModel;
+
 class Auth extends BaseModel
 {
 	public function checkRegisterData($data)

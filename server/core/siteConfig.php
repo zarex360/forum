@@ -24,15 +24,6 @@ define('DB_PASS','');
  */
 define('FORMAT', 'json');
 
-/**
- * These are the configuration for the class autoloader
- * Iths the folder structure
- */
-define('CLASS_DIRS','
-	handlers,
-	controllers,
-	models,
-	config,
-	tools,
-	http
-');
+define('CONTROLLER_DIR', 'controllers');
+
+define('MODEL_DIR','models');

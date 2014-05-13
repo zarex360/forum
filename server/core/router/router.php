@@ -1,5 +1,9 @@
 <?php
 
+namespace core\router;
+
+use core\http\Request as Request;
+
 class Router
 {
 	/**
@@ -36,7 +40,7 @@ class Router
 	 */
 	function __construct(Request $request)
 	{
-		$this->map = include 'config/route.inc.php';
+		$this->map = include ('settings.php');
 		$this->params = array();
 		$route = $this->getRoute($request->get('tokens'));
 		$this->setCtrlAndMethod($route);

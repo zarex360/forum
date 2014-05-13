@@ -1,5 +1,9 @@
 <?php
 
+namespace core\base;
+
+use core\App as App;
+
 class baseCtrl
 {
 	/**

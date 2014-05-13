@@ -1,6 +1,6 @@
 <?php
 
-class ProfileModel extends BaseModel
+class ProfileModel extends core\base\BaseModel
 {
 	public function editProfile($data)
 	{

@@ -1,5 +1,10 @@
 <?php
 
+namespace core\base;
+
+use core\sessions\Session as Session;
+use core\database\Db as Db;
+
 class BaseModel
 {
 	protected $db;

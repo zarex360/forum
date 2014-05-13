@@ -1,5 +1,7 @@
 <?php
 
+namespace core\view;
+
 class View
 {
 	/**
@@ -14,7 +16,7 @@ class View
 		{
 			extract($data);
 			ob_start();
-			require 'templates/' . $tplName . '.tpl.php';
+			require '../templates/' . $tplName . '.tpl.php';
 			$html = ob_get_clean();
 			return $html;	
 		}
