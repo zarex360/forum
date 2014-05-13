@@ -5,9 +5,12 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.filters',
-  'myApp.services',
+  'myApp.forumServices',
+  'myApp.userServices',
   'myApp.directives',
-  'myApp.controllers'
+  'myApp.mainCtrl',
+  'myApp.userCtrl',
+  'myApp.forumCtrl'
 ])
 
 .config(['$locationProvider', function ($locationProvider) {
