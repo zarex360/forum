@@ -14,7 +14,7 @@ angular.module('myApp.services', [])
       //Register function
       register: function(userInput){
         //Do a http request to the server and send in userInput to server
-        $http.post('../server/auth/register', userInput).success(function(data){
+        $http.post('server/auth/register', userInput).success(function(data){
           //If the registration fails, then show the user a error message
           if(data['registerResponse'] == false){
             //Set the error message here
@@ -29,7 +29,7 @@ angular.module('myApp.services', [])
       //Login function
       login: function(loginInput){
         //Do a http request to the server and send in userInput to server
-         $http.post('../server/auth/login', loginInput).success(function(data){
+         $http.post('server/auth/login', loginInput).success(function(data){
           //If the login fails, then show a error message
           if(data['loginResponse'] == false){
             //set the message here
@@ -46,7 +46,7 @@ angular.module('myApp.services', [])
       },
 
       checkUser: function(){
-        $http.get('../server/auth/checkUser').success(function(data){
+        $http.get('server/auth/checkUser').success(function(data){
           if(data['authUserResponse'] == false){
 
           }
@@ -69,7 +69,7 @@ angular.module('myApp.services', [])
   return {
     edit: function(editInfo){
       console.log(editInfo);
-      $http.post('../server/profile/edit', editInfo).success(function(data){
+      $http.post('server/profile/edit', editInfo).success(function(data){
         console.log(data);
       })
     }
@@ -83,21 +83,21 @@ angular.module('myApp.services', [])
     comment: function(comment){
       console.log(comment);
       //The server request
-      /*$http.post('../server/?/?', comment).success(function(data){
+      /*$http.post('server/?/?', comment).success(function(data){
 
       }) */
     },
 
     getAll: function(params){
       //Gets all the post and a single topic
-      return $http.post('../server/post/getAll', params).success(function(data){
+      return $http.post('server/post/getAll', params).success(function(data){
 
       });
     },
 
     getTopics: function(category){
       //Get all the topics that belongs to a category
-      return $http.post('../server/topic/getList', category).success(function(data){
+      return $http.post('server/topic/getList', category).success(function(data){
 
       });
     }
