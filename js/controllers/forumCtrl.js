@@ -27,6 +27,24 @@ angular.module('myApp.forumCtrl', [])
         $scope.topicHref = $routeParams['category'];
       });
     };
+
+
+      $http.get('server/menu/getCategories').success(function(data){
+      //Put all the categories in the variable categories
+        $scope.categoryList = data['categoryMenuResponse'];
+        console.log($scope.categoryList);
+      });
+      
+    $scope.createTopic = function(){
+      var topic = {};
+      topic.catId = $scope.topicCreate['category'];
+      topic.title = $scope.topicCreate['title'];
+      topic.text = $scope.topicCreate['text'];
+      TopicService.create(topic).then(function(response){
+        console.log(response);
+      })
+    };
+    
   }])
 
   //The controlelr that gets all the post that belongs to a topic
@@ -52,7 +70,6 @@ angular.module('myApp.forumCtrl', [])
       var comment = {};
       comment.topicId = $routeParams['topic'];
       comment.post = $scope.post['comment'];
-      console.log(comment);
       TopicService.comment(comment).then(function(response){
         if(response){
           $route.reload();
@@ -60,4 +77,5 @@ angular.module('myApp.forumCtrl', [])
       });
 
     }
+
   }])

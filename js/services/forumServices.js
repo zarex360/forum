@@ -28,6 +28,12 @@ angular.module('myApp.forumServices', [])
       return $http.post('server/topic/getList', category).success(function(data){
 
       });
+    },
+
+    create: function(topic){
+      return $http.post('server/topic/create', topic).success(function(data){
+
+      });
     }
   }
 }])
