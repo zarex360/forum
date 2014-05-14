@@ -1,6 +1,6 @@
 <?php
 
-class CommentModel extends core\base\BaseModel
+class CommentModel extends core\database\DbQuery
 {
 	public function postComment($data)
 	{
