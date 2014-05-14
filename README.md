@@ -12,7 +12,7 @@ This is a School project where we build up a forum with:
 Change this to get everything to work
 =====================================
 
--server/config.inc.php-
+-server/core/siteConfig.php-
 ```php
 define('BASE_PATH', 'path to server');
 
