@@ -10,11 +10,10 @@ angular.module('myApp.forumServices', [])
 
   return{
     comment: function(comment){
-      console.log(comment);
       //The server request
-      /*$http.post('server/?/?', comment).success(function(data){
+      return $http.post('server/comment/post', comment).success(function(data){
 
-      }) */
+      })
     },
 
     getAll: function(params){
