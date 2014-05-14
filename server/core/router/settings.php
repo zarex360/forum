@@ -26,6 +26,9 @@ return array(
 
 	// POST
 	'post/getAll' => 'postCtrl@getAllPosts',
+
+	// COMMENT
+	'comment/post' => 'commentCtrl@postComment',
 	
 	// Default Route if there was a problem with the other controllers
 	// example defaultRoute => ErrorCtrl@invalidRequest
