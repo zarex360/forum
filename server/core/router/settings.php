@@ -23,6 +23,7 @@ return array(
 
 	// TOPIC
 	'topic/getList' => 'topicCtrl@getTopicsXCategory',
+	'topic/create' => 'topicCtrl@createNewTopic',
 
 	// POST
 	'post/getAll' => 'postCtrl@getAllPosts',
