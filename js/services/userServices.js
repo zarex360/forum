@@ -45,8 +45,8 @@ angular.module('myApp.userServices', [])
         });
       },
 
-      checkUser: function(){
-        $http.get('server/auth/checkUser').success(function(data){
+      haveUser: function(){
+        $http.get('server/auth/haveUser').success(function(data){
           if(data['authUserResponse'] == false){
 
           }

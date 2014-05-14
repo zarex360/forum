@@ -41,7 +41,7 @@ angular.module('myApp.userCtrl', [])
 
   .controller('ProfileCtrl', ['$scope', 'ProfileService', '$http', '$location', function($scope, ProfileService, $http, $location){
     $scope.profile = null;
-    $http.get('server/auth/checkUser').success(function(data){
+    $http.get('server/auth/haveUser').success(function(data){
       if(data['authUserResponse'] == false){
         $location.path('/login');
       }else{

@@ -10,7 +10,7 @@
 return array(
 	// AUTHENTICATE
 	'auth/login' => 'loginCtrl@login',
-	'auth/checkUser' => 'loginCtrl@checkUser',
+	'auth/haveUser' => 'loginCtrl@haveUser',
 	'auth/register' => 'registerCtrl@register',
 	'auth/logout' => 'logoutCtrl@logout',
 	

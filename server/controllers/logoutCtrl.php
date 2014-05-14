@@ -4,7 +4,7 @@ class LogoutCtrl extends core\base\BaseCtrl
 {
 	public function logout()
 	{
-		$model = new core\auth\Auth();
+		$model = new core\database\DbQuery();
 
 		$result = $model->logout();
 

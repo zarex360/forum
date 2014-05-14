@@ -6,9 +6,9 @@ class ProfileCtrl extends core\base\BaseCtrl
 	{
 		$model = new ProfileModel();
 		
-		$auth = new core\auth\Auth();
+		$auth = new core\database\DbQuery();
 
-		if($auth->checkUser())
+		if($auth->haveUser())
 		{
 			$result = $model->editProfile($this->requestData);
 		}

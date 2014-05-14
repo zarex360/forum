@@ -6,7 +6,7 @@ angular.module('myApp.mainCtrl', [])
 
   //The home controller
   .controller('HomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
-    UserService.checkUser();
+    UserService.haveUser();
     $scope.$on("menuGet",function() {
       $scope.userName = UserService.getUser();
     })

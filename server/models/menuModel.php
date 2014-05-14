@@ -1,10 +1,10 @@
 <?php
 
-class MenuModel extends core\base\BaseModel
+class MenuModel extends core\database\DbQuery
 {
 	public function getMainMenu()
 	{
-		$role = $this->checkUserRole();
+		$role = $this->haveUserRole();
 		return $this->getMenuFromDb($role);
 	}
 
@@ -23,7 +23,7 @@ class MenuModel extends core\base\BaseModel
 		return $this->dbQuery($q);
 	}
 
-	private function checkUserRole()
+	private function haveUserRole()
 	{
 		if($user = $this->session->get('user'))
 		{

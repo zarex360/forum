@@ -4,7 +4,7 @@ class RegisterCtrl extends core\base\BaseCtrl
 {
 	protected function register()
 	{
-		$model = new core\auth\Auth();
+		$model = new core\auth\Register();
 
 		if($model->checkRegisterData($this->requestData))
 		{
