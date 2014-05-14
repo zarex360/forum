@@ -30,7 +30,7 @@ angular.module('myApp.forumCtrl', [])
   }])
 
   //The controlelr that gets all the post that belongs to a topic
-  .controller('PostCtrl', ['$scope', '$http', '$routeParams', 'TopicService', function($scope, $http, $routeParams, TopicService){
+  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'TopicService', function($route, $scope, $http, $routeParams, TopicService){
     //Check if a topic is set
     if($routeParams['topic']){
       //Prepare a variable for the server request
@@ -49,6 +49,15 @@ angular.module('myApp.forumCtrl', [])
     }
 
     $scope.comment = function(){
-      TopicService.comment($scope.post);
+      var comment = {};
+      comment.topicId = $routeParams['topic'];
+      comment.post = $scope.post['comment'];
+      console.log(comment);
+      TopicService.comment(comment).then(function(response){
+        if(response){
+          $route.reload();
+        }
+      });
+
     }
   }])
