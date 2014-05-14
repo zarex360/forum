@@ -6,7 +6,7 @@ angular.module('myApp.controllers', [])
 
   //The home controller
   .controller('HomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
-    UserService.checkUser();
+    UserService.haveUser();
     $scope.$on("menuGet",function() {
       $scope.userName = UserService.getUser();
     })
@@ -74,7 +74,7 @@ angular.module('myApp.controllers', [])
 
   .controller('ProfileCtrl', ['$scope', 'ProfileService', '$http', '$location', function($scope, ProfileService, $http, $location){
     $scope.profile = null;
-    $http.get('server/auth/checkUser').success(function(data){
+    $http.get('server/auth/haveUser').success(function(data){
       if(data['authUserResponse'] == false){
         $location.path('/login');
       }else{

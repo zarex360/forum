@@ -4,18 +4,18 @@ class LoginCtrl extends core\base\BaseCtrl
 {
 	protected function login()
 	{
-		$model = new core\auth\Auth();
+		$model = new core\auth\Login();
 
 		$result = $model->loginUser($this->requestData);
 
 		$this->response->add('loginResponse', $result);
 	}
 
-	protected function checkUser()
+	protected function haveUser()
 	{
-		$model = new core\auth\Auth();
+		$model = new core\database\DbQuery();
 
-		$result = $model->checkUser();
+		$result = $model->haveUser();
 
 		$this->response->add('authUserResponse', $result);
 	}
