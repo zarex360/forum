@@ -46,10 +46,8 @@ angular.module('myApp.userServices', [])
       },
 
       haveUser: function(){
-        $http.get('server/auth/haveUser').success(function(data){
-          if(data['authUserResponse'] == false){
+       return $http.get('server/auth/haveUser').success(function(data){
 
-          }
         })
       },
 
