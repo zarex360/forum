@@ -24,19 +24,17 @@ class TopicModel extends core\database\DbQuery
 
 	public function createNewTopic($topic)
 	{
-		if(!empty($topic['catId'])){
 			$catId = $topic['catId'];
 			$q = "INSERT INTO topics SET title = :title, text = :text, auther = :auther";
 			$r = array(
 				'title' => $topic['title'],
 				'text' => $topic['text'],
-				'auther' => 'samuel'
+				'auther' => $topic['user']
 			);
 			$this->dbQuery($q, $r);
 			$q = "SELECT id FROM topics ORDER BY created DESC LIMIT 1";
 			$topicId = $this->dbQuery($q, 'fetch');
 			$this->createTopicLink($catId, $topicId);
-		}
 	}
 
 	private function createTopicLink($catId, $topicId){

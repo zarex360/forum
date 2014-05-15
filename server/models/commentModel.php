@@ -8,7 +8,7 @@ class CommentModel extends core\database\DbQuery
 		$q = "INSERT INTO posts SET text = :text, auther = :auther";
 		$r = array(
 			'text' => $data['post'],
-			'auther' => 'samuel' //$data['author']
+			'auther' => $data['user']
 		);
 		$result = $this->dbQuery($q, $r);
 
