@@ -1,10 +1,8 @@
 <?php
 
-namespace core\base;
+namespace core;
 
-use core\App as App;
-
-class baseCtrl
+class Controller
 {
 	/**
 	 * requestData contains data sent from client(front-end)

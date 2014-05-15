@@ -1,6 +1,6 @@
 <?php
 
-class TopicCtrl extends core\base\BaseCtrl
+class TopicCtrl extends core\Controller
 {
 	protected function getTopicsXCategory()
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class LoginCtrl extends core\base\BaseCtrl
+class LoginCtrl extends core\Controller
 {
 	protected function login()
 	{

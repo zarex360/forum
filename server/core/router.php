@@ -1,16 +1,22 @@
 <?php
 
-namespace core\router;
+namespace core;
 
 use core\http\Request as Request;
 
 class Router
 {
 	/**
-	 * The map get included from the route file
+	 * Site map gets it value from routes
 	 * @var Array $map
 	 */
 	private $map;
+
+
+	/**
+	 * Tokens from the url sent by request.
+	 */
+	private $tokens;
 
 
 	/**
@@ -26,6 +32,7 @@ class Router
 	 */
 	private $method;
 
+
 	/**
 	 * @var array
 	 */
@@ -33,19 +40,23 @@ class Router
 
 
 	/**
-	 * Tt includes the map from the route file
 	 * Tt sets the right controller and method
 	 * And set the params
 	 * @var Object Request
 	 */
 	function __construct(Request $request)
 	{
-		$this->map = include ('settings.php');
 		$this->params = array();
-		$route = $this->getRoute($request->get('tokens'));
-		$this->setCtrlAndMethod($route);
+		$this->tokens = $request->get('tokens');
 	}
 
+
+	public function registerRouteMap($map)
+	{
+		$this->map = $map;
+		$route = $this->getRoute($this->tokens);
+		$this->setCtrlAndMethod($route);
+	}
 
 	/**
 	 * @param array

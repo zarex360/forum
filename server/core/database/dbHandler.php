@@ -2,7 +2,7 @@
 
 namespace core\database;
 
-use core\sessions\Session as Session; 
+use core\Session as Session; 
 use PDO as PDO;
 
 class DbHandler

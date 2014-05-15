@@ -1,6 +1,6 @@
 <?php
 
-class MenuCtrl extends core\base\BaseCtrl
+class MenuCtrl extends core\Controller
 {
 	protected function getMainMenu()
 	{

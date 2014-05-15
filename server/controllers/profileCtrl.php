@@ -1,6 +1,6 @@
 <?php
 
-class ProfileCtrl extends core\base\BaseCtrl
+class ProfileCtrl extends core\Controller
 {
 	protected function editProfile()
 	{

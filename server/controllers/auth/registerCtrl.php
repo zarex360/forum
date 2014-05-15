@@ -1,6 +1,6 @@
 <?php
 
-class RegisterCtrl extends core\base\BaseCtrl
+class RegisterCtrl extends core\Controller
 {
 	protected function register()
 	{

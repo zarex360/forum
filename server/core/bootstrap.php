@@ -8,23 +8,48 @@ session_start();
 
 
 /**
- * Configuration for the site to compute.
+ * Configurations for the site to compute.
  */
-include ('siteConfig.php');
+include ('settings.php');
 
 
 /**
- * Class autoloader.
- * Initiate the class and register when the class should try to load other files
+ * Include autoloader.
  */
 include ('autoloader.php');
 
 $autoloader = new autoloader();
 
+
+/**
+ * Register which folder the autoloader should load from
+ * Do NOT register core folder structure.
+ */
+$autoloader->registerDirectoryPaths($autoloaderDirectoryPaths);
+
+
+/**
+ * Register what function that should load inside $autoloader when initalizing new classes
+ */
 spl_autoload_register(array($autoloader, 'load'));
 
 
 /**
- * The application that start the server and works like a controller.
+ * Reuquest handles the http request from url.
  */
-include ('app.php');
+$request = new core\http\Request();
+
+
+/**
+ * Decide how the application sshould be running depending on routeMap.
+ */
+$router = new core\router($request);
+
+
+/**
+ * @param array
+ * auth/login => loginCtrl@login
+ * www.example.com/server/auth/login
+ * => controller = loginCtrl and method = login.
+ */
+$router->registerRouteMap($routeMap);

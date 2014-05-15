@@ -1,13 +1,18 @@
 <?php
 
-class CommentCtrl extends core\base\BaseCtrl
+class CommentCtrl extends core\Controller
 {
 	protected function postComment()
 	{
 		$model = new CommentModel();
 
-		$result = $model->postComment($this->requestData);
+		$dbQuery = new core\database\DbQuery();
 
-		$this->response->add('postCommentResponse', true);
+		if($dbQuery->haveUser())
+		{
+			$result = $model->postComment($this->requestData);
+
+			$this->response->add('postCommentResponse', true);
+		}
 	} 
 }

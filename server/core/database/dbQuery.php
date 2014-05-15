@@ -38,7 +38,7 @@ class DbQuery extends DbHandler
 		 	$statement->execute();
 		}
 
-		if(is_numeric(strpos($q, 'SELECT')))
+		if(strpos($q, 'SELECT') !== false)
 		{
 		 	return $statement->$f(PDO::FETCH_ASSOC);
 		}

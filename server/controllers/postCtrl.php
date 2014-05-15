@@ -1,6 +1,6 @@
 <?php
 
-class PostCtrl extends core\base\BaseCtrl
+class PostCtrl extends core\Controller
 {
 	protected function getAllPosts()
 	{

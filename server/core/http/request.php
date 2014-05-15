@@ -5,7 +5,7 @@ namespace core\http;
 class Request
 {
 	private $tokens = array();
-	private $requestData;
+	private $data;
 
 	function __construct()
 	{
@@ -28,11 +28,11 @@ class Request
     	$data = json_decode($json, true);
     	if($data !== null)
     	{
-    		$this->requestData = $data;
+    		$this->data = $data;
     	}
     	else
     	{
-    		$this->requestData = false;
+    		$this->data = false;
     	}
 	}
 

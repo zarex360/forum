@@ -22,7 +22,4 @@ class CommentModel extends core\database\DbQuery
 		);
 		$this->dbQuery($q, $r);
 	}
-
 }
-
-?>

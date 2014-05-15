@@ -1,6 +1,6 @@
 <?php
 
-class LogoutCtrl extends core\base\BaseCtrl
+class LogoutCtrl extends core\Controller
 {
 	public function logout()
 	{

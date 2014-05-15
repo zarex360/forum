@@ -49,26 +49,26 @@ class App
 
 
 	/**
-	 * Its the object initalized with the $controller variable
-	 * @var Object Controller
+	 * So the application can throw errors when borken.
+	 * @var Object errorHandler
 	 */
-	private $page;
+	private $error;
 
 	
 	/**
 	 * It initalize all the classes i need for the application to run
 	 */
-	function __construct()
+	function __construct(router $router, $requestData)
 	{
-		$request = new http\Request();
-
-		$this->requestData = $request->get('requestData');
-		
 		$this->response = new http\Response();
+
+		$this->view = new View();
 		
-		$this->view = new view\View();
+		$this->error = new Error();
+
+		$this->requestData = $requestData;
 		
-		$this->router = new router\Router($request);
+		$this->router = $router;
 		
 		$this->controller = $this->router->get('controller');
 	}
@@ -80,7 +80,10 @@ class App
 	 */
 	public function start()
 	{
-		$this->page = new $this->controller($this);
+		if(isset($this->controller)) 
+		{
+			$page = new $this->controller($this);
+		}
 	}
 
 

@@ -9,7 +9,7 @@ include ('core/bootstrap.php');
 /**
  * Initialize the application
  */
-$app = new core\App();
+$app = new core\App($router, $request->get('data'));
 
 
 /**
