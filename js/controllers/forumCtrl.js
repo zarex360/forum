@@ -17,7 +17,7 @@ angular.module('myApp.forumCtrl', [])
   }])
 
   //The controller that gets all the topics in a category
-  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', 'TopicService', function($scope, $http, $routeParams, TopicService){
+  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', 'TopicService', 'UserService', function($scope, $http, $routeParams, TopicService, UserService){
     //Check if a category is set
     if($routeParams['category']){
       var category = {'category': $routeParams['category']};
@@ -32,23 +32,30 @@ angular.module('myApp.forumCtrl', [])
       $http.get('server/menu/getCategories').success(function(data){
       //Put all the categories in the variable categories
         $scope.categoryList = data['categoryMenuResponse'];
-        console.log($scope.categoryList);
       });
       
     $scope.createTopic = function(){
+      var response;
       var topic = {};
       topic.catId = $scope.topicCreate['category'];
       topic.title = $scope.topicCreate['title'];
       topic.text = $scope.topicCreate['text'];
-      TopicService.create(topic).then(function(response){
-        console.log(response);
+      UserService.haveUser().then(function(data){
+        topic.user = data['data']['authUserResponse'];
+        if(!topic.user){
+          console.log('not logged in');
+        }else{
+          TopicService.create(topic).then(function(response){
+            console.log(response);
+          });
+        }
       })
     };
     
   }])
 
   //The controlelr that gets all the post that belongs to a topic
-  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'TopicService', function($route, $scope, $http, $routeParams, TopicService){
+  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'TopicService', 'UserService', function($route, $scope, $http, $routeParams, TopicService, UserService){
     //Check if a topic is set
     if($routeParams['topic']){
       //Prepare a variable for the server request
@@ -70,11 +77,19 @@ angular.module('myApp.forumCtrl', [])
       var comment = {};
       comment.topicId = $routeParams['topic'];
       comment.post = $scope.post['comment'];
-      TopicService.comment(comment).then(function(response){
-        if(response){
-          $route.reload();
+      UserService.haveUser().then(function(user){
+        comment.user = user['data']['authUserResponse'];
+        if(!comment.user){
+          console.log('You are not logged in');
+        }else{
+          TopicService.comment(comment).then(function(response){
+            if(response){
+              $route.reload();
+            }
+          });
         }
-      });
+      })
+      
 
     }
 
