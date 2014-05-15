@@ -5,55 +5,47 @@ namespace core;
 class Controller
 {
 	/**
-	 * requestData contains data sent from client(front-end)
-	 * @var array 
+	 * requestData contains data sent to server
+	 * @var Array 
 	 */
 	protected $requestData;
 
 
 	/**
-	 * @var object Response
+	 * Handle the response from server
+	 * @var Object
 	 */
 	protected $response;
 
 
 	/**
-	 * It uses the request class to sort out the right route 
-	 * with the mapping so the system initalize the right 
-	 * controller and method with params
-	 * @var object Router
+	 * Handle how the application should run
+	 * @var Object
 	 */
 	protected $router;
 
 
 	/**
-	 * Session handler
-	 * contains some sweetener functions for handling session
-	 * @var object
-	 */
-	protected $session;
-
-
-	/**
-	 * If you want your response to go through a template
-	 * so you can return html to the client
-	 * @var object
+	 * Handle if the application should run through a template
+	 * @var Object
 	 */
 	protected $view;
-	
+
 
 	/**
-	 * @param object Router
-	 * @param object Response
-	 * @param object View
-	 * It starts the right method or return an error response
+	 * Takes what it needs from the app to the core\controller
+	 * @param Object $app
 	 */
 	function __construct(App $app)
 	{
 		$this->requestData = $app->get('requestData');
+
 		$this->response = $app->get('response');
+
 		$this->view = $app->get('view');
+
 		$this->router = $app->get('router');
+
 		$this->initMethod(
 			$this->router->get('method'),
 			$this->router->get('params')
@@ -62,9 +54,9 @@ class Controller
 
 
 	/**
-	 * @param string $method
-	 * @param array $params
-	 * It initalize the function that are set in the route request
+	 * Initalize the controller method
+	 * @param  String $method
+	 * @param  Array  $params
 	 */
 	private function initMethod($method, $params = array())
 	{
@@ -80,8 +72,8 @@ class Controller
 
 
 	/**
-	 * @return array
-	 * It gets the input data from the url request
+	 * Returns the requestData
+	 * @return Array
 	 */
 	protected function getJsonInput()
 	{

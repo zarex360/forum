@@ -4,7 +4,7 @@ class LoginCtrl extends core\Controller
 {
 	protected function login()
 	{
-		$model = new core\auth\Login();
+		$model = new core\authentication\Login();
 
 		$result = $model->loginUser($this->requestData);
 

@@ -7,12 +7,20 @@ class Request
 	private $tokens = array();
 	private $data;
 
+
+	/**
+	 * Initalize functions that gets requested data.
+	 */
 	function __construct()
 	{
 		$this->setTokens();
 		$this->setData();
 	}
 
+
+	/**
+	 * Set Tokens
+	 */
 	private function setTokens()
 	{
 		$url = str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']);
@@ -22,6 +30,10 @@ class Request
 		}
 	}
 
+
+	/**
+	 * Set data
+	 */
 	private function setData()
 	{
 		$json = file_get_contents('php://input');
@@ -36,6 +48,8 @@ class Request
     	}
 	}
 
+
+	
 	public function get($item)
 	{
 		if(isset($this->$item))

@@ -12,9 +12,25 @@ class DbHandler
 	private $user;
 	private $pass;
 
+
+	/**
+	 * Contains methods to handle session
+	 * @var Object
+	 */
 	protected $session;
+
+
+	/**
+	 * Connection to database
+	 * @var Object
+	 */
 	protected $connection;
 
+
+	/**
+	 * Sets the values for database connection
+	 * Initalize Session
+	 */
 	function __construct()
 	{
 		$this->host = DB_HOST;
@@ -26,6 +42,11 @@ class DbHandler
 		$this->connection = $this->getConnection();
 	}
 
+
+	/**
+	 * Connect to database and returns database connection
+	 * @return Object
+	 */
 	private function getConnection()
 	{
 		if(isset($this->connection))

@@ -1,11 +1,16 @@
 <?php 
 
-namespace core\auth;
+namespace core\authentication;
 
 use core\database\DbQuery as DbQuery;
 
 class Login extends DbQuery
 {
+	/**
+	 * Login user
+	 * @param  Array $user
+	 * @return Mixed
+	 */
 	public function loginUser($user)
 	{
 		$q = "SELECT * FROM user WHERE username = :username AND password = :password";
