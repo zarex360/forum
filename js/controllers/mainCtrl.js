@@ -26,7 +26,7 @@ angular.module('myApp.mainCtrl', [])
   .controller('MenuCtrl', ['HttpServices', '$scope', '$rootScope', function(HttpServices, $scope, $rootScope){
     var path = ''
     // initial menu (logged in or not)
-    path = 'menu/get/main'
+    path = 'menu/main'
     HttpServices.get(path).then(function(response){
       $scope.mainMenu = response['data']['menuResponse'];
     })
@@ -34,7 +34,7 @@ angular.module('myApp.mainCtrl', [])
     // Look if the event is set, if it is. then load the new menu (it sets when you login)
     $rootScope.$on("menuGet",function() {
       //DO a server request to get the menu
-      path = 'menu/get/main';
+      path = 'menu/main';
       HttpServices.get(path).then(function(response){
         $scope.mainMenu = response['data']['menuResponse'];
       })

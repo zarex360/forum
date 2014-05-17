@@ -5,10 +5,8 @@
 angular.module('myApp.forumCtrl', [])
 
 //The controller that gets all the categories
-  .controller('CategoryCtrl', ['$scope', 'HttpServices', '$routeParams', function($scope, HttpServices, $routeParams){
-    $scope.categories = {};
-    $scope.topic = {};
-    var path = 'menu/getCategories'
+  .controller('CategoryCtrl', ['$scope', 'HttpServices', function($scope, HttpServices){
+    var path = 'category/get'
     //The server request
     HttpServices.get(path).then(function(response){
       $scope.categories = response['categoryMenuResponse'];
@@ -21,18 +19,19 @@ angular.module('myApp.forumCtrl', [])
     //Check if a category is set
     if($routeParams['category']){
       var category = {'category': $routeParams['category']};
+      var path = '';
+      path = 'category' + $routeParams['category'];
       //If it is set then start a service to get all topics
-      TopicService.getTopics(category).then(function(response){
+      HttpServices.get(path).then(function(response){
         $scope.topics = response['data']['getTopicListResponse'];
         $scope.topicHref = $routeParams['category'];
-      });
+      })
     };
 
-
-      $http.get('server/menu/getCategories').success(function(data){
-      //Put all the categories in the variable categories
-        $scope.categoryList = data['categoryMenuResponse'];
+      HttpServices.get('category').then(function(response){
+        $scope.categoryList = respnse['data']['categoryMenuResponse'];
       });
+      
       
     $scope.createTopic = function(){
       var response;
@@ -40,12 +39,12 @@ angular.module('myApp.forumCtrl', [])
       topic.catId = $scope.topicCreate['category'];
       topic.title = $scope.topicCreate['title'];
       topic.text = $scope.topicCreate['text'];
-      UserService.haveUser().then(function(data){
-        topic.user = data['data']['authUserResponse'];
+      HttpServices.get('auth/haveUser').then(function(response){
+        topic.user = response['data']['authUserResponse'];
         if(!topic.user){
           console.log('not logged in');
         }else{
-          TopicService.create(topic).then(function(response){
+          HttpServices.post('...', topic).then(function(response){
             console.log(response);
           });
         }
