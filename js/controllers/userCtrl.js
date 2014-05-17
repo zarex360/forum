@@ -22,13 +22,14 @@ angular.module('myApp.userCtrl', [])
       HttpServices.post(path, $scope.user).then(function(response){
         if(response['data']['registerResponse']){
           $scope.msg = function(){
-            return 'You can now login!'
-          }else{
-            $scope.error = function(){
-              return 'Username is allready taken!'
-            }
+            return 'You can now login!';
           }
-        }
+        }else{
+           $scope.error = function(){
+            return 'Username is allready taken!';
+           }
+          }
+        
       })
     }
 
@@ -40,9 +41,9 @@ angular.module('myApp.userCtrl', [])
       HttpServices.post(path, $scope.loginInput).then(function(response){
         if(response['data']['loginResponse']){
           console.log(response);
-          userName = response['data']['loginResponse']
+          userName = response['data']['loginResponse'];
           $rootScope.$broadcast('menuGet');
-          $location.path('/home')
+          $location.path('/home');
         }else{
           $scope.msg = function(){
             return 'There has been a error with your information!';
