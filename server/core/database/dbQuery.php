@@ -55,7 +55,7 @@ class DbQuery extends DbHandler
 	{
 		if($user = $this->session->get('user'))
 		{
-			$q = "SELECT * FROM user WHERE username = :username AND password = :password";
+			$q = "SELECT * FROM users WHERE username = :username AND password = :password";
 			$r = array(
 				'username' => $user['username'], 
 				'password' => $user['password']

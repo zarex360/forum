@@ -5,19 +5,19 @@
 angular.module('myApp.forumCtrl', [])
 
 //The controller that gets all the categories
-  .controller('CategoryCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+  .controller('CategoryCtrl', ['$scope', 'HttpServices', '$routeParams', function($scope, HttpServices, $routeParams){
     $scope.categories = {};
     $scope.topic = {};
+    var path = 'menu/getCategories'
     //The server request
-    $http.get('server/menu/getCategories').success(function(data){
-      //Put all the categories in the variable categories
-      $scope.categories = data['categoryMenuResponse'];
+    HttpServices.get(path).then(function(response){
+      $scope.categories = response['categoryMenuResponse'];
     });
 
   }])
 
   //The controller that gets all the topics in a category
-  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', 'TopicService', 'UserService', function($scope, $http, $routeParams, TopicService, UserService){
+  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', 'HttpServices', function($scope, $http, $routeParams, HttpServices){
     //Check if a category is set
     if($routeParams['category']){
       var category = {'category': $routeParams['category']};
@@ -55,7 +55,7 @@ angular.module('myApp.forumCtrl', [])
   }])
 
   //The controlelr that gets all the post that belongs to a topic
-  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'TopicService', 'UserService', function($route, $scope, $http, $routeParams, TopicService, UserService){
+  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'HttpServices', function($route, $scope, $http, $routeParams, HttpServices){
     //Check if a topic is set
     if($routeParams['topic']){
       //Prepare a variable for the server request

@@ -5,9 +5,8 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.filters',
-  'myApp.forumServices',
-  'myApp.userServices',
   'myApp.directives',
+  'myApp.httpServices',
   'myApp.mainCtrl',
   'myApp.userCtrl',
   'myApp.forumCtrl'
@@ -57,7 +56,7 @@ angular.module('myApp', [
 }]);
 
 
-angular.module('myApp').run(['$http', '$rootScope', 'UserService',  function($http, $rootScope, UserService){
+angular.module('myApp').run(['$http', '$rootScope', 'HttpServices',  function($http, $rootScope, HttpServices){
 
 
     
