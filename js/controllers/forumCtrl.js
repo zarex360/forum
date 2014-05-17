@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.forumCtrl', [])
+angular.module('Forum.forumCtrl', [])
 
 //The controller that gets all the categories
   .controller('CategoryCtrl', ['$scope', 'HttpServices', function($scope, HttpServices){

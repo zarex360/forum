@@ -2,7 +2,7 @@
 
 /* User Controllers */
 
-angular.module('myApp.userCtrl', [])
+angular.module('Forum.userCtrl', [])
 
  //User controller
   .controller('UserCtrl', ['HttpServices', '$scope', '$rootScope', '$location', function(HttpServices, $scope, $rootScope, $location){

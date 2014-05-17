@@ -2,7 +2,7 @@
 
 /* UserServices */
 
-angular.module('myApp.userServices', [])
+angular.module('Forum.userServices', [])
 
  //User Service, do anything that handle user information
   .service('UserService', ['$http', '$location', '$rootScope', function($http, $location, $rootScope){

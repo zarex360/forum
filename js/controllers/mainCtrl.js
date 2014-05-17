@@ -2,7 +2,7 @@
 
 /* mainCtrl */
 
-angular.module('myApp.mainCtrl', [])
+angular.module('Forum.mainCtrl', [])
 
   //The home controller
   .controller('HomeCtrl', ['$scope', 'HttpServices', '$rootScope', function($scope, HttpServices, $rootScope) {
