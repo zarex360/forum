@@ -59,6 +59,7 @@ class Router
 		if($route !== 'noRoute')
 		{
 			$this->setCtrlAndMethod($route);
+			$this->checkIfInt($this->params);
 		}
 		else
 		{
@@ -150,5 +151,29 @@ class Router
 		{
 			return $this->$item;
 		}
+	}
+
+	private function convertParamToInt($paramString)
+	{
+		$characters = str_split($paramString);
+		foreach($characters as $character)
+		{
+			if(!is_numeric($character))
+			{
+				return $paramString;
+			}
+		}
+		return (int)$paramString;
+	}
+
+	private function checkIfInt($params)
+	{
+		$newParams = array();
+		foreach ($params as $param) 
+		{
+			$param = $this->convertParamToInt($param);
+			$newParams[] = $param;
+		}
+		$this->params = $newParams;
 	}
 }
