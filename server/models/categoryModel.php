@@ -12,12 +12,12 @@ class CategoryModel extends core\database\DbQuery
 		else if(is_string($category))
 		{
 			$q = "SELECT * FROM categories WHERE href = '" . $category . "'";
-			$result = $this->dbQuery();
+			$result = $this->dbQuery($q);
 		}
 
 		if(isset($result) and $result !== array())
 		{
-			return true;
+			return $result;
 		}
 		return false;
 	}
