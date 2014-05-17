@@ -12,9 +12,13 @@ class CategoryCtrl extends core\Controller
 		{
 			$result = $model->getAll('categories');
 		}
-		else if(count($params) === 1)
+		else if(is_int($params[0]))
 		{
-			$result = $model->get($params[0]);
+			$result = $model->getById($params[0]);
+		}
+		else if(is_string($params[0]))
+		{
+			$result = $model->getByName($params[0]);
 		}
 
 		$this->response->add('categoryResponse', $result);

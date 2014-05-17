@@ -2,28 +2,38 @@
 
 class CategoryModel extends core\database\DbQuery
 {
-	public function get($category)
+	public function getAll($categories)
 	{
-		if(is_numeric($category))
+		return $this->getAllFrom($categories);
+	}
+
+	public function getById($category)
+	{
+		if(is_int($category))
 		{
 			$q = "SELECT * FROM categories WHERE id = '" . $category . "'";
 			$result = $this->dbQuery($q);
-		}
-		else if(is_string($category))
-		{
-			$q = "SELECT * FROM categories WHERE href = '" . $category . "'";
-			$result = $this->dbQuery($q);
-		}
 
-		if(isset($result) and $result !== array())
-		{
-			return $result;
+			if(isset($result) and $result !== array()) 
+			{
+				return $result;
+			}
 		}
 		return false;
 	}
 
-	public function getAll($categories)
+	public function getByName($category)
 	{
-		return $this->getAllFrom($categories);
+		if(is_string($category))
+		{
+			$q = "SELECT * FROM categories WHERE href = '" . $category . "'";
+			$result = $this->dbQuery($q);
+
+			if(isset($result) and $result !== array()) 
+			{
+				return $result;
+			}
+		}
+		return false;
 	}
 }
