@@ -1,0 +1,112 @@
+/* app css stylesheet */
+
+body {
+  background: pink;
+}
+
+p{
+  padding: 0;
+  margin: 0;
+}
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+  padding-left: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+.login{
+  width: 400px;
+  float: left;
+}
+.register{
+  width: 400px;
+  float: left;
+}
+p.link{
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+p.desc{
+  display: inline;
+  margin-left: 
+}
+ul.category{
+
+}
+ul.category > li{
+  list-style: none;
+  height: auto;
+  width: 70%;
+  line-height: 50px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  background: white;
+}
+
+ul.topicList > li{
+  list-style: none;
+  height: auto;
+  width: 70%;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+  background: white;
+}
+
+.topic {
+  list-style: none;
+  height: auto;
+  max-width: 70%;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 0px 10px 0px 10px;
+  margin: 40px 40px 0px 40px;
+  background: white;
+}
+
+.posts {
+  list-style: none;
+  height: auto;
+  max-width: 70%;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 0px 10px 0px 10px;
+  margin: 0px 40px 5px 40px;
+  background: white;
+}
+
+#topic-text-area {
+  width: 40%;
+  height: 150px;
+  margin: 4px 40px 0px 40px;
+  color: black;
+}

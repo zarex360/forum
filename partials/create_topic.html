@@ -1,0 +1,17 @@
+<h1>Create topic</h1>
+<form name="topicForm" novalidate>
+		<label for>Title</label>
+		<input type="text" name="title" placeholder="title" ng-model="topicCreate.title" requried>
+		<span ng-show="topicForm.title.$dirty && topicForm.title.$error.required">You need to add a title..</span>
+		<br>
+		<label for>Select Category</label>
+		<select name="category" ng-model="topicCreate.category" ng-options="category.id as category.name for category in categoryList" required>
+			<option value="">Select...</option>
+		</select><br>
+		<textarea id="topic-text-area" ng-model="topicCreate.text" name="topic-text" placeholder="write here...." required>
+			
+		</textarea>
+		<br>
+		<button ng-click="topicForm.$valid && createTopic()">Create Topic</button>
+    	<span ng-show="submitted && topicForm.$dirty && topicForm.$invalid">Please edit the wrongs</span>
+	</form>

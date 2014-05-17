@@ -1,0 +1,22 @@
+{
+  "name": "forum",
+  "version": "0.0.1",
+  "description": "A forum application",
+  "keywords": ["forum_project"],
+  "contributors": [
+    {
+      "name": "Samuel Bengtsson"
+    },
+    {
+      "name": "Johan Falk"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-watch": "*",
+    "node-bourbon": "*",
+    "node-neat": "*"
+  }
+}
