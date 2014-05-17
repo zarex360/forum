@@ -2,14 +2,14 @@
 
 /* Application */
 
-angular.module('myApp', [
+angular.module('Forum', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.directives',
-  'myApp.httpServices',
-  'myApp.mainCtrl',
-  'myApp.userCtrl',
-  'myApp.forumCtrl'
+  'Forum.filters',
+  'Forum.directives',
+  'Forum.httpServices',
+  'Forum.mainCtrl',
+  'Forum.userCtrl',
+  'Forum.forumCtrl'
 ])
 
 .config(['$locationProvider', function ($locationProvider) {
@@ -56,7 +56,7 @@ angular.module('myApp', [
 }]);
 
 
-angular.module('myApp').run(['$http', '$rootScope', 'HttpServices',  function($http, $rootScope, HttpServices){
+angular.module('Forum').run(['$http', '$rootScope', 'HttpServices',  function($http, $rootScope, HttpServices){
 
 
     

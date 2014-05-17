@@ -2,7 +2,7 @@
 
 /* Services */
 
-angular.module('myApp.httpServices', [])
+angular.module('Forum.httpServices', [])
 
 .service('HttpServices', ['$http', function($http){
 

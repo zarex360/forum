@@ -2,7 +2,7 @@
 
 /* Filters */
 
-angular.module('myApp.filters', [])
+angular.module('Forum.filters', [])
   
   // not used, just here for reference:
   .filter('interpolate', ['version', function(version) {
