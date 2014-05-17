@@ -53,7 +53,7 @@ $routeMap = array(
 	/**
 	 * Menues
 	 */
-	'/menu/get' => 'MenuCtrl@get',
+	'/menu' => 'MenuCtrl@get',
 	
 	/**
 	 * Profile
@@ -63,12 +63,12 @@ $routeMap = array(
 	/**
 	 * Topics
 	 */
-	'/topic/get' => 'TopicCtrl@get',
+	'/topic' => 'TopicCtrl@get',
 
 	/**
 	 * categories
 	 */
-	'/category/get' => 'CategoryCtrl@get',
+	'/category' => 'CategoryCtrl@get',
 
 	/**
 	 * Comments
