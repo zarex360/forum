@@ -45,4 +45,18 @@ class TopicModel extends core\database\DbQuery
 	{
 		return $this->getALlFrom($topics);
 	}
+
+	public function getTopic($category, $tid)
+	{
+		$cid = $this->getCategoryId($category);
+		$q = "SELECT * FROM topics WHERE cid = :cid AND id = :tid";
+		$r = array('cid' => $cid, 'tid' => $tid);
+		$result = $this->dbQuery($q, $r);
+
+		if(count($result) > 0) 
+		{
+			return $result;
+		}
+		return false;
+	}
 }
