@@ -22,9 +22,8 @@ class CategoryModel extends core\database\DbQuery
 		return false;
 	}
 
-	public function getAll()
+	public function getAll($categories)
 	{
-		$q = "SELECT * FROM categories";
-		return $this->dbQuery($q);
+		return $this->getAllFrom($categories);
 	}
 }

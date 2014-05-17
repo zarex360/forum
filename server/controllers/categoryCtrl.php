@@ -10,7 +10,7 @@ class CategoryCtrl extends core\Controller
 
 		if(count($params) === 0)
 		{
-			$result = $model->getAll();
+			$result = $model->getAll('categories');
 		}
 		else if(count($params) === 1)
 		{

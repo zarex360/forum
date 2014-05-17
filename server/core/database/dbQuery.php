@@ -81,4 +81,15 @@ class DbQuery extends DbHandler
 		$this->session->destroy();
 		return true;
 	}
+
+	public function getAllFrom($table)
+	{
+		$q = "SELECT * FROM " . $table;
+		$result =  $this->dbQuery($q);
+		
+		if(isset($result) and $result !== array()) {
+			return $result;
+		}
+		return $result;
+	}
 }
