@@ -45,33 +45,33 @@ $routeMap = array(
 	/**
 	 * Authenticate
 	 */
-	'/auth/login' => 'loginCtrl@login',
-	'/auth/haveUser' => 'loginCtrl@haveUser',
-	'/auth/register' => 'registerCtrl@register',
-	'/auth/logout' => 'logoutCtrl@logout',
+	'/auth/login' => 'LoginCtrl@login',
+	'/auth/haveUser' => 'LoginCtrl@haveUser',
+	'/auth/register' => 'RegisterCtrl@register',
+	'/auth/logout' => 'LogoutCtrl@logout',
 	
 	/**
 	 * Menues
 	 */
-	'/menu/get' => 'menuCtrl@get',
+	'/menu/get' => 'MenuCtrl@get',
 	
 	/**
 	 * Profile
 	 */
-	'/profile/edit' => 'profileCtrl@edit',
+	'/profile/edit' => 'ProfileCtrl@edit',
 
 	/**
 	 * Topics
 	 */
-	'/topic/get' => 'topicCtrl@get',
+	'/topic/get' => 'TopicCtrl@get',
 
 	/**
-	 * Posts
+	 * categories
 	 */
-	'/post/get' => 'postCtrl@get',
+	'/category/get' => 'CategoryCtrl@get',
 
 	/**
 	 * Comments
 	 */
-	'/comment/post' => 'commentCtrl@postComment'
+	'/comment' => 'CommentCtrl@comment'
 );

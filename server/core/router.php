@@ -3,6 +3,7 @@
 namespace core;
 
 use core\http\Request as Request;
+use Exception as Exception;
 
 class Router
 {
@@ -61,8 +62,7 @@ class Router
 		}
 		else
 		{
-			var_dump($route);
-			exit();
+			throw new Exception('Invalid Route!');
 		}
 	}
 
