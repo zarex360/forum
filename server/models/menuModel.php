@@ -12,7 +12,7 @@ class MenuModel extends core\database\DbQuery
 	{
 		if($role > 1)
 		{
-			$str = "role <= ' . $role .' AND role != 0 AND type = '" . $menu . "'";
+			$str = "role <= '" . $role ."' AND role != 0 AND type = '" . $menu . "'";
 		}
 		else
 		{
