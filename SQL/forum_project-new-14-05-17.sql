@@ -28,6 +28,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 -- Dumping data for table forum_project.categories: ~0 rows (approximately)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` (`id`, `name`, `description`, `href`) VALUES
+	(1, 'Javascript', 'This is programming language', 'javascript'),
+	(2, 'Php', 'This is also a programming languare', 'php'),
+	(3, 'Asp', 'Asp...', 'asp');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 
@@ -85,6 +89,10 @@ CREATE TABLE IF NOT EXISTS `topics` (
 
 -- Dumping data for table forum_project.topics: ~0 rows (approximately)
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
+INSERT INTO `topics` (`id`, `title`, `text`, `date`, `author`, `cid`) VALUES
+	(1, 'Help me make a boat!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed ligula nec quam rhoncus scelerisque. Nam ut metus neque. Mauris auctor lectus vitae enim tristique mattis. In justo odio, rutrum ac nibh quis, consequat accumsan lacus. Aliquam adipiscing metus eu nulla pellentesque, non tempor mauris gravida. Donec tincidunt, risus at congue eleifend, orci lacus gravida dolor, et iaculis risus magna id lorem. Praesent eu tortor nec massa imperdiet ornare. Phasellus sagittis lorem et porttitor euismod. Duis vestibulum sodales scelerisque. Duis varius leo suscipit neque mollis placerat. Nulla bibendum eu erat sit amet consequat. Donec tempor sapien nec euismod rutrum. Proin est libero, dapibus vitae commodo id, tincidunt sed metus. Aliquam sed lacinia diam. Donec aliquet, metus id adipiscing tincidunt, risus metus posuere magna, ut commodo enim orci sed mauris. In euismod pellentesque odio sit amet fermentum.', '2014-05-17 17:38:38', 'johan', 2),
+	(2, 'PHP array_shift()...', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed ligula nec quam rhoncus scelerisque. Nam ut metus neque. Mauris auctor lectus vitae enim tristique mattis. In justo odio, rutrum ac nibh quis, consequat accumsan lacus. Aliquam adipiscing metus eu nulla pellentesque, non tempor mauris gravida. Donec tincidunt, risus at congue eleifend, orci lacus gravida dolor, et iaculis risus magna id lorem. Praesent eu tortor nec massa imperdiet ornare. Phasellus sagittis lorem et porttitor euismod. Duis vestibulum sodales scelerisque. Duis varius leo suscipit neque mollis placerat. Nulla bibendum eu erat sit amet consequat. Donec tempor sapien nec euismod rutrum. Proin est libero, dapibus vitae commodo id, tincidunt sed metus. Aliquam sed lacinia diam. Donec aliquet, metus id adipiscing tincidunt, risus metus posuere magna, ut commodo enim orci sed mauris. In euismod pellentesque odio sit amet fermentum.', '2014-05-17 17:39:24', 'johan', 2),
+	(3, 'Javascript i like', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed ligula nec quam rhoncus scelerisque. Nam ut metus neque. Mauris auctor lectus vitae enim tristique mattis. In justo odio, rutrum ac nibh quis, consequat accumsan lacus. Aliquam adipiscing metus eu nulla pellentesque, non tempor mauris gravida. Donec tincidunt, risus at congue eleifend, orci lacus gravida dolor, et iaculis risus magna id lorem. Praesent eu tortor nec massa imperdiet ornare. Phasellus sagittis lorem et porttitor euismod. Duis vestibulum sodales scelerisque. Duis varius leo suscipit neque mollis placerat. Nulla bibendum eu erat sit amet consequat. Donec tempor sapien nec euismod rutrum. Proin est libero, dapibus vitae commodo id, tincidunt sed metus. Aliquam sed lacinia diam. Donec aliquet, metus id adipiscing tincidunt, risus metus posuere magna, ut commodo enim orci sed mauris. In euismod pellentesque odio sit amet fermentum.', '2014-05-17 17:39:58', 'johan', 1);
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 
 
@@ -102,6 +110,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Dumping data for table forum_project.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `username`, `email`, `role`, `date`, `password`) VALUES
+	(1, 'johan', 'johanjobbfalk@hotmail.com', 9, '2014-05-17 14:16:36', 'falk');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
