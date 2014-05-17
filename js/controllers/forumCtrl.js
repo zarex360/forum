@@ -9,7 +9,6 @@ angular.module('myApp.forumCtrl', [])
     var path = 'category'
     //The server request
     HttpServices.get(path).then(function(response){
-      console.log(response);
       $scope.categories = response['data']['categoryResponse'];
     });
 
