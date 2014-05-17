@@ -6,7 +6,7 @@ angular.module('myApp.forumCtrl', [])
 
 //The controller that gets all the categories
   .controller('CategoryCtrl', ['$scope', 'HttpServices', function($scope, HttpServices){
-    var path = 'category/get'
+    var path = 'category'
     //The server request
     HttpServices.get(path).then(function(response){
       $scope.categories = response['categoryMenuResponse'];
