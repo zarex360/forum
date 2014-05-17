@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 
 
--- Dumping structure for table forum_project.menu
-DROP TABLE IF EXISTS `menu`;
-CREATE TABLE IF NOT EXISTS `menu` (
+-- Dumping structure for table forum_project.menus
+DROP TABLE IF EXISTS `menus`;
+CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(50) COLLATE utf8_bin NOT NULL,
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -59,16 +59,16 @@ CREATE TABLE IF NOT EXISTS `menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.menu: ~6 rows (approximately)
-/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` (`id`, `type`, `name`, `href`, `role`, `weight`) VALUES
+-- Dumping data for table forum_project.menus: ~6 rows (approximately)
+/*!40000 ALTER TABLE `menus` DISABLE KEYS */;
+INSERT INTO `menus` (`id`, `type`, `name`, `href`, `role`, `weight`) VALUES
 	(1, 'main', 'Home', 'home', 1, 0),
 	(2, 'main', 'Categories', 'categories', 1, 1),
 	(3, 'main', 'Login', 'login', 0, 10),
 	(4, 'main', 'Profile', 'profile', 2, 2),
 	(5, 'main', 'Configuration', 'configuration', 9, 9),
 	(6, 'main', 'Logout', 'logout', 2, 10);
-/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
+/*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 
 
 -- Dumping structure for table forum_project.topics
