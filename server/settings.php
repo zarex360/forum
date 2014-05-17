@@ -7,7 +7,7 @@
 /**
  * Change to your own baseroot/basepath.
  */
-define('BASE_PATH', '/forum_project/server/');
+define('BASE_PATH', '/forum_project/server');
 
 
 /**
@@ -45,40 +45,33 @@ $routeMap = array(
 	/**
 	 * Authenticate
 	 */
-	'auth/login' => 'loginCtrl@login',
-	'auth/haveUser' => 'loginCtrl@haveUser',
-	'auth/register' => 'registerCtrl@register',
-	'auth/logout' => 'logoutCtrl@logout',
+	'/auth/login' => 'loginCtrl@login',
+	'/auth/haveUser' => 'loginCtrl@haveUser',
+	'/auth/register' => 'registerCtrl@register',
+	'/auth/logout' => 'logoutCtrl@logout',
 	
 	/**
 	 * Menues
 	 */
-	'menu/getMain' => 'menuCtrl@getMainMenu',
-	'menu/getCategories' => 'menuCtrl@getCatergoryMenu',
+	'/menu/get' => 'menuCtrl@get',
 	
 	/**
 	 * Profile
 	 */
-	'profile/edit' => 'profileCtrl@editProfile',
+	'/profile/edit' => 'profileCtrl@edit',
 
 	/**
 	 * Topics
 	 */
-	'topic/getList' => 'topicCtrl@getTopicsXCategory',
+	'/topic/get' => 'topicCtrl@get',
 
 	/**
 	 * Posts
 	 */
-	'post/getAll' => 'postCtrl@getAllPosts',
+	'/post/get' => 'postCtrl@get',
 
 	/**
 	 * Comments
 	 */
-	'comment/post' => 'commentCtrl@postComment',
-	
-	/** 
-	 * Default Route if there was a problem with the other controllers.
-	 * example defaultRoute => ErrorCtrl@invalidRequest
-	 */
-	'defaultRoute' => 'logoutCtrl@logout'
+	'/comment/post' => 'commentCtrl@postComment'
 );

@@ -55,7 +55,15 @@ class Router
 	{
 		$this->map = $map;
 		$route = $this->getRoute($this->tokens);
-		$this->setCtrlAndMethod($route);
+		if($route !== 'noRoute')
+		{
+			$this->setCtrlAndMethod($route);
+		}
+		else
+		{
+			var_dump($route);
+			exit();
+		}
 	}
 
 	/**
@@ -66,7 +74,7 @@ class Router
 	 */
 	private function getRoute($tokens)
 	{
-		$route = 'defaultRoute';
+		$route = 'noRoute';
 		$temporaryRoute = '';
 		foreach($tokens as $token)
 		{
@@ -81,7 +89,12 @@ class Router
 				$this->setParams($token);
 			}
 		}
-		return $this->map[rtrim($route, '/')];
+
+		if(isset($this->map[rtrim($route, '/')]))
+		{
+			return $this->map[rtrim($route, '/')];
+		}
+		return $route;
 	}
 
 	/**
