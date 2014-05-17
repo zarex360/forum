@@ -11,11 +11,19 @@ angular.module('myApp.mainCtrl', [])
 
     $rootScope.$on("menuGet",function() {
       HttpServices.get('auth/haveUser').then(function(response){
-        $scope.userName = response['authUserResponse'];
+        $scope.userName = function(){
+          if(response['data']['authUserResponse'] != false){
+            return response['data']['authUserResponse'];
+          }
+        }
       });
     })
     HttpServices.get('auth/haveUser').then(function(response){
-      $scope.userName = response['authUserResponse'];
+      $scope.userName = function(){
+          if(response['data']['authUserResponse'] != false){
+            return response['data']['authUserResponse'];
+          }
+        }
     });
 
   }])

@@ -20,7 +20,7 @@ angular.module('myApp.forumCtrl', [])
     if($routeParams['category']){
       var category = {'category': $routeParams['category']};
       var path = '';
-      path = 'category/' + $routeParams['category'];
+      path = 'topic/' + $routeParams['category'];
       //If it is set then start a service to get all topics
       HttpServices.get(path).then(function(response){
         $scope.topics = response['data']['getTopicListResponse'];
