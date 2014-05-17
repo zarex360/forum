@@ -55,7 +55,7 @@ angular.module('Forum.forumCtrl', [])
   }])
 
   //The controlelr that gets all the post that belongs to a topic
-  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'HttpServices', function($route, $scope, $http, $routeParams, HttpServices){
+  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'HttpServices', '$location', function($route, $scope, $http, $routeParams, HttpServices, $location){
     //Check if a topic is set
     if($routeParams['topic']){
       //Prepare a variable for the server request
@@ -68,6 +68,9 @@ angular.module('Forum.forumCtrl', [])
 
       //Start the serveice function to get all post in a topic
       HttpServices.get('topic/' + $routeParams['category'] + '/' + $routeParams['topic']).then(function(response){
+        if(response['data']['topicResponse'] == false){
+          $location.path('/404');
+        }
         $scope.topic = response['data']['topicResponse'][0];
       })
     }

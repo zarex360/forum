@@ -49,6 +49,9 @@ angular.module('Forum', [
   .when('/create_topic', {
     templateUrl: 'partials/create_topic.html',
     controller: 'TopicCtrl'
+  })
+  .when('/404', {
+    templateUrl: 'partials/404.html'
   });
 
   $routeProvider.otherwise({redirectTo: '/home'});
