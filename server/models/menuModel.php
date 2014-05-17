@@ -26,7 +26,7 @@ class MenuModel extends core\database\DbQuery
 	{
 		if($user = $this->session->get('user'))
 		{
-			$q = "SELECT role FROM user WHERE username = :username and password = :password";
+			$q = "SELECT role FROM users WHERE username = :username and password = :password";
 			$r = array(
 				'username' => $user['username'],
 				'password' => $user['password']

@@ -13,7 +13,7 @@ class Register extends DbQuery
 	 */
 	public function checkRegisterData($data)
 	{
-		$q = "SELECT username FROM user WHERE email = :email OR username = :username";
+		$q = "SELECT username FROM users WHERE email = :email OR username = :username";
 		$r = array(
 			'email' => $data['email'],
 			'username' => $data['username']
@@ -33,7 +33,7 @@ class Register extends DbQuery
 	 */
 	public function registerUser($data)
 	{
-		$q = "INSERT INTO user SET username = :username, email = :email, password = :password";
+		$q = "INSERT INTO users SET username = :username, email = :email, password = :password";
 		$r = array(
 			'username' => strtolower($data['username']),
 			'email' => $data['email'],
