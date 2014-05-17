@@ -40,7 +40,12 @@ class DbQuery extends DbHandler
 
 		if(strpos($q, 'SELECT') !== false)
 		{
-		 	return $statement->$f(PDO::FETCH_ASSOC);
+		 	$result = $statement->$f(PDO::FETCH_ASSOC);
+		 	if(count($result) > 0 and $result !== array())
+		 	{
+		 		return $result; 
+		 	}
+		 	return false;
 		}
 	}
 
