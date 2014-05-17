@@ -4,14 +4,10 @@ class RegisterCtrl extends core\Controller
 {
 	protected function register()
 	{
-		$model = new core\authentication\Register();
+		$auth = new core\authentication\Register();
 
-		if($model->checkRegisterData($this->requestData))
-		{
-			$model->registerUser($this->requestData);
-			$this->response->add('registerResponse', true);
-			return;
-		}
-		$this->response->add('registerResponse', false);
+		$result = $auth->registerUser($this->requestData);
+
+		$this->response->add('registerResponse', $result);
 	}
 }
