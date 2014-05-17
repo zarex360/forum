@@ -6,7 +6,6 @@ class CategoryCtrl extends core\Controller
 	{
 		$params = func_get_args();
 		$model = new CategoryModel();
-		$result = false;
 
 		if(count($params) === 0)
 		{
@@ -19,6 +18,10 @@ class CategoryCtrl extends core\Controller
 		else if(is_string($params[0]))
 		{
 			$result = $model->getByName($params[0]);
+		}
+		else
+		{
+			$result = false;
 		}
 
 		$this->response->add('categoryResponse', $result);

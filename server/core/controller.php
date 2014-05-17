@@ -2,6 +2,8 @@
 
 namespace core;
 
+use Exception as Exception;
+
 class Controller
 {
 	/**
@@ -66,7 +68,7 @@ class Controller
 		}
 		else
 		{
-			$this->response->add('routeError', 'There is no method "'.$method.'".');
+			throw new Exception('Controller does not exist!');
 		}
 	}
 
