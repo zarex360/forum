@@ -11,7 +11,6 @@ angular.module('myApp.mainCtrl', [])
 
     $rootScope.$on("menuGet",function() {
       HttpServices.get('auth/haveUser').then(function(response){
-        console.log(response);
         $scope.userName = response['authUserResponse'];
       });
     })
@@ -29,7 +28,6 @@ angular.module('myApp.mainCtrl', [])
     // initial menu (logged in or not)
     path = 'menu/get/main'
     HttpServices.get(path).then(function(response){
-      console.log(response);
       $scope.mainMenu = response['data']['menuResponse'];
     })
 
@@ -38,7 +36,6 @@ angular.module('myApp.mainCtrl', [])
       //DO a server request to get the menu
       path = 'menu/get/main';
       HttpServices.get(path).then(function(response){
-        console.log(response);
         $scope.mainMenu = response['data']['menuResponse'];
       })
     });
