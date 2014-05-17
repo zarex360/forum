@@ -9,7 +9,8 @@ angular.module('myApp.forumCtrl', [])
     var path = 'category'
     //The server request
     HttpServices.get(path).then(function(response){
-      $scope.categories = response['categoryMenuResponse'];
+      console.log(response);
+      $scope.categories = response['data']['categoryResponse'];
     });
 
   }])
@@ -29,7 +30,7 @@ angular.module('myApp.forumCtrl', [])
     };
 
       HttpServices.get('category').then(function(response){
-        $scope.categoryList = respnse['data']['categoryMenuResponse'];
+        $scope.categoryList = response['data']['categoryResponse'];
       });
       
       
