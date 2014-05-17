@@ -23,7 +23,8 @@ angular.module('Forum.forumCtrl', [])
       path = 'topic/' + $routeParams['category'];
       //If it is set then start a service to get all topics
       HttpServices.get(path).then(function(response){
-        $scope.topics = response['data']['getTopicListResponse'];
+        console.log(response['data']['topicResponse']);
+        $scope.topics = response['data']['topicResponse'];
         $scope.topicHref = $routeParams['category'];
       })
     };
@@ -66,10 +67,9 @@ angular.module('Forum.forumCtrl', [])
       //If it is set then do a server request to get all posts that belongs to that topic
 
       //Start the serveice function to get all post in a topic
-      TopicService.getAll(params).then(function(response){
-        $scope.topic = response['data']['getAllPostsResponse']['topic'];
-        $scope.posts = response['data']['getAllPostsResponse']['posts'];
-      });
+      HttpServices.get('topic/' + $routeParams['category'] + '/' + $routeParams['topic']).then(function(response){
+        $scope.topic = response['data']['topicResponse'][0];
+      })
     }
 
     $scope.comment = function(){

@@ -54,13 +54,17 @@ p.desc{
   display: inline;
   margin-left: 
 }
+.cat{
+  width: 75%;
+  float: left;
+}
 ul.category{
 
 }
 ul.category > li{
   list-style: none;
   height: auto;
-  width: 70%;
+  width: 100%;
   line-height: 50px;
   border: 1px solid #999;
   border-radius: 10px;
@@ -71,7 +75,7 @@ ul.category > li{
 ul.topicList > li{
   list-style: none;
   height: auto;
-  width: 70%;
+  width: 100%;
   border: 1px solid #999;
   border-radius: 10px;
   margin-bottom: 5px;
@@ -109,4 +113,9 @@ ul.topicList > li{
   height: 150px;
   margin: 4px 40px 0px 40px;
   color: black;
+}
+.admin-sidebar{
+  width: 20%;
+  float: left;
+  margin-left: 5%;
 }
