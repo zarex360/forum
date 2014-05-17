@@ -40,4 +40,9 @@ class TopicModel extends core\database\DbQuery
 		}
 		return false;
 	}
+
+	public function getAll($topics)
+	{
+		return $this->getALlFrom($topics);
+	}
 }

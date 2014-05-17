@@ -16,6 +16,10 @@ class TopicCtrl extends core\Controller
 		{
 			$result = $model->getTopicById($params[0]);
 		}
+		else if($params === array())
+		{
+			$result = $model->getAll('topics');
+		}
 
 		$this->response->add('topicResponse', $result);
 	}

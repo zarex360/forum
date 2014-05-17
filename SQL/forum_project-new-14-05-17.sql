@@ -23,10 +23,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   `href` varchar(50) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `href` (`href`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.categories: ~0 rows (approximately)
+-- Dumping data for table forum_project.categories: ~3 rows (approximately)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `name`, `description`, `href`) VALUES
 	(1, 'Javascript', 'This is programming language', 'javascript'),
@@ -60,7 +61,8 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `href` varchar(50) COLLATE utf8_bin NOT NULL,
   `role` int(10) unsigned NOT NULL DEFAULT '1',
   `weight` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `href` (`href`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table forum_project.menus: ~6 rows (approximately)
@@ -85,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `author` varchar(50) COLLATE utf8_bin NOT NULL,
   `cid` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.topics: ~0 rows (approximately)
+-- Dumping data for table forum_project.topics: ~3 rows (approximately)
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
 INSERT INTO `topics` (`id`, `title`, `text`, `date`, `author`, `cid`) VALUES
 	(1, 'Help me make a boat!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed ligula nec quam rhoncus scelerisque. Nam ut metus neque. Mauris auctor lectus vitae enim tristique mattis. In justo odio, rutrum ac nibh quis, consequat accumsan lacus. Aliquam adipiscing metus eu nulla pellentesque, non tempor mauris gravida. Donec tincidunt, risus at congue eleifend, orci lacus gravida dolor, et iaculis risus magna id lorem. Praesent eu tortor nec massa imperdiet ornare. Phasellus sagittis lorem et porttitor euismod. Duis vestibulum sodales scelerisque. Duis varius leo suscipit neque mollis placerat. Nulla bibendum eu erat sit amet consequat. Donec tempor sapien nec euismod rutrum. Proin est libero, dapibus vitae commodo id, tincidunt sed metus. Aliquam sed lacinia diam. Donec aliquet, metus id adipiscing tincidunt, risus metus posuere magna, ut commodo enim orci sed mauris. In euismod pellentesque odio sit amet fermentum.', '2014-05-17 17:38:38', 'johan', 2),
@@ -106,9 +108,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table forum_project.users: ~0 rows (approximately)
+-- Dumping data for table forum_project.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `email`, `role`, `date`, `password`) VALUES
 	(1, 'johan', 'johanjobbfalk@hotmail.com', 9, '2014-05-17 14:16:36', 'falk');
