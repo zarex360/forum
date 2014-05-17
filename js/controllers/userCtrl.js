@@ -5,19 +5,32 @@
 angular.module('myApp.userCtrl', [])
 
  //User controller
-  .controller('UserCtrl', ['HttpServices', '$scope', '$rootScope', function(HttpServices, $scope, $rootScope){
+  .controller('UserCtrl', ['HttpServices', '$scope', '$rootScope', '$location', function(HttpServices, $scope, $rootScope, $location){
     var path = '';
     //User information
     $scope.user = {};
     //User input 
     $scope.loginInput = {};
+    var msg = null;
+    var error = null;
     //$scope.msg = UserService.getMsg;
     //$scope.userName = UserService.getUser;
     //register function
     $scope.register = function(){
       //start register service
       path = 'auth/register';
-      HttpServices.post(path, $scope.user);
+      HttpServices.post(path, $scope.user).then(function(response){
+        if(response['data']['registerResponse']){
+          $scope.msg = function(){
+            return 'You can now login!';
+          }
+        }else{
+           $scope.error = function(){
+            return 'Username is allready taken!';
+           }
+          }
+        
+      })
     }
 
     //Login function
@@ -26,9 +39,17 @@ angular.module('myApp.userCtrl', [])
       path = 'auth/login'
       //Start login service
       HttpServices.post(path, $scope.loginInput).then(function(response){
-        console.log(response);
-        userName = response['data']['loginResponse']
-        $rootScope.$broadcast('menuGet');
+        if(response['data']['loginResponse']){
+          console.log(response);
+          userName = response['data']['loginResponse'];
+          $rootScope.$broadcast('menuGet');
+          $location.path('/home');
+        }else{
+          $scope.msg = function(){
+            return 'There has been a error with your information!';
+          }
+        }
+
       })
     }
 
