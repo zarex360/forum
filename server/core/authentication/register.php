@@ -22,7 +22,7 @@ class Register extends DbQuery
 			);
 			$result = $this->dbQuery($q, $r);
 
-			if(count($result) === 0)
+			if(!$result)
 			{
 				$this->registerUserInDb($data);
 				return true;
