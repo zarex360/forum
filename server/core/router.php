@@ -153,27 +153,15 @@ class Router
 		}
 	}
 
-	private function convertParamToInt($paramString)
-	{
-		$characters = str_split($paramString);
-		foreach($characters as $character)
-		{
-			if(!is_numeric($character))
-			{
-				return $paramString;
-			}
-		}
-		return (int)$paramString;
-	}
-
 	private function checkIfInt($params)
 	{
-		$newParams = array();
-		foreach ($params as $param) 
+		$regex = "/[a-öA-Ö]*/";
+		foreach ($params as &$param) 
 		{
-			$param = $this->convertParamToInt($param);
-			$newParams[] = $param;
+			if(preg_match($regex, $param))
+			{
+				$param = (int)$param;
+			}
 		}
-		$this->params = $newParams;
 	}
 }
