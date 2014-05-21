@@ -155,6 +155,7 @@ class Router
 
 	private function converToInt($params)
 	{
+		$newParams = array();
 		$regex = "/[a-öA-Ö]/";
 		foreach ($params as $param) 
 		{
