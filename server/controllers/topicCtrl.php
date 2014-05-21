@@ -24,11 +24,11 @@ class TopicCtrl extends core\Controller
 		$params = func_get_args();
 		$model = new TopicModel();
 		$validator = new core\Validator($this->controllerRoutes, $params);
-		$methodName = $validator->get('methodName');
+		$method = $validator->get('method');
 
 		if($validator->get('result'))
 		{
-			$result = $model->$methodName($params);
+			$result = $model->$method($params);
 		}
 
 		$this->response->add('topicResponse', $result);

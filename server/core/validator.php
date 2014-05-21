@@ -4,7 +4,7 @@ namespace core;
 
 class Validator
 {
-	private $methodName = false;
+	private $method = false;
 	private $result = false;
 
 	function __construct($controllerRoutes = array(), $requestParams = array())
@@ -19,13 +19,13 @@ class Validator
 				
 				if($result === true)
 				{
-					$this->methodName = $key;
+					$this->method = $key;
 					$this->result = $result;
 				}
 			}
 			else if($route === array() && $requestParams === array())
 			{
-				$this->methodName = $key;
+				$this->method = $key;
 				$this->result = true;
 			}
 		}

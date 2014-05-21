@@ -2,8 +2,10 @@
 
 class TopicModel extends core\database\DbQuery
 {
-	public function getTopicsByCategoryName($category)
+	public function getTopicsByCategoryName($params)
 	{
+		$category = $params[0];
+
 		$cid = $this->getCategoryId($category);
 		
 		$q = "SELECT * FROM topics WHERE cid = :cid";
@@ -13,10 +15,8 @@ class TopicModel extends core\database\DbQuery
 		return $this->dbQuery($q, $r);	
 	}
 
-	private function getCategoryId($params)
+	private function getCategoryId($category)
 	{
-		$category = $params[0];
-
 		$q = "SELECT id FROM categories WHERE href = '" . $category . "'";
 		
 		$result = $this->dbQuery($q, 'fetch');
