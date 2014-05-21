@@ -59,7 +59,7 @@ class Router
 		if($route !== 'noRoute')
 		{
 			$this->setCtrlAndMethod($route);
-			$this->checkIfInt($this->params);
+			$this->converToInt($this->params);
 		}
 		else
 		{
@@ -153,15 +153,17 @@ class Router
 		}
 	}
 
-	private function checkIfInt($params)
+	private function converToInt($params)
 	{
-		$regex = "/[a-öA-Ö]*/";
-		foreach ($params as &$param) 
+		$regex = "/[a-öA-Ö]/";
+		foreach ($params as $param) 
 		{
-			if(preg_match($regex, $param))
-			{
+			if(!preg_match($regex, $param, $result))
+			{	
 				$param = (int)$param;
 			}
+			$newParams[] = $param;
 		}
+		$this->params = $newParams;
 	}
 }
