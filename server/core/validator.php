@@ -4,8 +4,8 @@ namespace core;
 
 class Validator
 {
-	private $method = false;
-	private $result = false;
+	public $method = false;
+	public $result = false;
 
 	function __construct($controllerRoutes = array(), $requestParams = array())
 	{
@@ -122,13 +122,5 @@ class Validator
 		$q = "SELECT " . $query['row']  . " FROM " . $query['table'];
 
 		return $dbQuery->dbQuery($q);
-	}
-
-	public function get($item)
-	{
-		if(isset($this->$item))
-		{
-			return $this->$item;
-		}
 	}
 }
