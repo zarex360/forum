@@ -2,19 +2,21 @@
 
 class MenuCtrl extends core\Controller
 {
-	private $param_1 = array(
-		'main'
+	private $controllerRoute = array(
+		'getMenu' => array('main'),
 	); 
 
 	protected function get()
 	{
-		$model = new MenuModel();
-		$params = func_get_args();
 		$result = false;
+		$params = func_get_args();
+		$validator = new core\Validator($this->controllerRoute, $params);
 
-		if(in_array($params[0], $this->param_1))
+		if($validator->result)
 		{
-			$result = $model->getMenu($params[0]);
+			$model = new MenuModel();
+			$method = $validator->method;
+			$result = $model->$method($params);
 		}
 
 		$this->response->add('menuResponse', $result);

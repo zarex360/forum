@@ -2,26 +2,23 @@
 
 class CategoryCtrl extends core\Controller
 {
+	private $controllerRoute = array(
+		'getAll' => array(),
+		'getById' => array('param1' => 'int'),
+		'getByName' => array('param1' => 'string')
+	);
+
 	protected function get()
 	{
+		$result = false;
 		$params = func_get_args();
-		$model = new CategoryModel();
+		$validator = new core\Validator($this->controllerRoute, $params);
 
-		if(count($params) === 0)
+		if($validator->result)
 		{
-			$result = $model->getAll('categories');
-		}
-		else if(is_int($params[0]))
-		{
-			$result = $model->getById($params[0]);
-		}
-		else if(is_string($params[0]))
-		{
-			$result = $model->getByName($params[0]);
-		}
-		else
-		{
-			$result = false;
+			$model = new CategoryModel();
+			$method = $validator->method;
+			$result = $model->$method($params);
 		}
 
 		$this->response->add('categoryResponse', $result);
