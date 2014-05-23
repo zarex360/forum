@@ -2,8 +2,9 @@
 
 class MenuModel extends core\database\DbQuery
 {
-	public function getMenu($menu)
+	public function getMenu($params)
 	{
+		$menu = $params[0];
 		$role = $this->getRole();
 		return $this->getMenuFromDb($role, $menu);
 	}
