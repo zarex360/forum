@@ -72,7 +72,7 @@ $routeMap = array(
 	'/category' => 'CategoryCtrl@get',
 
 	/**
-	 * Comments
+	 * Admin
 	 */
-	'/comment' => 'CommentCtrl@comment'
+	'/admin' => 'adminCtrl@configurations'
 );
