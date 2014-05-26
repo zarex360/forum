@@ -37,4 +37,13 @@ class TopicCtrl extends core\controller\Controller
 		$result = $model->create($data);
 		$this->response->add('crateResponse', $result);
 	}
+
+	protected function comment()
+	{
+		$result = false;
+		$data = $this->requestData;
+		$model = new TopicModel();
+		$result = $model->comment($data);
+		$this->response->add('commentResponse', $result);
+	}
 }

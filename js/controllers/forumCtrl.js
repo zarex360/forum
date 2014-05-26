@@ -23,7 +23,6 @@ angular.module('Forum.forumCtrl', [])
       path = 'topic/' + $routeParams['category'];
       //If it is set then start a service to get all topics
       HttpServices.get(path).then(function(response){
-        console.log(response['data']['topicResponse']);
         $scope.topics = response['data']['topicResponse'];
         $scope.topicHref = $routeParams['category'];
       })
@@ -45,9 +44,8 @@ angular.module('Forum.forumCtrl', [])
         if(!topic.user){
           console.log('not logged in');
         }else{
-          HttpServices.post('topic/create', topic).then(function(response){
-            console.log(topic);
-            console.log(response);
+          HttpServices.post('topic/crete', topic).then(function(response){
+
           });
         }
       })
@@ -56,7 +54,7 @@ angular.module('Forum.forumCtrl', [])
   }])
 
   //The controlelr that gets all the post that belongs to a topic
-  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'HttpServices', '$location', function($route, $scope, $http, $routeParams, HttpServices, $location){
+  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'HttpServices', 'UserService', '$location', function($route, $scope, $http, $routeParams, HttpServices, UserService, $location){
     //Check if a topic is set
     if($routeParams['topic']){
       //Prepare a variable for the server request
@@ -83,10 +81,11 @@ angular.module('Forum.forumCtrl', [])
       UserService.haveUser().then(function(user){
         comment.user = user['data']['authUserResponse'];
         if(!comment.user){
-          console.log('You are not logged in');
+          $location.path('/login');
         }else{
-          TopicService.comment(comment).then(function(response){
+          HttpServices.post('topic/comment', comment).then(function(response){
             if(response){
+              console.log(response);
               $route.reload();
             }
           });
