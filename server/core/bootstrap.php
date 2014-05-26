@@ -52,3 +52,9 @@ $router = new core\router($request);
  * => controller = loginCtrl and method = login.
  */
 $router->registerRouteMap($routeMap);
+
+
+/**
+ * Initialize the application
+ */
+$app = new core\App($router, $request->get('data'));
