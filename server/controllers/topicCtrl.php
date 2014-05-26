@@ -9,7 +9,7 @@ class TopicCtrl extends core\controller\Controller
 		),
 		'getTopic' => array(
 			'param1' => array('query' => array('table' => 'categories', 'row' => 'href')),
-			'param2' => array('query' => array('table' => 'categories', 'row' => 'id'))
+			'param2' => array('query' => array('table' => 'topics', 'row' => 'id'))
 		),
 	);
 
