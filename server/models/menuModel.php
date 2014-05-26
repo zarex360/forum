@@ -19,7 +19,7 @@ class MenuModel extends core\database\DbQuery
 		{
 			$str = "role <= 1 AND type = '" . $menu . "'";
 		}
-		$q = "SELECT * FROM menus WHERE " . $str;
+		$q = "SELECT * FROM menus WHERE " . $str . "ORDER BY weight ASC";
 		return $this->dbQuery($q);
 	}
 
