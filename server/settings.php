@@ -65,6 +65,7 @@ $routeMap = array(
 	 */
 	'/topic' => 'TopicCtrl@get',
 	'/topic/create' => 'TopicCtrl@create',
+	'/topic/comment' => 'TopicCtrl@comment',
 
 	/**
 	 * categories

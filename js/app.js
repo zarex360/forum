@@ -7,6 +7,7 @@ angular.module('Forum', [
   'Forum.filters',
   'Forum.directives',
   'Forum.httpServices',
+  'Forum.userServices',
   'Forum.mainCtrl',
   'Forum.userCtrl',
   'Forum.forumCtrl'

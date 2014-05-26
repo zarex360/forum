@@ -56,4 +56,17 @@ class TopicModel extends core\database\DbQuery
 
 		return $this->dbQuery($q, $r);
 	}
+
+	public function comment($data)
+	{
+		$q = "INSERT INTO comments SET text = :text, author = :author, tid = :tid";
+
+		$r = array(
+			'text' => $data['post'],
+			'author' => $data['user'],
+			'tid' => $data['topicId']
+		);
+
+		return $this->dbQuery($q, $r);
+	}
 }
