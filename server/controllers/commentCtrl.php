@@ -1,6 +1,6 @@
 <?php
 
-class CommentCtrl extends core\Controller
+class CommentCtrl extends core\controller\Controller
 {
 
 }

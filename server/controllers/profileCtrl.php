@@ -1,6 +1,6 @@
 <?php
 
-class ProfileCtrl extends core\Controller
+class ProfileCtrl extends core\controller\Controller
 {
 	
 }

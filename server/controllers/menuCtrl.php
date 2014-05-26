@@ -1,6 +1,6 @@
 <?php
 
-class MenuCtrl extends core\Controller
+class MenuCtrl extends core\controller\Controller
 {
 	private $controllerRoute = array(
 		'getMenu' => array('main'),
@@ -10,7 +10,7 @@ class MenuCtrl extends core\Controller
 	{
 		$result = false;
 		$params = func_get_args();
-		$validator = new core\Validator($this->controllerRoute, $params);
+		$validator = new core\controller\Validator($this->controllerRoute, $params);
 
 		if($validator->result)
 		{

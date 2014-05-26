@@ -1,29 +1,24 @@
 <?php
 
-class TopicCtrl extends core\Controller
+class TopicCtrl extends core\controller\Controller
 {
 	private $controllerRoutes = array(
 		'getAll' => array(),
 		'getTopicsByCategoryName' => array(
-			'param1' => 'string'
+			'query' => array('table' => 'categories', 'row' => 'href'),
 		),
 		'getTopic' => array(
-			'param1' => array(
-				'query' => array(
-					'table' => 'categories',
-					'row' => 'href'
-				)
-			),
-			'param2' => 'int'
-		)
+			'param1' => array('query' => array('table' => 'categories', 'row' => 'href')),
+			'param2' => array('query' => array('table' => 'categories', 'row' => 'id'))
+		),
 	);
 
 	protected function get()
 	{	
 		$result = false;
 		$params = func_get_args();
-		$validator = new core\Validator($this->controllerRoutes, $params);
-
+		$validator = new core\controller\Validator($this->controllerRoutes, $params);
+  
 		if($validator->result)
 		{
 			$model = new TopicModel();
