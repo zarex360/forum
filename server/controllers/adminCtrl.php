@@ -3,8 +3,12 @@
 class adminCtrl extends core\controller\Controller
 {
 	private $controllerRoute = array(
-		'getConfigs' => array('param1' => array('category', 'topic')),
-
+		'getConfigs' => array(
+			'param1' => array(
+				'category', 
+				'topic'
+				)
+		),
 		'add' => array(
 			'param1' => 'add',
 			'param2' => array(

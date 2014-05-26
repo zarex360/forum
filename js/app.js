@@ -10,11 +10,12 @@ angular.module('Forum', [
   'Forum.userServices',
   'Forum.mainCtrl',
   'Forum.userCtrl',
-  'Forum.forumCtrl'
+  'Forum.forumCtrl',
+  'Forum.adminCtrl'
 ])
 
 .config(['$locationProvider', function ($locationProvider) {
- $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 }])
 
 .config(['$routeProvider', function($routeProvider) {
@@ -55,7 +56,8 @@ angular.module('Forum', [
     templateUrl: 'partials/404.html'
   })
   .when('/configuration', {
-    templateUrl: 'partials/configuration.html'
+    templateUrl: 'partials/configuration.html',
+    controller: 'AdminCtrl'
   });
 
   $routeProvider.otherwise({redirectTo: '/home'});
