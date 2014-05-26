@@ -52,6 +52,9 @@ angular.module('Forum', [
   })
   .when('/404', {
     templateUrl: 'partials/404.html'
+  })
+  .when('/configuration', {
+    templateUrl: 'partials/configuration.html'
   });
 
   $routeProvider.otherwise({redirectTo: '/home'});
