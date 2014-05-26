@@ -28,4 +28,13 @@ class TopicCtrl extends core\controller\Controller
 
 		$this->response->add('topicResponse', $result);
 	}
+
+	protected function create()
+	{
+		$result = false;
+		$data = $this->requestData;
+		$model = new TopicModel();
+		$result = $model->create($data);
+		$this->response->add('crateResponse', $result);
+	}
 }

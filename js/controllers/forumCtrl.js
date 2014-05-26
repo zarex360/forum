@@ -45,7 +45,7 @@ angular.module('Forum.forumCtrl', [])
         if(!topic.user){
           console.log('not logged in');
         }else{
-          HttpServices.post('...', topic).then(function(response){
+          HttpServices.post('topic/crete', topic).then(function(response){
             console.log(response);
           });
         }

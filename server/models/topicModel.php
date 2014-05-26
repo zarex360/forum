@@ -42,4 +42,9 @@ class TopicModel extends core\database\DbQuery
 		
 		return $this->dbQuery($q, $r);
 	}
+
+	public function create($data)
+	{
+		return $data;
+	}
 }
