@@ -43,6 +43,15 @@ class TopicModel extends core\database\DbQuery
 		return $this->dbQuery($q, $r);
 	}
 
+	public function getComments($params)
+	{
+		$tid = $params[0];
+
+		$q = "SELECT * FROM comments WHERE tid = :tid";
+		$r = array('tid' => $tid);
+		return $this->dbQuery($q, $r);
+	}
+
 	public function create($data)
 	{
 		$q = "INSERT INTO topics SET title = :title, text = :text, author = :author, cid = :cid";
@@ -67,6 +76,6 @@ class TopicModel extends core\database\DbQuery
 			'tid' => $data['topicId']
 		);
 
-		return $this->dbQuery($q, $r);
+		return -$this->dbQuery($q, $r);
 	}
 }

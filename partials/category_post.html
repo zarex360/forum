@@ -7,7 +7,7 @@
 	<br>
 	<div ng-show="posts" class="posts" ng-repeat="post in posts">
 		<p>{{post.text}}<p>
-		<h5>By: {{post.auther}} [{{post.date}}]</h5>
+		<h5>By: {{post.author}} [{{post.date}}]</h5>
 	</div>
 	<form name="postForm" novalidate>
 		<textarea id="topic-text-area" ng-model="post.comment" name="post-text" placeholder="Comment here..." required></textarea>

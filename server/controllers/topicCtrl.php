@@ -11,6 +11,9 @@ class TopicCtrl extends core\controller\Controller
 			'param1' => array('query' => array('table' => 'categories', 'row' => 'href')),
 			'param2' => array('query' => array('table' => 'topics', 'row' => 'id'))
 		),
+		'getComments' => array(
+			'param1' => array('query' => array('table' => 'comments', 'row' => 'tid'))
+		),
 	);
 
 	protected function get()

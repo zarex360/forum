@@ -71,6 +71,10 @@ angular.module('Forum.forumCtrl', [])
           $location.path('/404');
         }
         $scope.topic = response['data']['topicResponse'][0];
+      });
+      HttpServices.get('topic/' + $routeParams['topic']).then(function(response){
+        console.log(response['data']['topicResponse']);
+        $scope.posts = response['data']['topicResponse'];
       })
     }
 
