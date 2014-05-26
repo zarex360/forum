@@ -45,6 +45,15 @@ class TopicModel extends core\database\DbQuery
 
 	public function create($data)
 	{
-		return $data;
+		$q = "INSERT INTO topics SET title = :title, text = :text, author = :author, cid = :cid";
+
+		$r = array(
+			'title' => $data['title'],
+			'text' => $data['text'],
+			'author' => $data['user'],
+			'cid' => $data['catId']
+		);
+
+		return $this->dbQuery($q, $r);
 	}
 }
