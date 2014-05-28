@@ -40,7 +40,6 @@ angular.module('Forum.userCtrl', [])
       //Start login service
       HttpServices.post(path, $scope.loginInput).then(function(response){
         if(response['data']['loginResponse']){
-          console.log(response);
           userName = response['data']['loginResponse'];
           $rootScope.$broadcast('menuGet');
           $location.path('/home');

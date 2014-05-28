@@ -15,23 +15,32 @@ angular.module('Forum.forumCtrl', [])
   }])
 
   //The controller that gets all the topics in a category
-  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', 'HttpServices', function($scope, $http, $routeParams, HttpServices){
+  .controller('TopicCtrl', ['$scope', '$location', '$rootScope', '$http', '$routeParams', 'HttpServices', function($scope, $location, $rootScope, $http, $routeParams, HttpServices){
     //Check if a category is set
     if($routeParams['category']){
       var category = {'category': $routeParams['category']};
       var path = '';
+      $rootScope.category = $routeParams['category'];
       path = 'topic/' + $routeParams['category'];
       //If it is set then start a service to get all topics
       HttpServices.get(path).then(function(response){
         $scope.topics = response['data']['topicResponse'];
         $scope.topicHref = $routeParams['category'];
       })
-    };
+    }
+    if($location.path() == '/create_topic'){
+      HttpServices.get('auth/haveUser').then(function(response){
+        var user = response['data']['authUserResponse'];
+        if(!user){
+          $location.path('/login');
+        }
+      })
+    }
 
       HttpServices.get('category').then(function(response){
         $scope.categoryList = response['data']['categoryResponse'];
       });
-      
+      console.log($rootScope.category);
       
     $scope.createTopic = function(){
       var response;
