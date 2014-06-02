@@ -114,14 +114,19 @@ class Validator
 
 	private function checkIfQueryResultMatch($queryResult, $requestParam)
 	{
-		foreach($queryResult as $result)
+		if(is_array($queryResult))
 		{
-			$result = array_values($result);
-			if($result[0] == $requestParam)
+			foreach($queryResult as $result)
 			{
-				return true;
+				$result = array_values($result);
+				if($result[0] == $requestParam)
+				{
+					return true;
+				}
 			}
 		}
+		//var_dump($requestParam);
+		//var_dump($queryResult);
 		return false;
 	}
 
