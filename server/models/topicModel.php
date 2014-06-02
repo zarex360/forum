@@ -32,6 +32,7 @@ class TopicModel extends core\database\DbQuery
 	public function getTopic($params)
 	{
 		$category = $params[0];
+		
 		$tid = $params[1];
 
 		$cid = $this->getCategoryId($category);
@@ -48,34 +49,46 @@ class TopicModel extends core\database\DbQuery
 		$tid = $params[0];
 
 		$q = "SELECT * FROM comments WHERE tid = :tid";
+
 		$r = array('tid' => $tid);
+		
 		return $this->dbQuery($q, $r);
 	}
 
 	public function create($data)
 	{
-		$q = "INSERT INTO topics SET title = :title, text = :text, author = :author, cid = :cid";
+		if(isset($data['title']) && isset($data['text']) && isset($data['user']) && isset($data['catId']))
+		{
+			$q = "INSERT INTO topics SET title = :title, text = :text, author = :author, cid = :cid";
 
-		$r = array(
-			'title' => $data['title'],
-			'text' => $data['text'],
-			'author' => $data['user'],
-			'cid' => $data['catId']
-		);
+			$r = array(
+				'title' => $data['title'],
+				'text' => $data['text'],
+				'author' => $data['user'],
+				'cid' => $data['catId']
+			);
 
-		return $this->dbQuery($q, $r);
+			$this->dbQuery($q, $r);
+			return true;
+		}
+		return false;
 	}
 
 	public function comment($data)
 	{
-		$q = "INSERT INTO comments SET text = :text, author = :author, tid = :tid";
+		if(isset($data['post']) && isset($data['user']) && isset($data['topicId']))
+		{
+			$q = "INSERT INTO comments SET text = :text, author = :author, tid = :tid";
 
-		$r = array(
-			'text' => $data['post'],
-			'author' => $data['user'],
-			'tid' => $data['topicId']
-		);
+			$r = array(
+				'text' => $data['post'],
+				'author' => $data['user'],
+				'tid' => $data['topicId']
+			);
 
-		return -$this->dbQuery($q, $r);
+			$this->dbQuery($q, $r);
+			return true;
+		}
+		return false;
 	}
 }

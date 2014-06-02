@@ -21,7 +21,7 @@ class TopicCtrl extends core\controller\Controller
 		$result = false;
 		$params = func_get_args();
 		$validator = new core\controller\Validator($this->controllerRoutes, $params);
-  
+
 		if($validator->result)
 		{
 			$model = new TopicModel();
