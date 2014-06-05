@@ -7,7 +7,6 @@ class Request
 	private $tokens = array();
 	private $data;
 
-
 	/**
 	 * Initalize functions that gets requested data.
 	 */
@@ -16,7 +15,6 @@ class Request
 		$this->setTokens();
 		$this->setData();
 	}
-
 
 	/**
 	 * Set Tokens
@@ -29,7 +27,6 @@ class Request
 			$this->tokens = explode('/', rtrim($url, '/'));
 		}
 	}
-
 
 	/**
 	 * Set data
@@ -47,8 +44,6 @@ class Request
     		$this->data = false;
     	}
 	}
-
-
 	
 	public function get($item)
 	{

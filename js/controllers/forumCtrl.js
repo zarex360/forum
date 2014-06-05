@@ -2,37 +2,45 @@
 
 /* Controllers */
 
-angular.module('myApp.forumCtrl', [])
+angular.module('Forum.forumCtrl', [])
 
 //The controller that gets all the categories
-  .controller('CategoryCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
-    $scope.categories = {};
-    $scope.topic = {};
+  .controller('CategoryCtrl', ['$scope', 'HttpServices', function($scope, HttpServices){
+    var path = 'category'
     //The server request
-    $http.get('server/menu/getCategories').success(function(data){
-      //Put all the categories in the variable categories
-      $scope.categories = data['categoryMenuResponse'];
+    HttpServices.get(path).then(function(response){
+      $scope.categories = response['data']['categoryResponse'];
     });
 
   }])
 
   //The controller that gets all the topics in a category
-  .controller('TopicCtrl', ['$scope', '$http', '$routeParams', 'TopicService', 'UserService', function($scope, $http, $routeParams, TopicService, UserService){
+  .controller('TopicCtrl', ['$scope', '$location', '$rootScope', '$http', '$routeParams', 'HttpServices', function($scope, $location, $rootScope, $http, $routeParams, HttpServices){
     //Check if a category is set
     if($routeParams['category']){
       var category = {'category': $routeParams['category']};
+      var path = '';
+      $rootScope.category = $routeParams['category'];
+      path = 'topic/' + $routeParams['category'];
       //If it is set then start a service to get all topics
-      TopicService.getTopics(category).then(function(response){
-        $scope.topics = response['data']['getTopicListResponse'];
+      HttpServices.get(path).then(function(response){
+        $scope.topics = response['data']['topicResponse'];
         $scope.topicHref = $routeParams['category'];
-      });
-    };
+      })
+    }
+    if($location.path() == '/create_topic'){
+      HttpServices.get('auth/haveUser').then(function(response){
+        var user = response['data']['authUserResponse'];
+        if(!user){
+          $location.path('/login');
+        }
+      })
+    }
 
-
-      $http.get('server/menu/getCategories').success(function(data){
-      //Put all the categories in the variable categories
-        $scope.categoryList = data['categoryMenuResponse'];
+      HttpServices.get('category').then(function(response){
+        $scope.categoryList = response['data']['categoryResponse'];
       });
+      console.log($rootScope.category);
       
     $scope.createTopic = function(){
       var response;
@@ -40,13 +48,13 @@ angular.module('myApp.forumCtrl', [])
       topic.catId = $scope.topicCreate['category'];
       topic.title = $scope.topicCreate['title'];
       topic.text = $scope.topicCreate['text'];
-      UserService.haveUser().then(function(data){
-        topic.user = data['data']['authUserResponse'];
+      HttpServices.get('auth/haveUser').then(function(response){
+        topic.user = response['data']['authUserResponse'];
         if(!topic.user){
           console.log('not logged in');
         }else{
-          TopicService.create(topic).then(function(response){
-            console.log(response);
+          HttpServices.post('topic/create', topic).then(function(response){
+
           });
         }
       })
@@ -55,7 +63,7 @@ angular.module('myApp.forumCtrl', [])
   }])
 
   //The controlelr that gets all the post that belongs to a topic
-  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'TopicService', 'UserService', function($route, $scope, $http, $routeParams, TopicService, UserService){
+  .controller('PostCtrl', ['$route', '$scope', '$http', '$routeParams', 'HttpServices', 'UserService', '$location', function($route, $scope, $http, $routeParams, HttpServices, UserService, $location){
     //Check if a topic is set
     if($routeParams['topic']){
       //Prepare a variable for the server request
@@ -67,10 +75,16 @@ angular.module('myApp.forumCtrl', [])
       //If it is set then do a server request to get all posts that belongs to that topic
 
       //Start the serveice function to get all post in a topic
-      TopicService.getAll(params).then(function(response){
-        $scope.topic = response['data']['getAllPostsResponse']['topic'];
-        $scope.posts = response['data']['getAllPostsResponse']['posts'];
+      HttpServices.get('topic/' + $routeParams['category'] + '/' + $routeParams['topic']).then(function(response){
+        if(response['data']['topicResponse'] == false){
+          $location.path('/404');
+        }
+        $scope.topic = response['data']['topicResponse'][0];
       });
+      HttpServices.get('topic/' + $routeParams['topic']).then(function(response){
+        console.log(response['data']['topicResponse']);
+        $scope.posts = response['data']['topicResponse'];
+      })
     }
 
     $scope.comment = function(){
@@ -80,10 +94,11 @@ angular.module('myApp.forumCtrl', [])
       UserService.haveUser().then(function(user){
         comment.user = user['data']['authUserResponse'];
         if(!comment.user){
-          console.log('You are not logged in');
+          $location.path('/login');
         }else{
-          TopicService.comment(comment).then(function(response){
+          HttpServices.post('topic/comment', comment).then(function(response){
             if(response){
+              console.log(response);
               $route.reload();
             }
           });

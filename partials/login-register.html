@@ -23,6 +23,7 @@
 <!--regForm Form-->
 <div class="register">
 	<h1>Register</h1>
+	{{error()}}
 	<form name="regForm" novalidate>
 		<label for>Username</label>
 		<input type="text" name="username" placeholder="UserName" ng-model="user.username" requried>

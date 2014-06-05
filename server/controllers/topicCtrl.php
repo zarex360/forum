@@ -1,22 +1,52 @@
 <?php
 
-class TopicCtrl extends core\Controller
+class TopicCtrl extends core\controller\Controller
 {
-	protected function getTopicsXCategory()
-	{
-		$model = new TopicModel();
+	private $controllerRoutes = array(
+		'getAll' => array(),
+		'getTopicsByCategoryName' => array(
+			'query' => array('categories', 'href'),
+		),
+		'getTopic' => array(
+			'param1' => array('query' => array('categories', 'href')),
+			'param2' => array('query' => array('topics', 'id'))
+		),
+		'getComments' => array(
+			'param1' => array('query' => array('comments', 'tid'))
+		),
+	);
 
-		$result = $model->getTopicsXCategory($this->requestData);
+	protected function get()
+	{	
+		$result = false;
+		$params = func_get_args();
+		$validator = new core\controller\Validator($this->controllerRoutes, $params);
 
-		$this->response->add('getTopicListResponse', $result);
+		if($validator->result)
+		{
+			$model = new TopicModel();
+			$method = $validator->method;
+			$result = $model->$method($params);
+		}
+
+		$this->response->add('topicResponse', $result);
 	}
 
-	protected function createNewTopic()
+	protected function create()
 	{
+		$result = false;
+		$data = $this->requestData;
 		$model = new TopicModel();
+		$result = $model->create($data);
+		$this->response->add('crateResponse', $result);
+	}
 
-		$result = $model->createNewTopic($this->requestData);
-
-		$this->response->add('createNewTopic', 'created');
+	protected function comment()
+	{
+		$result = false;
+		$data = $this->requestData;
+		$model = new TopicModel();
+		$result = $model->comment($data);
+		$this->response->add('commentResponse', $result);
 	}
 }

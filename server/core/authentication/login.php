@@ -13,7 +13,7 @@ class Login extends DbQuery
 	 */
 	public function loginUser($user)
 	{
-		$q = "SELECT * FROM user WHERE username = :username AND password = :password";
+		$q = "SELECT * FROM users WHERE username = :username AND password = :password";
 		$r = array(
 			'username' => strtolower($user['username']),
 			'password' => $user['password']

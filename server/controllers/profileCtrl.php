@@ -1,23 +1,18 @@
 <?php
 
-class ProfileCtrl extends core\Controller
+class ProfileCtrl extends core\controller\Controller
 {
-	protected function editProfile()
-	{
+	public function edit(){
+		$data = $this->requestData;
+
 		$model = new ProfileModel();
-		
-		$auth = new core\database\DbQuery();
 
-		if($auth->haveUser())
-		{
-			$result = $model->editProfile($this->requestData);
+		$result = $model->checkPass($data);
+		$this->response->add('EditResponse', $result);
+		if($result){
+			$result = $model->update($data);
+			$this->response->add('EditResponse', $result);
 		}
-		else
-		{
-			$result = false;
-		}
-		
-		$result = $this->response->add('editProfileResponse', $result);
+		$this->response->add('EditResponse', $result);
 	}
-
 }

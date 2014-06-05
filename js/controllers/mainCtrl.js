@@ -2,36 +2,50 @@
 
 /* mainCtrl */
 
-angular.module('myApp.mainCtrl', [])
+angular.module('Forum.mainCtrl', [])
 
   //The home controller
-  .controller('HomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
-    UserService.haveUser();
-    $scope.$on("menuGet",function() {
-      $scope.userName = UserService.getUser();
+  .controller('HomeCtrl', ['$scope', 'HttpServices', '$rootScope', function($scope, HttpServices, $rootScope) {
+    var path = 'auth/haveUser';
+    HttpServices.get(path);
+
+    $rootScope.$on("menuGet",function() {
+      HttpServices.get('auth/haveUser').then(function(response){
+        $scope.userName = function(){
+          if(response['data']['authUserResponse'] != false){
+            return response['data']['authUserResponse'];
+          }
+        }
+      });
     })
-    $scope.userName = UserService.getUser();
+    HttpServices.get('auth/haveUser').then(function(response){
+      $scope.userName = function(){
+          if(response['data']['authUserResponse'] != false){
+            return response['data']['authUserResponse'];
+          }
+        }
+    });
 
   }])
 
 
 
   //The menu Controller
-  .controller('MenuCtrl', ['$http', '$scope', function($http, $scope){
-
+  .controller('MenuCtrl', ['HttpServices', '$scope', '$rootScope', function(HttpServices, $scope, $rootScope){
+    var path = ''
     // initial menu (logged in or not)
-    $http.get('server/menu/getMain').success(function(data){
-      //Set the menu data to scope menu, access the data with {{menu}} in index.html
-      $scope.mainMenu = data['mainMenuResponse'];
-    });
+    path = 'menu/main'
+    HttpServices.get(path).then(function(response){
+      $scope.mainMenu = response['data']['menuResponse'];
+    })
 
     // Look if the event is set, if it is. then load the new menu (it sets when you login)
-    $scope.$on("menuGet",function() {
+    $rootScope.$on("menuGet",function() {
       //DO a server request to get the menu
-      $http.get('server/menu/getMain').success(function(data){
-        //Set the menu data to $scope.menu
-        $scope.mainMenu = data['mainMenuResponse'];
-      });
+      path = 'menu/main';
+      HttpServices.get(path).then(function(response){
+        $scope.mainMenu = response['data']['menuResponse'];
+      })
     });
     
     

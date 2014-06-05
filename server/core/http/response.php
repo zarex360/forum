@@ -6,7 +6,7 @@ class Response
 {
 	private $content = array();
 	private $format = FORMAT;
-	
+
 	public function add($key = 'No key', $value = 'No value')
 	{
 		$this->content[$key] = $value;

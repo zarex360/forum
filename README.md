@@ -9,10 +9,13 @@ This is a School project where we build up a forum with:
 |BackEnd	|	PHP / MYSQL	|
 |CSS		|	Bootstrap	|
 
+
+
+
 Change this to get everything to work
 =====================================
 
--server/core/siteConfig.php-
+-server/setting.php-
 ```php
 define('BASE_PATH', 'path to server');
 
@@ -20,4 +23,9 @@ define('DB_HOST','Your Host');
 define('DB_DB','db name');
 define('DB_USER','db user');
 define('DB_PASS','db password');
+```
+
+-index.html-
+```php
+At line 6 add your path to the forum
 ```

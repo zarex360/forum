@@ -2,19 +2,23 @@
 
 /* Application */
 
-angular.module('myApp', [
+angular.module('Forum', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.forumServices',
-  'myApp.userServices',
-  'myApp.directives',
-  'myApp.mainCtrl',
-  'myApp.userCtrl',
-  'myApp.forumCtrl'
+  'Forum.filters',
+  'Forum.directives',
+  'Forum.httpServices',
+  'Forum.userServices',
+  'Forum.AdminServices',
+  'Forum.mainCtrl',
+  'Forum.userCtrl',
+  'Forum.forumCtrl',
+  'Forum.AdminCategoryCtrl',
+  'Forum.AdminTopicCtrl',
+  'Forum.AdminUsersCtrl',
 ])
 
 .config(['$locationProvider', function ($locationProvider) {
- $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 }])
 
 .config(['$routeProvider', function($routeProvider) {
@@ -50,29 +54,26 @@ angular.module('myApp', [
   .when('/create_topic', {
     templateUrl: 'partials/create_topic.html',
     controller: 'TopicCtrl'
+  })
+  .when('/404', {
+    templateUrl: 'partials/404.html'
+  })
+  .when('/admin/category', {
+    templateUrl: 'partials/admin/adminCategory.html',
+    controller: 'AdminCategoryCtrl',
+  })
+  .when('/admin/topic', {
+    templateUrl: 'partials/admin/adminTopic.html',
+    controller: 'AdminTopicCtrl',
+  })
+  .when('/admin/users', {
+    templateUrl: 'partials/admin/adminUsers.html',
+    controller: 'AdminUsersCtrl',
   });
 
   $routeProvider.otherwise({redirectTo: '/home'});
 
 }]);
-
-
-angular.module('myApp').run(['$http', '$rootScope', 'UserService',  function($http, $rootScope, UserService){
-
-
-    
-    
-
-}]);
-
-
-
-
-
-
-
-
-
-
-
-
+/*angular.module('Forum').run(['$http', '$rootScope', 'HttpServices',  function($http, $rootScope, HttpServices){
+  
+}]);*/

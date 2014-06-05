@@ -2,45 +2,31 @@
 
 class ProfileModel extends core\database\DbQuery
 {
-	public function editProfile($data)
-	{
-		$oldPassword = array_pop($data);
-		if($userId = $this->getIdWithPassword($oldPassword))
-		{
-			foreach($data as $key => $value)
-			{
-				$this->updateDb($key, $value, $userId);
-				$_SESSION['user'][$key] = $value;
-			}
-			return true;
-		}
-		return false;
+
+	public function checkPass($data){
+		$q = "SELECT * FROM users WHERE username = :user AND password = :pass";
+		$r = array(
+				'user' => $_SESSION['user']['username'],
+				'pass' => $data['oldPassword']
+			);
+
+		return $this->DbQuery($q, $r);
 	}
 
-	private function updateDb($key, $value, $userId)
-	{
-		$q = "UPDATE user SET " . $key . " = :value WHERE id = :id";
-		$r = array(
-			'value' => $value,
-			'id' => $userId
-		);
-		$this->dbQuery($q, $r);
-	}
+	public function update($data){
+		if(isset($data['email']) && isset($data['password'])){
+			$str = "email = '" . $data['email'] . "', password = '" . $data['password'] . "'";
+		}elseif(isset($data['email'])){
+			$str = "email = '" . $data['email'] . "'";
+		}else{
+			$str = "password = '" . $data['password'] . "'";
+		};
 
-	private function getIdWithPassword($pw)
-	{
-		$user = $this->session->get('user');
-		$user['password'] = $pw;
-		$q = "SELECT id FROM user WHERE username = :username AND password = :password";
+		$q = "UPDATE users SET " . $str . " WHERE username = :user" ;
 		$r = array(
-			'username' => $user['username'],
-			'password' => $user['password']
+			'user' => $_SESSION['user']['username']
 		);
-		$result = $this->dbQuery($q, $r, 'fetch');
-		if(isset($result['id']))
-		{
-			return $result['id'];
-		}
-		return false;
+		$this->DbQuery($q, $r);
+		return true;
 	}
 }

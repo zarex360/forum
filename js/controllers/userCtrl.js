@@ -2,35 +2,63 @@
 
 /* User Controllers */
 
-angular.module('myApp.userCtrl', [])
+angular.module('Forum.userCtrl', [])
 
  //User controller
-  .controller('UserCtrl', ['UserService', '$scope', '$rootScope', function(UserService, $scope, $rootScope){
-
+  .controller('UserCtrl', ['HttpServices', '$scope', '$rootScope', '$location', function(HttpServices, $scope, $rootScope, $location){
+    var path = '';
     //User information
     $scope.user = {};
     //User input 
     $scope.loginInput = {};
-    $scope.msg = UserService.getMsg;
+    var msg = null;
+    var error = null;
+    //$scope.msg = UserService.getMsg;
     //$scope.userName = UserService.getUser;
     //register function
     $scope.register = function(){
       //start register service
-      UserService.register($scope.user);
+      path = 'auth/register';
+      HttpServices.post(path, $scope.user).then(function(response){
+        if(response['data']['registerResponse']){
+          $scope.msg = function(){
+            return 'You can now login!';
+          }
+        }else{
+           $scope.error = function(){
+            return 'Username is allready taken!';
+           }
+          }
+        
+      })
     }
 
     //Login function
     $scope.login = function(){
+      var userName = null;
+      path = 'auth/login'
       //Start login service
-      UserService.login($scope.loginInput);
+      HttpServices.post(path, $scope.loginInput).then(function(response){
+        if(response['data']['loginResponse']){
+          userName = response['data']['loginResponse'];
+          $rootScope.$broadcast('menuGet');
+          $location.path('/home');
+        }else{
+          $scope.msg = function(){
+            return 'There has been a error with your information!';
+          }
+        }
+
+      })
     }
 
   }])
 
   //Logout controller
-  .controller('LogoutCtrl', ['$scope', '$http', '$location', '$rootScope', function($scope, $http, $location, $rootScope){
-      //Do a request to the server for clear the session
-      $http.get('server/auth/logout').success(function(){
+  .controller('LogoutCtrl', ['$scope', 'HttpServices', '$location', '$rootScope', function($scope, HttpServices, $location, $rootScope){
+      var path = 'auth/logout'
+      //Do a request to the server for lear the session
+      HttpServices.get(path).then(function(){
         //Reset the event
         $rootScope.$broadcast('menuGet');
         //Send the user to the login/registartion page
@@ -39,15 +67,36 @@ angular.module('myApp.userCtrl', [])
     
   }])
 
-  .controller('ProfileCtrl', ['$scope', 'ProfileService', '$http', '$location', function($scope, ProfileService, $http, $location){
+  .controller('ProfileCtrl', ['$scope', 'HttpServices',  '$location', 'ProfileService', function($scope, HttpServices, $location, ProfileService){
     $scope.profile = null;
-    $http.get('server/auth/haveUser').success(function(data){
-      if(data['authUserResponse'] == false){
+    $scope.update = null;
+    var path = 'auth/haveUser';
+    HttpServices.get(path).then(function(data){
+      if(!data['data']['authUserResponse']){
         $location.path('/login');
       }else{
         $scope.editProfile = function(){
-      ProfileService.edit($scope.profile);
-    }
+            HttpServices.get(path).then(function(data){
+              if(!data['data']['authUserResponse']){
+              $location.path('/login');
+            }else{
+            
+              if(!$scope.profile.oldPassword){
+                $scope.update = 'You need to fill in your old password';
+                return;
+              }
+              ProfileService.edit($scope.profile).then(function(response){
+                if(!response){
+                  $scope.update = 'Your old password is wrong';
+                }else{
+                  $scope.update = 'Your information has been updated';
+                }
+              })
+            }
+          })
+
+        }
       }
     })
+
   }])

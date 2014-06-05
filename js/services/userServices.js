@@ -2,7 +2,7 @@
 
 /* UserServices */
 
-angular.module('myApp.userServices', [])
+angular.module('Forum.userServices', [])
 
  //User Service, do anything that handle user information
   .service('UserService', ['$http', '$location', '$rootScope', function($http, $location, $rootScope){
@@ -58,6 +58,11 @@ angular.module('myApp.userServices', [])
       //a function that returns the username if a login is success
       getUser: function(){
         return userName;
+      },
+      role: function(){
+        return $http.get('server/auth/role').success(function(data){
+
+        });
       }
     };
 
@@ -66,8 +71,8 @@ angular.module('myApp.userServices', [])
 .service('ProfileService', ['$http', '$location', '$rootScope', function($http, $location, $rootScope){
   return {
     edit: function(editInfo){
-      console.log(editInfo);
-      $http.post('server/profile/edit', editInfo).success(function(data){
+      //console.log(editInfo);
+      return $http.post('server/profile/edit', editInfo).success(function(data){
         console.log(data);
       })
     }

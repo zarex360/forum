@@ -1,6 +1,6 @@
 <?php
 
-class LoginCtrl extends core\Controller
+class LoginCtrl extends core\controller\Controller
 {
 	protected function login()
 	{
@@ -16,6 +16,15 @@ class LoginCtrl extends core\Controller
 		$model = new core\database\DbQuery();
 
 		$result = $model->haveUser();
+
+		$this->response->add('authUserResponse', $result);
+	}
+
+	protected function role()
+	{
+		$model = new core\database\DbQuery();
+
+		$result = $model->getUserRole();
 
 		$this->response->add('authUserResponse', $result);
 	}

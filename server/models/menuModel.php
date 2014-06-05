@@ -2,32 +2,32 @@
 
 class MenuModel extends core\database\DbQuery
 {
-	public function getMainMenu()
+	public function getMenu($params)
 	{
-		$role = $this->haveUserRole();
-		return $this->getMenuFromDb($role);
+		$menu = $params[0];
+		$role = $this->getRole();
+		return $this->getMenuFromDb($role, $menu);
 	}
 
-	private function getMenuFromDb($role)
+	private function getMenuFromDb($role, $menu)
 	{
 		if($role > 1)
 		{
-			$str = 'role <= ' . $role .' AND role != 0';
+			$str = "role <= '" . $role ."' AND role != 0 AND type = '" . $menu . "'";
 		}
 		else
 		{
-			$str = 'role <= 1';
+			$str = "role <= 1 AND type = '" . $menu . "'";
 		}
-
-		$q = "SELECT * FROM main_menu WHERE " . $str;
+		$q = "SELECT * FROM menus WHERE " . $str . "ORDER BY weight ASC";
 		return $this->dbQuery($q);
 	}
 
-	private function haveUserRole()
+	private function getRole()
 	{
 		if($user = $this->session->get('user'))
 		{
-			$q = "SELECT role FROM user WHERE username = :username and password = :password";
+			$q = "SELECT role FROM users WHERE username = :username and password = :password";
 			$r = array(
 				'username' => $user['username'],
 				'password' => $user['password']
@@ -36,11 +36,5 @@ class MenuModel extends core\database\DbQuery
 			return $result['role'];
 		}
 		return 1;
-	}
-
-	public function getCatergoryMenu()
-	{
-		$q = "SELECT * FROM category_menu";
-		return $this->dbQuery($q); 
 	}
 }

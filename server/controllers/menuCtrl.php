@@ -1,22 +1,22 @@
 <?php
 
-class MenuCtrl extends core\Controller
+class MenuCtrl extends core\controller\Controller
 {
-	protected function getMainMenu()
+	private $controllerRoute = array('getMenu' => array('query' => array('menus', 'type'))); 
+
+	protected function get()
 	{
-		$model = new MenuModel();
+		$result = false;
+		$params = func_get_args();
+		$validator = new core\controller\Validator($this->controllerRoute, $params);
 
-		$result = $model->getMainMenu();
+		if($validator->result)
+		{
+			$model = new MenuModel();
+			$method = $validator->method;
+			$result = $model->$method($params);
+		}
 
-		$this->response->add('mainMenuResponse', $result);
-	}
-
-	protected function getCatergoryMenu()
-	{
-		$model = new MenuModel();
-
-		$result = $model->getCatergoryMenu();
-
-		$this->response->add('categoryMenuResponse', $result);
+		$this->response->add('menuResponse', $result);
 	}
 }

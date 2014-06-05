@@ -11,29 +11,33 @@ class Register extends DbQuery
 	 * @param  Array $data
 	 * @return Boolean
 	 */
-	public function checkRegisterData($data)
+	public function registerUser($data)
 	{
-		$q = "SELECT username FROM user WHERE email = :email OR username = :username";
-		$r = array(
-			'email' => $data['email'],
-			'username' => $data['username']
-		);
-		$result = $this->dbQuery($q, $r);
-
-		if(isset($result['username']))
+		if(isset($data['email']) && isset($data['username']) && isset($data['password']))
 		{
-			return false;
+			$q = "SELECT username FROM users WHERE email = :email OR username = :username";
+			$r = array(
+				'email' => $data['email'],
+				'username' => $data['username']
+			);
+			$result = $this->dbQuery($q, $r);
+
+			if(!$result)
+			{
+				$this->registerUserInDb($data);
+				return true;
+			}
 		}
-		return true;
+		return false;
 	}
 
 	/**
 	 * Register user with data 
 	 * @param  Array $data
 	 */
-	public function registerUser($data)
+	private function registerUserInDb($data)
 	{
-		$q = "INSERT INTO user SET username = :username, email = :email, password = :password";
+		$q = "INSERT INTO users SET username = :username, email = :email, password = :password";
 		$r = array(
 			'username' => strtolower($data['username']),
 			'email' => $data['email'],

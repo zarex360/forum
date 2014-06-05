@@ -40,7 +40,12 @@ class DbQuery extends DbHandler
 
 		if(strpos($q, 'SELECT') !== false)
 		{
-		 	return $statement->$f(PDO::FETCH_ASSOC);
+		 	$result = $statement->$f(PDO::FETCH_ASSOC);
+		 	if(count($result) > 0 and $result !== array())
+		 	{
+		 		return $result; 
+		 	}
+		 	return false;
 		}
 	}
 
@@ -55,7 +60,7 @@ class DbQuery extends DbHandler
 	{
 		if($user = $this->session->get('user'))
 		{
-			$q = "SELECT * FROM user WHERE username = :username AND password = :password";
+			$q = "SELECT * FROM users WHERE username = :username AND password = :password";
 			$r = array(
 				'username' => $user['username'], 
 				'password' => $user['password']
@@ -80,5 +85,38 @@ class DbQuery extends DbHandler
 	{
 		$this->session->destroy();
 		return true;
+	}
+
+	public function getAllFrom($table)
+	{
+		$q = "SELECT * FROM " . $table;
+		$result =  $this->dbQuery($q);
+		
+		if(isset($result) and $result !== array()) {
+			return $result;
+		}
+		return $result;
+	}
+
+	public function getUserRole()
+	{
+		if($this->haveUser())
+		{
+			$user = $this->session->get('user');
+			
+			$q = "SELECT role FROM users WHERE username = :username AND password = :password";
+
+			$r = array(
+				'username' => $user['username'],
+				'password' => $user['password']
+			);
+
+			$result = $this->DbQuery($q, $r, 'fetch');
+			if(isset($result['role']))
+			{
+				return $result['role'];
+			}
+		}
+		return false;
 	}
 }

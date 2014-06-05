@@ -2,47 +2,93 @@
 
 class TopicModel extends core\database\DbQuery
 {
-	public function getTopicsXCategory($href)
+	public function getTopicsByCategoryName($params)
 	{
-		$href = array_shift($href);
-		if($cid = $this->getCategoryId($href))
+		$category = $params[0];
+
+		$cid = $this->getCategoryId($category);
+		
+		$q = "SELECT * FROM topics WHERE cid = :cid";
+
+		$r = array('cid' => $cid);
+		
+		return $this->dbQuery($q, $r);	
+	}
+
+	private function getCategoryId($category)
+	{
+		$q = "SELECT id FROM categories WHERE href = '" . $category . "'";
+		
+		$result = $this->dbQuery($q, 'fetch');
+		
+		return $result['id'];
+	}
+
+	public function getAll()
+	{
+		return $this->getALlFrom('topics');
+	}
+
+	public function getTopic($params)
+	{
+		$category = $params[0];
+		
+		$tid = $params[1];
+
+		$cid = $this->getCategoryId($category);
+		
+		$q = "SELECT * FROM topics WHERE cid = :cid AND id = :tid";
+		
+		$r = array('cid' => $cid, 'tid' => $tid);
+		
+		return $this->dbQuery($q, $r);
+	}
+
+	public function getComments($params)
+	{
+		$tid = $params[0];
+
+		$q = "SELECT * FROM comments WHERE tid = :tid";
+
+		$r = array('tid' => $tid);
+		
+		return $this->dbQuery($q, $r);
+	}
+
+	public function create($data)
+	{
+		if(isset($data['title']) && isset($data['text']) && isset($data['user']) && isset($data['catId']))
 		{
-			$q = "SELECT topics.* FROM topics INNER JOIN topics_x_category ON topics.id = topics_x_category.tid WHERE topics_x_category.cid = :cid ORDER BY topics.created DESC";
-			$r = array('cid' => $cid);
-			return $this->dbQuery($q, $r);
+			$q = "INSERT INTO topics SET title = :title, text = :text, author = :author, cid = :cid";
+
+			$r = array(
+				'title' => $data['title'],
+				'text' => $data['text'],
+				'author' => $data['user'],
+				'cid' => $data['catId']
+			);
+
+			$this->dbQuery($q, $r);
+			return true;
 		}
 		return false;
 	}
 
-	private function getCategoryId($href)
+	public function comment($data)
 	{
-		$q = "SELECT id FROM category_menu WHERE href = :href";
-		$r = array('href' => $href);
-		$result = $this->dbQuery($q, $r, 'fetch');
-		return $result['id'];
-	}
+		if(isset($data['post']) && isset($data['user']) && isset($data['topicId']))
+		{
+			$q = "INSERT INTO comments SET text = :text, author = :author, tid = :tid";
 
-	public function createNewTopic($topic)
-	{
-			$catId = $topic['catId'];
-			$q = "INSERT INTO topics SET title = :title, text = :text, auther = :auther";
 			$r = array(
-				'title' => $topic['title'],
-				'text' => $topic['text'],
-				'auther' => $topic['user']
+				'text' => $data['post'],
+				'author' => $data['user'],
+				'tid' => $data['topicId']
 			);
-			$this->dbQuery($q, $r);
-			$q = "SELECT id FROM topics ORDER BY created DESC LIMIT 1";
-			$topicId = $this->dbQuery($q, 'fetch');
-			$this->createTopicLink($catId, $topicId);
-	}
 
-	private function createTopicLink($catId, $topicId){
-		$q = "INSERT INTO topics_x_category SET cid = :catId, tid = :topicId";
-		$r = array(
-			'catId' => $catId,
-			'topicId' => $topicId['id']
-		);
-		$this->dbQuery($q, $r);
+			$this->dbQuery($q, $r);
+			return true;
+		}
+		return false;
 	}
 }
