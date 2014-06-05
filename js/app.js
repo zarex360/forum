@@ -8,10 +8,13 @@ angular.module('Forum', [
   'Forum.directives',
   'Forum.httpServices',
   'Forum.userServices',
+  'Forum.AdminServices',
   'Forum.mainCtrl',
   'Forum.userCtrl',
   'Forum.forumCtrl',
-  'Forum.adminCtrl'
+  'Forum.AdminCategoryCtrl',
+  'Forum.AdminTopicCtrl',
+  'Forum.AdminUsersCtrl',
 ])
 
 .config(['$locationProvider', function ($locationProvider) {
@@ -55,32 +58,22 @@ angular.module('Forum', [
   .when('/404', {
     templateUrl: 'partials/404.html'
   })
-  .when('/configuration', {
-    templateUrl: 'partials/configuration.html',
-    controller: 'AdminCtrl'
+  .when('/admin/category', {
+    templateUrl: 'partials/admin/adminCategory.html',
+    controller: 'AdminCategoryCtrl',
+  })
+  .when('/admin/topic', {
+    templateUrl: 'partials/admin/adminTopic.html',
+    controller: 'AdminTopicCtrl',
+  })
+  .when('/admin/users', {
+    templateUrl: 'partials/admin/adminUsers.html',
+    controller: 'AdminUsersCtrl',
   });
 
   $routeProvider.otherwise({redirectTo: '/home'});
 
 }]);
-
-
-angular.module('Forum').run(['$http', '$rootScope', 'HttpServices',  function($http, $rootScope, HttpServices){
-
-
-    
-    
-
-}]);
-
-
-
-
-
-
-
-
-
-
-
-
+/*angular.module('Forum').run(['$http', '$rootScope', 'HttpServices',  function($http, $rootScope, HttpServices){
+  
+}]);*/

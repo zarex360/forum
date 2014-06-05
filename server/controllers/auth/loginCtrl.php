@@ -19,4 +19,13 @@ class LoginCtrl extends core\controller\Controller
 
 		$this->response->add('authUserResponse', $result);
 	}
+
+	protected function role()
+	{
+		$model = new core\database\DbQuery();
+
+		$result = $model->getUserRole();
+
+		$this->response->add('authUserResponse', $result);
+	}
 }

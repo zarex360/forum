@@ -97,4 +97,26 @@ class DbQuery extends DbHandler
 		}
 		return $result;
 	}
+
+	public function getUserRole()
+	{
+		if($this->haveUser())
+		{
+			$user = $this->session->get('user');
+			
+			$q = "SELECT role FROM users WHERE username = :username AND password = :password";
+
+			$r = array(
+				'username' => $user['username'],
+				'password' => $user['password']
+			);
+
+			$result = $this->DbQuery($q, $r, 'fetch');
+			if(isset($result['role']))
+			{
+				return $result['role'];
+			}
+		}
+		return false;
+	}
 }

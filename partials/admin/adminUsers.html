@@ -1,0 +1,6 @@
+<ul ng-controller="AdminUsersCtrl" class="admin-menu">
+	<li ng-repeat="item in adminMenu"><a href="{{item.href}}">{{item.name}}</a></li>
+</ul>
+
+<p>Edit Users</p>
+<input type="search" ng-model="searchValue" ng-change="users(searchValue)" placeholder="Search for users..." >

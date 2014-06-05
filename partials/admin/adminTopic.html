@@ -1,0 +1,6 @@
+<ul ng-controller="AdminTopicCtrl" class="admin-menu">
+	<li ng-repeat="item in adminMenu"><a href="{{item.href}}">{{item.name}}</a></li>
+</ul>
+
+<p>Edit Topics</p>
+<input type="search" ng-model="searchValue" ng-change="topics(searchValue)" placeholder="Search for topics..." >

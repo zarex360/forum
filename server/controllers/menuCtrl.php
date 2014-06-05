@@ -2,14 +2,7 @@
 
 class MenuCtrl extends core\controller\Controller
 {
-	private $controllerRoute = array(
-		'getMenu' => array(
-			'query' => array(
-				'table' => 'menus',
-				'row' => 'type'
-			)
-		),
-	); 
+	private $controllerRoute = array('getMenu' => array('query' => array('menus', 'type'))); 
 
 	protected function get()
 	{

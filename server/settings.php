@@ -49,6 +49,7 @@ $routeMap = array(
 	'/auth/haveUser' => 'LoginCtrl@haveUser',
 	'/auth/register' => 'RegisterCtrl@register',
 	'/auth/logout' => 'LogoutCtrl@logout',
+	'/auth/role' => 'LoginCtrl@role',
 	
 	/**
 	 * Menues

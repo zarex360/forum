@@ -1,0 +1,6 @@
+<ul ng-controller="AdminCategoryCtrl" class="admin-menu">
+	<li ng-repeat="item in adminMenu"><a href="{{item.href}}">{{item.name}}</a></li>
+</ul>
+
+<p>Edit Categories</p>
+<input type="search" ng-model="searchValue" ng-change="categories(searchValue)" placeholder="Search for category..." >
