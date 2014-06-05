@@ -67,15 +67,34 @@ angular.module('Forum.userCtrl', [])
     
   }])
 
-  .controller('ProfileCtrl', ['$scope', 'HttpServices',  '$location', function($scope, HttpServices, $location){
+  .controller('ProfileCtrl', ['$scope', 'HttpServices',  '$location', 'ProfileService', function($scope, HttpServices, $location, ProfileService){
     $scope.profile = null;
+    $scope.update = null;
     var path = 'auth/haveUser';
     HttpServices.get(path).then(function(data){
-      if(data['authUserResponse'] == false){
+      if(!data['data']['authUserResponse']){
         $location.path('/login');
       }else{
         $scope.editProfile = function(){
-          ProfileService.edit($scope.profile);
+            HttpServices.get(path).then(function(data){
+              if(!data['data']['authUserResponse']){
+              $location.path('/login');
+            }else{
+            
+              if(!$scope.profile.oldPassword){
+                $scope.update = 'You need to fill in your old password';
+                return;
+              }
+              ProfileService.edit($scope.profile).then(function(response){
+                if(!response){
+                  $scope.update = 'Your old password is wrong';
+                }else{
+                  $scope.update = 'Your information has been updated';
+                }
+              })
+            }
+          })
+
         }
       }
     })

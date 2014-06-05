@@ -66,8 +66,8 @@ angular.module('Forum.userServices', [])
 .service('ProfileService', ['$http', '$location', '$rootScope', function($http, $location, $rootScope){
   return {
     edit: function(editInfo){
-      console.log(editInfo);
-      $http.post('server/profile/edit', editInfo).success(function(data){
+      //console.log(editInfo);
+      return $http.post('server/profile/edit', editInfo).success(function(data){
         console.log(data);
       })
     }
