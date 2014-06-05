@@ -26,6 +26,6 @@ define('DB_PASS','db password');
 ```
 
 -index.html-
-```Front end
+```php
 At line 6 add your path to the forum
 ```
