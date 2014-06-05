@@ -58,6 +58,11 @@ angular.module('Forum.userServices', [])
       //a function that returns the username if a login is success
       getUser: function(){
         return userName;
+      },
+      role: function(){
+        return $http.get('server/auth/role').success(function(data){
+
+        });
       }
     };
 

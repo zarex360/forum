@@ -9,9 +9,7 @@ angular.module('Forum.httpServices', [])
   return{
     get: function(path){
       //The server request
-      return $http.get('server/' + path).success(function(data){
-
-      })
+      return $http.get('server/' + path);
     },
 
     post: function(path, data){

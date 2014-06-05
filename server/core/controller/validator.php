@@ -91,7 +91,6 @@ class Validator
 			 	}
 			}
 		}		
-		
 		return false;
 	}
 
@@ -125,8 +124,6 @@ class Validator
 				}
 			}
 		}
-		//var_dump($requestParam);
-		//var_dump($queryResult);
 		return false;
 	}
 
@@ -134,7 +131,7 @@ class Validator
 	{
 		$dbQuery = new DbQuery();
 
-		$q = "SELECT " . $query['row']  . " FROM " . $query['table'];
+		$q = "SELECT " . $query[1]  . " FROM " . $query[0];
 
 		$result = $dbQuery->dbQuery($q);
 		

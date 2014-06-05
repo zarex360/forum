@@ -5,14 +5,14 @@ class TopicCtrl extends core\controller\Controller
 	private $controllerRoutes = array(
 		'getAll' => array(),
 		'getTopicsByCategoryName' => array(
-			'query' => array('table' => 'categories', 'row' => 'href'),
+			'query' => array('categories', 'href'),
 		),
 		'getTopic' => array(
-			'param1' => array('query' => array('table' => 'categories', 'row' => 'href')),
-			'param2' => array('query' => array('table' => 'topics', 'row' => 'id'))
+			'param1' => array('query' => array('categories', 'href')),
+			'param2' => array('query' => array('topics', 'id'))
 		),
 		'getComments' => array(
-			'param1' => array('query' => array('table' => 'comments', 'row' => 'tid'))
+			'param1' => array('query' => array('comments', 'tid'))
 		),
 	);
 
